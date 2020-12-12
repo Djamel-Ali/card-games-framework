@@ -1,0 +1,3 @@
+/home/djamel/CLionProjects/M1_2020-2021_projects/LOA_Tutorials/cpp_final_project/card-games-framework/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/djamel/CLionProjects/M1_2020-2021_projects/LOA_Tutorials/cpp_final_project/card-games-framework/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/djamel/CLionProjects/M1_2020-2021_projects/LOA_Tutorials/cpp_final_project/card-games-framework/cmake-build-debug/CMakeFiles/card_games_framework.dir
