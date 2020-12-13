@@ -1,0 +1,76 @@
+format 223
+
+classcanvas 128002 class_ref 128130 // Game
+  classdiagramsettings hide_attributes no hide_operations no hide_getset_operations no hide_ports no show_members_full_definition yes show_members_visibility yes show_members_stereotype yes show_members_multiplicity yes show_members_initialization yes show_attribute_modifiers yes member_max_width 0 show_parameter_dir yes show_parameter_name yes class_drawing_mode class show_stereotype_properties yes end
+  xyzwh 267.225 14.4439 2000 1231 294
+end
+classcanvas 128386 class_ref 128258 // Player
+  classdiagramsettings hide_attributes no hide_operations no hide_getset_operations no show_members_full_definition yes show_members_visibility yes show_members_stereotype yes show_members_multiplicity yes show_members_initialization yes show_attribute_modifiers yes member_max_width 0 show_parameter_name yes end
+  xyzwh 271.661 357.946 2000 459 232
+end
+classcanvas 128514 class_ref 128386 // Deck
+  classdiagramsettings hide_attributes no hide_operations no hide_getset_operations no hide_ports no show_members_full_definition yes show_members_visibility yes show_members_stereotype yes show_members_multiplicity yes show_members_initialization yes show_attribute_modifiers yes member_max_width 0 show_parameter_dir yes show_parameter_name yes show_infonote no end
+  xyzwh 761.89 528.945 2000 263 135
+end
+classcanvas 128642 class_ref 128514 // Card
+  classdiagramsettings hide_attributes no hide_operations no hide_getset_operations no show_members_full_definition yes show_members_visibility yes show_members_stereotype yes show_members_multiplicity yes show_members_initialization yes show_attribute_modifiers yes member_max_width 0 show_parameter_dir yes show_parameter_name yes end
+  xyzwh 667.617 793.119 2000 456 171
+end
+note 129282 "'name' and 'color' does not identify a card (e.g. in the UNO deck, there are for the majority of cards 2 copies with the same name and color)."
+  xyzwh 418.61 823.821 2000 205 125
+classcanvas 131458 class_ref 135042 // NumericCard
+  classdiagramsettings hide_attributes no hide_operations no hide_getset_operations no show_members_full_definition yes show_members_visibility yes show_members_stereotype yes show_members_multiplicity yes show_members_initialization yes show_attribute_modifiers yes member_max_width 0 show_parameter_dir yes show_parameter_name yes end
+  xyzwh 216.505 1027.64 2000 659 111
+end
+classcanvas 131842 class_ref 135554 // NonNumericCard
+  classdiagramsettings hide_attributes no hide_operations no hide_getset_operations no show_members_full_definition yes show_members_visibility yes show_members_stereotype yes show_members_multiplicity yes show_members_initialization yes show_attribute_modifiers yes member_max_width 0 show_parameter_dir yes show_parameter_name yes end
+  xyz 936.186 1027.12 2000
+end
+classcanvas 132226 class_ref 135682 // NumericWithSymbol
+  classdiagramsettings hide_attributes no hide_operations no hide_getset_operations no show_members_full_definition yes show_members_visibility yes show_members_stereotype yes show_members_multiplicity yes show_members_initialization yes show_attribute_modifiers yes member_max_width 0 show_parameter_dir yes show_parameter_name yes end
+  xyzwh 21.0543 1283.35 2000 874 122
+end
+classcanvas 132738 class_ref 135938 // NonNumWithSym
+  classdiagramsettings hide_attributes no hide_operations no hide_getset_operations no show_members_full_definition yes show_members_visibility yes show_members_stereotype yes show_members_multiplicity yes show_members_initialization yes show_attribute_modifiers yes member_max_width 0 show_parameter_dir yes show_parameter_name yes end
+  xyzwh 902.532 1285.41 2000 863 118
+end
+note 133762 "Symbols like: diamonds, spades, hearts, clubs."
+  xyzwh 834.726 1173.82 2000 143 85
+note 134146 "PAS ENCORE FINI ...
+principalement Game n'est pas encore finie ... et il y'aura possiblement une autre classe 'Gameplay' qui représentra une partie de jeu et qui utilisera les différentes instances de ces classes ... 
+C'est une première modélisation, tout reste à discuter pour le moment ..."
+  xyzwh 753.717 339.877 2000 275 172
+relationcanvas 131970 relation_ref 128514 // <generalisation>
+  from ref 131458 z 2001 to ref 128642
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 132098 relation_ref 128642 // <generalisation>
+  from ref 131842 z 2001 to ref 128642
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 132482 relation_ref 128770 // <generalisation>
+  from ref 132226 z 2001 to ref 131458
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 132994 relation_ref 129026 // <generalisation>
+  from ref 132738 z 2001 to ref 131842
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 133634 relation_ref 129410 // <aggregation>
+  from ref 128514 z 2001 to ref 128642
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+line 130562 -_-_ decenter_end 517
+  from ref 129282 z 2001 to ref 128642
+line 133890 -_-_
+  from ref 133762 z 2001 to ref 132226
+line 134018 -_-_
+  from ref 133762 z 2001 to ref 132738
+line 134274 -_-_
+  from ref 128002 z 2001 to ref 134146
+end
