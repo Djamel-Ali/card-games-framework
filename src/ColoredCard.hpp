@@ -9,7 +9,7 @@ private:
     string color;
 
 public:
-    ColoredCard(string n, int v, int p, string c);
+    ColoredCard(string n, int id, int p, string c);
     ~ColoredCard();
 
     string getColor() const;

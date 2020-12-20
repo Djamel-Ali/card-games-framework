@@ -1,13 +1,13 @@
 #include "Card.hpp"
 
-Card::Card(string n, int v, int p) : name(std::move(n)),value(v), point(p)
+Card::Card(string n, int id, int p) : name(std::move(n)),ID(id), point(p)
 {
 }
 
 Card::~Card() = default;
 
-int Card::getValue() const {
-    return value;
+int Card::getID() const {
+    return ID;
 }
 
 string Card::getName() const {
