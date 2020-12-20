@@ -13,6 +13,8 @@ public:
      bool isWinner() override;
      int getWinner() override;
      int whichCardWins() override;
+
+
 };
 
 
