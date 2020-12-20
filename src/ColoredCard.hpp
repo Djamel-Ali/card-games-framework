@@ -3,16 +3,18 @@
 
 #include "Card.hpp"
 
+enum COLOR {BLEU, VERT, JAUNE, ROUGE, TREFLE, COEUR, CARREAU, PIQUE};
+
 class ColoredCard : public Card{
 
 private:
-    string color;
+    COLOR color;
 
 public:
-    ColoredCard(string n, int id, int p, string c);
+    ColoredCard(string n, int id, int p, COLOR c);
     ~ColoredCard();
 
-    string getColor() const;
+    COLOR getColor() const;
 };
 
 
