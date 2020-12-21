@@ -60,6 +60,13 @@ void UNO::playRound(int indexCardToPlay) {
     }
 
 
+    while(!isWinner()){
+        playRound();
+    }
+}
+
+void UNO::playRound() {
+    cardOnTop = joueurs[actualPlaying]->playCard();
 }
 
 
@@ -82,7 +89,6 @@ int UNO::getIndexOfParseCard() {
             plusFour();
             break;
     }
-
     return 0;
 }
 

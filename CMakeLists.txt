@@ -11,4 +11,4 @@ add_executable(main.cpp
         src/Deck.hpp src/Deck.cpp
         src/Bataille.hpp src/Bataille.cpp
         src/UNO.hpp src/UNO.cpp
-        )
+        src/HuitAmericain.cpp src/HuitAmericain.hpp)

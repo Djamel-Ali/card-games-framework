@@ -12,8 +12,6 @@ protected:
     bool sensInverse;
     int actualPlaying = -1;
 
-
-
 public:
     explicit UNO(const Deck &deck);
     void initGame() override;
