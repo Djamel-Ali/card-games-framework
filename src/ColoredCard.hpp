@@ -4,7 +4,7 @@
 #include "Card.hpp"
 
 enum COLOR {
-    BLEU, VERT, JAUNE, ROUGE, TREFLE, COEUR, CARREAU, PIQUE
+    BLEU, VERT, JAUNE, ROUGE, TREFLE, COEUR, CARREAU, PIQUE, NONE
 };
 
 class ColoredCard : public Card {
@@ -18,6 +18,7 @@ public:
     ~ColoredCard();
 
     COLOR getColor() const;
+    bool operator==(ColoredCard const & other) const ;
 };
 
 

@@ -1,5 +1,7 @@
 #include "Bataille.hpp"
 #include "Player.hpp"
+#include <algorithm>
+#include <random>
 
 void Bataille::initGame() {
     string noms[] = {"Valet", "Dame", "Roi", "As"};
@@ -17,12 +19,10 @@ void Bataille::initGame() {
 }
 
 void Bataille::distributeCards() {
-    for(int i = 0; i < 16; i++){
-        joueurs.at(0)->addCard(deck.getCard());
-    }
-    for(int i = 0; i < 16; i++){
-        joueurs.at(1)->addCard(deck.getCard());
-
+    for(int j = 0; j < 2; j++){
+        for(int i = 0; i < 16; i++){
+            joueurs.at(j)->addCard(deck.getCard());
+        }
     }
 }
 
