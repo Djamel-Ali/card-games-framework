@@ -9,4 +9,8 @@ COLOR ColoredCard::getColor() const {
     return color;
 }
 
+bool ColoredCard::operator==(const ColoredCard &other) const {
+    return Card::operator==(other) || this->color == other.color || this->color == NONE;
+}
+
 

@@ -25,6 +25,10 @@ public:
     void addCard(Card *pCard);
 
     Card* getCard();
+
+    void shuffleCards();
+
+
 };
 
 

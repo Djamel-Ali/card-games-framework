@@ -23,8 +23,8 @@ public:
     string getName() const;
 
     int getValue() const;
-        bool operator==(Card const & other) const;
-        bool operator>(Card const & other) const;
+    bool operator==(Card const & other) const;
+    bool operator>(Card const & other) const;
 };
 
 

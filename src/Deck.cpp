@@ -1,4 +1,6 @@
 #include <iostream>
+#include <random>
+#include <algorithm>
 #include "Deck.hpp"
 
 // Ctor
@@ -27,4 +29,10 @@ Card *Deck::getCard() {
     deck_of_cards.pop_back();
 
     return temp;
+}
+
+void Deck::shuffleCards() {
+    std::random_device randomDevice;
+    auto engine = std::default_random_engine {randomDevice() };
+    std::shuffle(std::begin(deck_of_cards), std::end(deck_of_cards), engine);
 }

@@ -3,14 +3,18 @@
 
 #include "Game.hpp"
 #include "Card.hpp"
+#include "ColoredCard.hpp"
 
 class UNO : public Game{
 
 protected:
-    Card cardOnTop;
+    Card* cardOnTop{};
+    COLOR actualColor = NONE;
+    bool sensInverse;
+    int actualPlaying = 0;
 
 public:
-    UNO();
+    explicit UNO(const Deck &deck);
     void initGame() override;
     void startGame() override;
     bool isWinner() override;
@@ -18,6 +22,15 @@ public:
     int whichCardWins() override;
     void playRound() override;
     void distributeCards() override;
+
+    void nextPlayer();
+    void plusTwo(int playerIndex);
+    void plusFour(int playerIndex);
+    void reversed();
+    void changeColor();
+
+    bool cardPlayable(Card* toPlay);
+
 };
 
 
