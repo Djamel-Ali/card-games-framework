@@ -7,16 +7,19 @@ using namespace std;
 class Card {
     private:
         const string name;
-        const int ID;
+        const int id;
 
-        int point; // non const car les points des cartes de la belote changent quand ils sont atouts !
+        int value; // non const car les points des cartes de la belote changent quand ils sont atouts !
+
     public:
-        Card(string n, int v, int p);
+        Card(string _name, int _id, int _value);
         ~Card();
 
-        int getID() const;
+        int getId() const;
         string getName() const;
-        int getPoint() const;
+        int getValue() const;
+        bool operator==(Card const & other) const;
+        bool operator>(Card const & other) const;
 };
 
 

@@ -107,6 +107,12 @@
 		<Unit filename="C:/Users/mdyac/Desktop/M1/CPP/PROJET/cards/card-games-framework/src/Game.hpp">
 			<Option target="card_games_framework"/>
 		</Unit>
+		<Unit filename="C:/Users/mdyac/Desktop/M1/CPP/PROJET/cards/card-games-framework/src/UNO.cpp">
+			<Option target="card_games_framework"/>
+		</Unit>
+		<Unit filename="C:/Users/mdyac/Desktop/M1/CPP/PROJET/cards/card-games-framework/src/UNO.hpp">
+			<Option target="card_games_framework"/>
+		</Unit>
 		<Unit filename="C:/Users/mdyac/Desktop/M1/CPP/PROJET/cards/card-games-framework/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>

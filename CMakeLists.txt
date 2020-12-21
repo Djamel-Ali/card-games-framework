@@ -8,4 +8,6 @@ add_executable(card_games_framework main.cpp
         src/ColoredCard.cpp src/ColoredCard.hpp
         src/Game.cpp src/Game.hpp
         src/Bataille.cpp src/Bataille.hpp
+        src/UNO.cpp src/UNO.hpp
+
         )

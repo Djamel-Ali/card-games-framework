@@ -1,7 +1,9 @@
 #ifndef CARD_GAMES_FRAMEWORK_GAME_HPP
 #define CARD_GAMES_FRAMEWORK_GAME_HPP
 
+#include "Card.hpp"
 #include <vector>
+
 using namespace std;
 class Player;
 class Deck;
@@ -11,9 +13,11 @@ class Deck;
 class Game {
 
 private:
-    Deck deck;
+
 protected:
+    Deck deck;
     vector <Player*> joueurs;
+
 public:
     Game();
 
@@ -22,7 +26,8 @@ public:
     virtual bool isWinner() = 0;
     virtual int getWinner() = 0;
     virtual int whichCardWins() = 0;
-
+    virtual void playRound() = 0;
+    virtual void distributeCards() = 0;
 };
 
 

@@ -9,6 +9,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "C:/Users/mdyac/Desktop/M1/CPP/PROJET/cards/card-games-framework/src/Card.cpp" "C:/Users/mdyac/Desktop/M1/CPP/PROJET/cards/card-games-framework/cmake-build-debug/CMakeFiles/card_games_framework.dir/src/Card.cpp.obj"
   "C:/Users/mdyac/Desktop/M1/CPP/PROJET/cards/card-games-framework/src/ColoredCard.cpp" "C:/Users/mdyac/Desktop/M1/CPP/PROJET/cards/card-games-framework/cmake-build-debug/CMakeFiles/card_games_framework.dir/src/ColoredCard.cpp.obj"
   "C:/Users/mdyac/Desktop/M1/CPP/PROJET/cards/card-games-framework/src/Game.cpp" "C:/Users/mdyac/Desktop/M1/CPP/PROJET/cards/card-games-framework/cmake-build-debug/CMakeFiles/card_games_framework.dir/src/Game.cpp.obj"
+  "C:/Users/mdyac/Desktop/M1/CPP/PROJET/cards/card-games-framework/src/UNO.cpp" "C:/Users/mdyac/Desktop/M1/CPP/PROJET/cards/card-games-framework/cmake-build-debug/CMakeFiles/card_games_framework.dir/src/UNO.cpp.obj"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

@@ -15,7 +15,36 @@ void Bataille::initGame() {
     }
 }
 
+void Bataille::distributeCards() {
+    for(int i = 0; i < 16; i++){
+        joueurs.at(0).addCard(deck.getCard());
+    }
+    for(int i = 0; i < 16; i++){
+        joueurs.at(1).addCard(deck.getCard());
+
+    }
+}
+
 void Bataille::startGame() {
+    initGame();
+    while(!isWinner()){
+        playRound();
+    }
+
+}
+
+void Bataille::playRound() {
+    for(Player player : joueurs){
+        tapis.insert(tapis.begin(), player.playCard());
+    }
+
+    int roundWinner = whichCardWins();
+    if(!ohBataille){
+        while (!tapis.empty()){
+            joueurs.at(roundWinner).addCard(tapis.back());
+            tapis.pop_back();
+        }
+    }
 
 }
 
@@ -30,9 +59,26 @@ bool Bataille::isWinner() {
 }
 
 int Bataille::getWinner() {
-    return 0;
+    if(joueurs.at(0).emptyHand()){
+        return 0;
+    }
+
+    return 1;
 }
 
 int Bataille::whichCardWins() {
+    if(tapis.at(0) == tapis.at(1)){
+        ohBataille = true;
 
+        return -1;
+    }
+
+    ohBataille = false;
+
+    return tapis.at(0) > tapis.at(1) ? 1 : 0;
 }
+
+
+
+
+Bataille::Bataille() = default;

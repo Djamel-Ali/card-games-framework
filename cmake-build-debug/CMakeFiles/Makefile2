@@ -93,12 +93,12 @@ clean: CMakeFiles/card_games_framework.dir/clean
 CMakeFiles/card_games_framework.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\card_games_framework.dir\build.make CMakeFiles/card_games_framework.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\card_games_framework.dir\build.make CMakeFiles/card_games_framework.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Users\mdyac\Desktop\M1\CPP\PROJET\cards\card-games-framework\cmake-build-debug\CMakeFiles --progress-num=1,2,3,4,5,6 "Built target card_games_framework"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Users\mdyac\Desktop\M1\CPP\PROJET\cards\card-games-framework\cmake-build-debug\CMakeFiles --progress-num=1,2,3,4,5,6,7 "Built target card_games_framework"
 .PHONY : CMakeFiles/card_games_framework.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/card_games_framework.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\mdyac\Desktop\M1\CPP\PROJET\cards\card-games-framework\cmake-build-debug\CMakeFiles 6
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\mdyac\Desktop\M1\CPP\PROJET\cards\card-games-framework\cmake-build-debug\CMakeFiles 7
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/card_games_framework.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\mdyac\Desktop\M1\CPP\PROJET\cards\card-games-framework\cmake-build-debug\CMakeFiles 0
 .PHONY : CMakeFiles/card_games_framework.dir/rule

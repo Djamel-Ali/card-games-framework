@@ -1,18 +1,16 @@
-#ifndef CARD_GAMES_FRAMEWORK_BATAILLE_HPP
-#define CARD_GAMES_FRAMEWORK_BATAILLE_HPP
+#ifndef CARD_GAMES_FRAMEWORK_UNO_HPP
+#define CARD_GAMES_FRAMEWORK_UNO_HPP
 
 #include "Game.hpp"
 #include "Card.hpp"
 
-class Bataille : public Game{
+class UNO : public Game{
 
 protected:
-    vector<Card*> tapis;
-    bool ohBataille;
+    Card cardOnTop;
 
 public:
-    Bataille();
-
+    UNO();
     void initGame() override;
     void startGame() override;
     bool isWinner() override;
@@ -20,8 +18,7 @@ public:
     int whichCardWins() override;
     void playRound() override;
     void distributeCards() override;
-
 };
 
 
-#endif //CARD_GAMES_FRAMEWORK_BATAILLE_HPP
+#endif //CARD_GAMES_FRAMEWORK_UNO_HPP
