@@ -6,6 +6,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/card_games_framework.dir/src/Deck.cpp.o"
   "CMakeFiles/card_games_framework.dir/src/Game.cpp.o"
   "CMakeFiles/card_games_framework.dir/src/Player.cpp.o"
+  "CMakeFiles/card_games_framework.dir/src/UNO.cpp.o"
   "card_games_framework"
   "card_games_framework.pdb"
 )

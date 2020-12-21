@@ -332,6 +332,33 @@ src/Player.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/card_games_framework.dir/build.make CMakeFiles/card_games_framework.dir/src/Player.cpp.s
 .PHONY : src/Player.cpp.s
 
+src/UNO.o: src/UNO.cpp.o
+
+.PHONY : src/UNO.o
+
+# target to build an object file
+src/UNO.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/card_games_framework.dir/build.make CMakeFiles/card_games_framework.dir/src/UNO.cpp.o
+.PHONY : src/UNO.cpp.o
+
+src/UNO.i: src/UNO.cpp.i
+
+.PHONY : src/UNO.i
+
+# target to preprocess a source file
+src/UNO.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/card_games_framework.dir/build.make CMakeFiles/card_games_framework.dir/src/UNO.cpp.i
+.PHONY : src/UNO.cpp.i
+
+src/UNO.s: src/UNO.cpp.s
+
+.PHONY : src/UNO.s
+
+# target to generate assembly for a file
+src/UNO.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/card_games_framework.dir/build.make CMakeFiles/card_games_framework.dir/src/UNO.cpp.s
+.PHONY : src/UNO.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -362,6 +389,9 @@ help:
 	@echo "... src/Player.o"
 	@echo "... src/Player.i"
 	@echo "... src/Player.s"
+	@echo "... src/UNO.o"
+	@echo "... src/UNO.i"
+	@echo "... src/UNO.s"
 .PHONY : help
 
 

@@ -1,6 +1,8 @@
 #include "Card.hpp"
 
+
 Card::Card(const string &_name, int _id, int _value) : name(_name), id(_id), value(_value) {
+
 }
 
 Card::~Card() = default;
@@ -15,6 +17,15 @@ string Card::getName() const {
 
 int Card::getValue() const {
     return value;
+
+}
+
+bool Card::operator==(const Card &other) const {
+    return this->value == other.getValue();
+}
+
+bool Card::operator>(const Card &other) const {
+    return this->value > other.getValue();
 }
 
 

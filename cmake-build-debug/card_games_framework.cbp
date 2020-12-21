@@ -123,6 +123,12 @@
 		<Unit filename="/home/djamel/CLionProjects/M1_2020-2021_projects/LOA_Tutorials/cpp_final_project/card-games-framework/src/Player.hpp">
 			<Option target="card_games_framework"/>
 		</Unit>
+		<Unit filename="/home/djamel/CLionProjects/M1_2020-2021_projects/LOA_Tutorials/cpp_final_project/card-games-framework/src/UNO.cpp">
+			<Option target="card_games_framework"/>
+		</Unit>
+		<Unit filename="/home/djamel/CLionProjects/M1_2020-2021_projects/LOA_Tutorials/cpp_final_project/card-games-framework/src/UNO.hpp">
+			<Option target="card_games_framework"/>
+		</Unit>
 		<Unit filename="/home/djamel/CLionProjects/M1_2020-2021_projects/LOA_Tutorials/cpp_final_project/card-games-framework/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
