@@ -4,11 +4,13 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "C:/Users/mdyac/Desktop/M1/CPP/PROJET/cards/card-games-framework/main.cpp" "C:/Users/mdyac/Desktop/M1/CPP/PROJET/cards/card-games-framework/cmake-build-debug/CMakeFiles/card_games_framework.dir/main.cpp.obj"
-  "C:/Users/mdyac/Desktop/M1/CPP/PROJET/cards/card-games-framework/src/Bataille.cpp" "C:/Users/mdyac/Desktop/M1/CPP/PROJET/cards/card-games-framework/cmake-build-debug/CMakeFiles/card_games_framework.dir/src/Bataille.cpp.obj"
-  "C:/Users/mdyac/Desktop/M1/CPP/PROJET/cards/card-games-framework/src/Card.cpp" "C:/Users/mdyac/Desktop/M1/CPP/PROJET/cards/card-games-framework/cmake-build-debug/CMakeFiles/card_games_framework.dir/src/Card.cpp.obj"
-  "C:/Users/mdyac/Desktop/M1/CPP/PROJET/cards/card-games-framework/src/ColoredCard.cpp" "C:/Users/mdyac/Desktop/M1/CPP/PROJET/cards/card-games-framework/cmake-build-debug/CMakeFiles/card_games_framework.dir/src/ColoredCard.cpp.obj"
-  "C:/Users/mdyac/Desktop/M1/CPP/PROJET/cards/card-games-framework/src/Game.cpp" "C:/Users/mdyac/Desktop/M1/CPP/PROJET/cards/card-games-framework/cmake-build-debug/CMakeFiles/card_games_framework.dir/src/Game.cpp.obj"
+  "/home/djamel/CLionProjects/M1_2020-2021_projects/LOA_Tutorials/cpp_final_project/card-games-framework/main.cpp" "/home/djamel/CLionProjects/M1_2020-2021_projects/LOA_Tutorials/cpp_final_project/card-games-framework/cmake-build-debug/CMakeFiles/card_games_framework.dir/main.cpp.o"
+  "/home/djamel/CLionProjects/M1_2020-2021_projects/LOA_Tutorials/cpp_final_project/card-games-framework/src/Bataille.cpp" "/home/djamel/CLionProjects/M1_2020-2021_projects/LOA_Tutorials/cpp_final_project/card-games-framework/cmake-build-debug/CMakeFiles/card_games_framework.dir/src/Bataille.cpp.o"
+  "/home/djamel/CLionProjects/M1_2020-2021_projects/LOA_Tutorials/cpp_final_project/card-games-framework/src/Card.cpp" "/home/djamel/CLionProjects/M1_2020-2021_projects/LOA_Tutorials/cpp_final_project/card-games-framework/cmake-build-debug/CMakeFiles/card_games_framework.dir/src/Card.cpp.o"
+  "/home/djamel/CLionProjects/M1_2020-2021_projects/LOA_Tutorials/cpp_final_project/card-games-framework/src/ColoredCard.cpp" "/home/djamel/CLionProjects/M1_2020-2021_projects/LOA_Tutorials/cpp_final_project/card-games-framework/cmake-build-debug/CMakeFiles/card_games_framework.dir/src/ColoredCard.cpp.o"
+  "/home/djamel/CLionProjects/M1_2020-2021_projects/LOA_Tutorials/cpp_final_project/card-games-framework/src/Deck.cpp" "/home/djamel/CLionProjects/M1_2020-2021_projects/LOA_Tutorials/cpp_final_project/card-games-framework/cmake-build-debug/CMakeFiles/card_games_framework.dir/src/Deck.cpp.o"
+  "/home/djamel/CLionProjects/M1_2020-2021_projects/LOA_Tutorials/cpp_final_project/card-games-framework/src/Game.cpp" "/home/djamel/CLionProjects/M1_2020-2021_projects/LOA_Tutorials/cpp_final_project/card-games-framework/cmake-build-debug/CMakeFiles/card_games_framework.dir/src/Game.cpp.o"
+  "/home/djamel/CLionProjects/M1_2020-2021_projects/LOA_Tutorials/cpp_final_project/card-games-framework/src/Player.cpp" "/home/djamel/CLionProjects/M1_2020-2021_projects/LOA_Tutorials/cpp_final_project/card-games-framework/cmake-build-debug/CMakeFiles/card_games_framework.dir/src/Player.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

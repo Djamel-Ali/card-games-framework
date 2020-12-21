@@ -2,25 +2,28 @@
 #define CARD_GAMES_FRAMEWORK_GAME_HPP
 
 #include <vector>
-using namespace std;
-class Player;
-class Deck;
+#include "Deck.hpp"
+#include "Player.hpp"
 
+using namespace std;
 
 
 class Game {
 
-private:
-    Deck deck;
 protected:
-    vector <Player*> joueurs;
+    vector<Player *> joueurs;
+    Deck deck;
 public:
-    Game();
+    explicit Game(const Deck &_deck);
 
     virtual void initGame() = 0;
+
     virtual void startGame() = 0;
+
     virtual bool isWinner() = 0;
+
     virtual int getWinner() = 0;
+
     virtual int whichCardWins() = 0;
 
 };

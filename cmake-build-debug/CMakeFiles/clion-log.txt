@@ -1,4 +1,4 @@
-"C:\CODING\IDE\CLION\CLion 2019.3.4\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - MinGW Makefiles" C:\Users\mdyac\Desktop\M1\CPP\PROJET\cards\card-games-framework
+/home/djamel/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/202.6397.106/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/djamel/CLionProjects/M1_2020-2021_projects/LOA_Tutorials/cpp_final_project/card-games-framework
 -- Configuring done
 -- Generating done
--- Build files have been written to: C:/Users/mdyac/Desktop/M1/CPP/PROJET/cards/card-games-framework/cmake-build-debug
+-- Build files have been written to: /home/djamel/CLionProjects/M1_2020-2021_projects/LOA_Tutorials/cpp_final_project/card-games-framework/cmake-build-debug

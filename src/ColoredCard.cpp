@@ -1,8 +1,7 @@
 #include "ColoredCard.hpp"
 
-ColoredCard::ColoredCard(string n, int id, int p, COLOR c) : Card(std::move(n), id, p), color(c)
-{
-}
+ColoredCard::ColoredCard(const string &_name, int id, int _value, COLOR _color) :
+        Card((_name), id, _value), color(_color) {}
 
 ColoredCard::~ColoredCard() = default;
 

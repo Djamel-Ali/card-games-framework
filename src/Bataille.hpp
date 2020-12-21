@@ -1,18 +1,26 @@
 #ifndef CARD_GAMES_FRAMEWORK_BATAILLE_HPP
 #define CARD_GAMES_FRAMEWORK_BATAILLE_HPP
+
 #include "Game.hpp"
 #include "Card.hpp"
-class Bataille : public Game{
+
+class Bataille : public Game {
 
 private:
 
 
 public:
-     void initGame() override;
-     void startGame() override;
-     bool isWinner() override;
-     int getWinner() override;
-     int whichCardWins() override;
+    Bataille() : Game(Deck(std::vector<Card>())) {}
+
+    void initGame() override;
+
+    void startGame() override;
+
+    bool isWinner() override;
+
+    int getWinner() override;
+
+    int whichCardWins() override;
 
 
 };

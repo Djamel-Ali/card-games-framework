@@ -1,21 +1,20 @@
 #include "Card.hpp"
 
-Card::Card(string n, int id, int p) : name(std::move(n)),ID(id), point(p)
-{
+Card::Card(const string &_name, int _id, int _value) : name(_name), id(_id), value(_value) {
 }
 
 Card::~Card() = default;
 
-int Card::getID() const {
-    return ID;
+int Card::getId() const {
+    return id;
 }
 
 string Card::getName() const {
     return name;
 }
 
-int Card::getPoint() const {
-    return point;
+int Card::getValue() const {
+    return value;
 }
 
 

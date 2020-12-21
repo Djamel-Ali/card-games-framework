@@ -3,15 +3,18 @@
 
 #include "Card.hpp"
 
-enum COLOR {BLEU, VERT, JAUNE, ROUGE, TREFLE, COEUR, CARREAU, PIQUE};
+enum COLOR {
+    BLEU, VERT, JAUNE, ROUGE, TREFLE, COEUR, CARREAU, PIQUE
+};
 
-class ColoredCard : public Card{
+class ColoredCard : public Card {
 
 private:
     COLOR color;
 
 public:
-    ColoredCard(string n, int id, int p, COLOR c);
+    ColoredCard(const string &_name, int id, int _value, COLOR _color);
+
     ~ColoredCard();
 
     COLOR getColor() const;
