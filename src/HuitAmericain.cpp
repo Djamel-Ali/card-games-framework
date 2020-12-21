@@ -18,11 +18,11 @@ int HuitAmericain::getWinner() {
     return 0;
 }
 
-int HuitAmericain::whichCardWins() {
+int HuitAmericain::getIndexOfParseCard() {
     return 0;
 }
 
-void HuitAmericain::playRound() {
+void HuitAmericain::playRound(int indexCardToPlay) {
 
 }
 

@@ -25,9 +25,9 @@ private:
 
     int getWinner() override;
 
-    int whichCardWins() override;
+    int getIndexOfParseCard() override;
 
-    void playRound() override;
+    void playRound(int indexCardToPlay) override;
 
     void distributeCards() override;
 
