@@ -5,22 +5,26 @@
 #include <vector>
 #include "Card.hpp"
 
+using namespace std;
+
 class Deck {
 private:
-    std::vector<Card> deck_of_cards;
+    std::vector<Card*> deck_of_cards;
 
 public:
     // Ctor
-    Deck(const vector<Card> &_deckOfCards);
+    Deck(const vector<Card*> &_deckOfCards);
 
     // Dtor
     virtual ~Deck();
 
     // Getters :
-    const vector<Card> &getDeckOfCards() const;
+    const vector<Card*> &getDeckOfCards() const;
 
     // Other methods :
     void addCard(Card *pCard);
+
+    Card* getCard();
 };
 
 

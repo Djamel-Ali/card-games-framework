@@ -1,20 +1,25 @@
 #ifndef CARD_GAMES_FRAMEWORK_PLAYER_HPP
 #define CARD_GAMES_FRAMEWORK_PLAYER_HPP
 
+
 #include <string>
 #include <vector>
+
 #include "Card.hpp"
 
+using namespace std;
+
 class Player {
+
 private:
     const int unique_id;
-    std::string name;
-    std::vector<Card> hand;
+    string name;
+    vector<Card*> hand;
     int current_score;
 public:
 
     // Ctor
-    Player(int _uid, const string &_name, const vector<Card> &_hand, int _score);
+    Player(int _uid, const string &_name, const vector<Card*> &_hand, int _score);
 
     // Dtor
     virtual ~Player();
@@ -25,7 +30,7 @@ public:
 
     const string &getName() const;
 
-    const vector<Card> &getHand() const;
+    const vector<Card*> &getHand() const;
 
     int getCurrentScore() const;
 
@@ -36,6 +41,10 @@ public:
     // Other methods :
 
     bool handEmpty();
+
+    Card* playCard(int index);
+
+    void addCard(Card* toAdd);
 };
 
 

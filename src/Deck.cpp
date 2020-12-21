@@ -2,7 +2,7 @@
 #include "Deck.hpp"
 
 // Ctor
-Deck::Deck(const vector<Card> &_deckOfCards) : deck_of_cards(_deckOfCards) {
+Deck::Deck(const vector<Card*> &_deckOfCards) : deck_of_cards(_deckOfCards) {
     std::cout << "construction of Deck" << std::endl;
 }
 
@@ -11,7 +11,7 @@ Deck::~Deck() = default;
 
 // Getters :
 
-const vector<Card> &Deck::getDeckOfCards() const {
+const vector<Card*> &Deck::getDeckOfCards() const {
     return deck_of_cards;
 }
 
@@ -19,5 +19,12 @@ const vector<Card> &Deck::getDeckOfCards() const {
 
 // Stack a new card in the deck of cards.
 void Deck::addCard(Card *pCard) {
-    deck_of_cards.push_back(*pCard);
+    deck_of_cards.push_back(pCard);
+}
+
+Card *Deck::getCard() {
+    Card* temp = deck_of_cards.back();
+    deck_of_cards.pop_back();
+
+    return temp;
 }
