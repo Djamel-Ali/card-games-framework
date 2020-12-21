@@ -3,11 +3,12 @@
 
 #include "Card.hpp"
 #include <vector>
+#include "Deck.hpp"
+#include "Player.hpp"
 
 using namespace std;
-class Player;
-class Deck;
 
+using namespace std;
 
 
 class Game {
@@ -19,12 +20,16 @@ protected:
     vector <Player*> joueurs;
 
 public:
-    Game();
+    explicit Game(const Deck &_deck);
 
     virtual void initGame() = 0;
+
     virtual void startGame() = 0;
+
     virtual bool isWinner() = 0;
+
     virtual int getWinner() = 0;
+
     virtual int whichCardWins() = 0;
     virtual void playRound() = 0;
     virtual void distributeCards() = 0;

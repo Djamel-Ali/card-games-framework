@@ -2,22 +2,27 @@
 #define CARD_GAMES_FRAMEWORK_CARD_HPP
 
 #include <string>
+
 using namespace std;
 
 class Card {
-    private:
-        const string name;
-        const int id;
+private:
+    const string name;
+    const int id;
+    int value; // non const car les points des cartes de la belote changent quand ils sont atouts !
 
-        int value; // non const car les points des cartes de la belote changent quand ils sont atouts !
+public:
+    // Ctor and Dtor :
+    Card(const string &_name, int _id, int _value);
 
-    public:
-        Card(string _name, int _id, int _value);
-        ~Card();
+    ~Card();
 
-        int getId() const;
-        string getName() const;
-        int getValue() const;
+    // Getters and Setters :
+    int getId() const;
+
+    string getName() const;
+
+    int getValue() const;
         bool operator==(Card const & other) const;
         bool operator>(Card const & other) const;
 };

@@ -8,112 +8,128 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="C:/Users/mdyac/Desktop/M1/CPP/PROJET/cards/card-games-framework/cmake-build-debug"/>
+				<Option working_dir="/home/djamel/CLionProjects/M1_2020-2021_projects/LOA_Tutorials/cpp_final_project/card-games-framework/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="C:/CODING/MINGW/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/mdyac/Desktop/M1/CPP/PROJET/cards/card-games-framework/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="C:/CODING/MINGW/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/mdyac/Desktop/M1/CPP/PROJET/cards/card-games-framework/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/CODING/MINGW/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/mdyac/Desktop/M1/CPP/PROJET/cards/card-games-framework/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/CODING/MINGW/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/mdyac/Desktop/M1/CPP/PROJET/cards/card-games-framework/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="card_games_framework">
-				<Option output="C:/Users/mdyac/Desktop/M1/CPP/PROJET/cards/card-games-framework/cmake-build-debug/card_games_framework.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="C:/Users/mdyac/Desktop/M1/CPP/PROJET/cards/card-games-framework/cmake-build-debug"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="C:/CODING/MINGW/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++"/>
-					<Add directory="C:/CODING/MINGW/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32"/>
-					<Add directory="C:/CODING/MINGW/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward"/>
-					<Add directory="C:/CODING/MINGW/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include"/>
-					<Add directory="C:/CODING/MINGW/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed"/>
-					<Add directory="C:/CODING/MINGW/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/../../../../x86_64-w64-mingw32/include"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="C:/CODING/MINGW/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/mdyac/Desktop/M1/CPP/PROJET/cards/card-games-framework/cmake-build-debug/Makefile&quot;  VERBOSE=1 card_games_framework"/>
-					<CompileFile command="C:/CODING/MINGW/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/mdyac/Desktop/M1/CPP/PROJET/cards/card-games-framework/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/CODING/MINGW/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/mdyac/Desktop/M1/CPP/PROJET/cards/card-games-framework/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/CODING/MINGW/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/mdyac/Desktop/M1/CPP/PROJET/cards/card-games-framework/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="card_games_framework/fast">
-				<Option output="C:/Users/mdyac/Desktop/M1/CPP/PROJET/cards/card-games-framework/cmake-build-debug/card_games_framework.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="C:/Users/mdyac/Desktop/M1/CPP/PROJET/cards/card-games-framework/cmake-build-debug"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="C:/CODING/MINGW/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++"/>
-					<Add directory="C:/CODING/MINGW/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32"/>
-					<Add directory="C:/CODING/MINGW/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward"/>
-					<Add directory="C:/CODING/MINGW/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include"/>
-					<Add directory="C:/CODING/MINGW/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed"/>
-					<Add directory="C:/CODING/MINGW/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/../../../../x86_64-w64-mingw32/include"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="C:/CODING/MINGW/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/mdyac/Desktop/M1/CPP/PROJET/cards/card-games-framework/cmake-build-debug/Makefile&quot;  VERBOSE=1 card_games_framework/fast"/>
-					<CompileFile command="C:/CODING/MINGW/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/mdyac/Desktop/M1/CPP/PROJET/cards/card-games-framework/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/CODING/MINGW/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/mdyac/Desktop/M1/CPP/PROJET/cards/card-games-framework/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/CODING/MINGW/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/mdyac/Desktop/M1/CPP/PROJET/cards/card-games-framework/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="edit_cache">
-				<Option working_dir="C:/Users/mdyac/Desktop/M1/CPP/PROJET/cards/card-games-framework/cmake-build-debug"/>
-				<Option type="4"/>
-				<MakeCommands>
-					<Build command="C:/CODING/MINGW/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/mdyac/Desktop/M1/CPP/PROJET/cards/card-games-framework/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="C:/CODING/MINGW/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/mdyac/Desktop/M1/CPP/PROJET/cards/card-games-framework/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/CODING/MINGW/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/mdyac/Desktop/M1/CPP/PROJET/cards/card-games-framework/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/CODING/MINGW/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/mdyac/Desktop/M1/CPP/PROJET/cards/card-games-framework/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/djamel/CLionProjects/M1_2020-2021_projects/LOA_Tutorials/cpp_final_project/card-games-framework/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/djamel/CLionProjects/M1_2020-2021_projects/LOA_Tutorials/cpp_final_project/card-games-framework/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/djamel/CLionProjects/M1_2020-2021_projects/LOA_Tutorials/cpp_final_project/card-games-framework/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/djamel/CLionProjects/M1_2020-2021_projects/LOA_Tutorials/cpp_final_project/card-games-framework/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="C:/Users/mdyac/Desktop/M1/CPP/PROJET/cards/card-games-framework/cmake-build-debug"/>
+				<Option working_dir="/home/djamel/CLionProjects/M1_2020-2021_projects/LOA_Tutorials/cpp_final_project/card-games-framework/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="C:/CODING/MINGW/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/mdyac/Desktop/M1/CPP/PROJET/cards/card-games-framework/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="C:/CODING/MINGW/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/mdyac/Desktop/M1/CPP/PROJET/cards/card-games-framework/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/CODING/MINGW/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/mdyac/Desktop/M1/CPP/PROJET/cards/card-games-framework/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/CODING/MINGW/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/mdyac/Desktop/M1/CPP/PROJET/cards/card-games-framework/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/djamel/CLionProjects/M1_2020-2021_projects/LOA_Tutorials/cpp_final_project/card-games-framework/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/djamel/CLionProjects/M1_2020-2021_projects/LOA_Tutorials/cpp_final_project/card-games-framework/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/djamel/CLionProjects/M1_2020-2021_projects/LOA_Tutorials/cpp_final_project/card-games-framework/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/djamel/CLionProjects/M1_2020-2021_projects/LOA_Tutorials/cpp_final_project/card-games-framework/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/djamel/CLionProjects/M1_2020-2021_projects/LOA_Tutorials/cpp_final_project/card-games-framework/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/djamel/CLionProjects/M1_2020-2021_projects/LOA_Tutorials/cpp_final_project/card-games-framework/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/djamel/CLionProjects/M1_2020-2021_projects/LOA_Tutorials/cpp_final_project/card-games-framework/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/djamel/CLionProjects/M1_2020-2021_projects/LOA_Tutorials/cpp_final_project/card-games-framework/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/djamel/CLionProjects/M1_2020-2021_projects/LOA_Tutorials/cpp_final_project/card-games-framework/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="card_games_framework">
+				<Option output="/home/djamel/CLionProjects/M1_2020-2021_projects/LOA_Tutorials/cpp_final_project/card-games-framework/cmake-build-debug/card_games_framework" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/djamel/CLionProjects/M1_2020-2021_projects/LOA_Tutorials/cpp_final_project/card-games-framework/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/djamel/CLionProjects/M1_2020-2021_projects/LOA_Tutorials/cpp_final_project/card-games-framework/cmake-build-debug/Makefile&quot;  VERBOSE=1 card_games_framework"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/djamel/CLionProjects/M1_2020-2021_projects/LOA_Tutorials/cpp_final_project/card-games-framework/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/djamel/CLionProjects/M1_2020-2021_projects/LOA_Tutorials/cpp_final_project/card-games-framework/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/djamel/CLionProjects/M1_2020-2021_projects/LOA_Tutorials/cpp_final_project/card-games-framework/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="card_games_framework/fast">
+				<Option output="/home/djamel/CLionProjects/M1_2020-2021_projects/LOA_Tutorials/cpp_final_project/card-games-framework/cmake-build-debug/card_games_framework" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/djamel/CLionProjects/M1_2020-2021_projects/LOA_Tutorials/cpp_final_project/card-games-framework/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/djamel/CLionProjects/M1_2020-2021_projects/LOA_Tutorials/cpp_final_project/card-games-framework/cmake-build-debug/Makefile&quot;  VERBOSE=1 card_games_framework/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/djamel/CLionProjects/M1_2020-2021_projects/LOA_Tutorials/cpp_final_project/card-games-framework/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/djamel/CLionProjects/M1_2020-2021_projects/LOA_Tutorials/cpp_final_project/card-games-framework/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/djamel/CLionProjects/M1_2020-2021_projects/LOA_Tutorials/cpp_final_project/card-games-framework/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="C:/Users/mdyac/Desktop/M1/CPP/PROJET/cards/card-games-framework/main.cpp">
+		<Unit filename="/home/djamel/CLionProjects/M1_2020-2021_projects/LOA_Tutorials/cpp_final_project/card-games-framework/main.cpp">
 			<Option target="card_games_framework"/>
 		</Unit>
-		<Unit filename="C:/Users/mdyac/Desktop/M1/CPP/PROJET/cards/card-games-framework/src/Bataille.cpp">
+		<Unit filename="/home/djamel/CLionProjects/M1_2020-2021_projects/LOA_Tutorials/cpp_final_project/card-games-framework/src/Bataille.cpp">
 			<Option target="card_games_framework"/>
 		</Unit>
-		<Unit filename="C:/Users/mdyac/Desktop/M1/CPP/PROJET/cards/card-games-framework/src/Bataille.hpp">
+		<Unit filename="/home/djamel/CLionProjects/M1_2020-2021_projects/LOA_Tutorials/cpp_final_project/card-games-framework/src/Bataille.hpp">
 			<Option target="card_games_framework"/>
 		</Unit>
-		<Unit filename="C:/Users/mdyac/Desktop/M1/CPP/PROJET/cards/card-games-framework/src/Card.cpp">
+		<Unit filename="/home/djamel/CLionProjects/M1_2020-2021_projects/LOA_Tutorials/cpp_final_project/card-games-framework/src/Card.cpp">
 			<Option target="card_games_framework"/>
 		</Unit>
-		<Unit filename="C:/Users/mdyac/Desktop/M1/CPP/PROJET/cards/card-games-framework/src/Card.hpp">
+		<Unit filename="/home/djamel/CLionProjects/M1_2020-2021_projects/LOA_Tutorials/cpp_final_project/card-games-framework/src/Card.hpp">
 			<Option target="card_games_framework"/>
 		</Unit>
-		<Unit filename="C:/Users/mdyac/Desktop/M1/CPP/PROJET/cards/card-games-framework/src/ColoredCard.cpp">
+		<Unit filename="/home/djamel/CLionProjects/M1_2020-2021_projects/LOA_Tutorials/cpp_final_project/card-games-framework/src/ColoredCard.cpp">
 			<Option target="card_games_framework"/>
 		</Unit>
-		<Unit filename="C:/Users/mdyac/Desktop/M1/CPP/PROJET/cards/card-games-framework/src/ColoredCard.hpp">
+		<Unit filename="/home/djamel/CLionProjects/M1_2020-2021_projects/LOA_Tutorials/cpp_final_project/card-games-framework/src/ColoredCard.hpp">
 			<Option target="card_games_framework"/>
 		</Unit>
-		<Unit filename="C:/Users/mdyac/Desktop/M1/CPP/PROJET/cards/card-games-framework/src/Game.cpp">
+		<Unit filename="/home/djamel/CLionProjects/M1_2020-2021_projects/LOA_Tutorials/cpp_final_project/card-games-framework/src/Deck.cpp">
 			<Option target="card_games_framework"/>
 		</Unit>
-		<Unit filename="C:/Users/mdyac/Desktop/M1/CPP/PROJET/cards/card-games-framework/src/Game.hpp">
+		<Unit filename="/home/djamel/CLionProjects/M1_2020-2021_projects/LOA_Tutorials/cpp_final_project/card-games-framework/src/Deck.hpp">
 			<Option target="card_games_framework"/>
 		</Unit>
-		<Unit filename="C:/Users/mdyac/Desktop/M1/CPP/PROJET/cards/card-games-framework/src/UNO.cpp">
+		<Unit filename="/home/djamel/CLionProjects/M1_2020-2021_projects/LOA_Tutorials/cpp_final_project/card-games-framework/src/Game.cpp">
 			<Option target="card_games_framework"/>
 		</Unit>
-		<Unit filename="C:/Users/mdyac/Desktop/M1/CPP/PROJET/cards/card-games-framework/src/UNO.hpp">
+		<Unit filename="/home/djamel/CLionProjects/M1_2020-2021_projects/LOA_Tutorials/cpp_final_project/card-games-framework/src/Game.hpp">
 			<Option target="card_games_framework"/>
 		</Unit>
-		<Unit filename="C:/Users/mdyac/Desktop/M1/CPP/PROJET/cards/card-games-framework/CMakeLists.txt">
+		<Unit filename="/home/djamel/CLionProjects/M1_2020-2021_projects/LOA_Tutorials/cpp_final_project/card-games-framework/src/Player.cpp">
+			<Option target="card_games_framework"/>
+		</Unit>
+		<Unit filename="/home/djamel/CLionProjects/M1_2020-2021_projects/LOA_Tutorials/cpp_final_project/card-games-framework/src/Player.hpp">
+			<Option target="card_games_framework"/>
+		</Unit>
+		<Unit filename="/home/djamel/CLionProjects/M1_2020-2021_projects/LOA_Tutorials/cpp_final_project/card-games-framework/src/UNO.cpp">
+			<Option target="card_games_framework"/>
+		</Unit>
+		<Unit filename="/home/djamel/CLionProjects/M1_2020-2021_projects/LOA_Tutorials/cpp_final_project/card-games-framework/src/UNO.hpp">
+			<Option target="card_games_framework"/>
+		</Unit>
+		<Unit filename="/home/djamel/CLionProjects/M1_2020-2021_projects/LOA_Tutorials/cpp_final_project/card-games-framework/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

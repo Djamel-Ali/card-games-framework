@@ -4,21 +4,27 @@
 #include "Game.hpp"
 #include "Card.hpp"
 
-class Bataille : public Game{
+class Bataille : public Game {
 
 protected:
-    vector<Card*> tapis;
+    vector<Card *> tapis;
     bool ohBataille;
 
 public:
-    Bataille();
+    Bataille() : Game(Deck(std::vector<Card>())) {}
 
     void initGame() override;
+
     void startGame() override;
+
     bool isWinner() override;
+
     int getWinner() override;
+
     int whichCardWins() override;
+
     void playRound() override;
+
     void distributeCards() override;
 
 };
