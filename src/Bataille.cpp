@@ -34,12 +34,12 @@ void Bataille::startGame() {
 
 }
 
-void Bataille::playRound() {
+void Bataille::playRound(int indexCardToPlay) {
     for(Player* player : joueurs){
         tapis.insert(tapis.begin(), player->playCard(0));
     }
 
-    int roundWinner = whichCardWins();
+    int roundWinner = getIndexOfParseCard();
     if(!ohBataille){
         while (!tapis.empty()){
             joueurs.at(roundWinner)->addCard(tapis.back());
@@ -67,7 +67,7 @@ int Bataille::getWinner() {
     return 1;
 }
 
-int Bataille::whichCardWins() {
+int Bataille::getIndexOfParseCard() {
     if(tapis.at(0) == tapis.at(1)){
         ohBataille = true;
 

@@ -11,7 +11,7 @@ protected:
     bool ohBataille;
 
 public:
-    Bataille() : Game(Deck(std::vector<Card>())) {}
+    Bataille();
 
     void initGame() override;
 
@@ -21,9 +21,9 @@ public:
 
     int getWinner() override;
 
-    int whichCardWins() override;
+    int getIndexOfParseCard() override;
 
-    void playRound() override;
+    void playRound(int indexCardToPlay) override;
 
     void distributeCards() override;
 

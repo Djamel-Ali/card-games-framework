@@ -11,7 +11,7 @@ void UNO::initGame() {
         deck.addCard(new ColoredCard("0", 0, 0, colors[z]));
     }
 
-    // card rank 1 till 9 , "+2", "passerTour", "sensInverse"
+    // card  1 - 9 , "+2", "passerTour", "sensInverse"
     for (int numero = 1; numero <= 12; numero++){
         for (int x = 0; x < 2; x++){
             for (int color = 0; color < 4; color++){
@@ -41,17 +41,48 @@ void UNO::distributeCards() {
 void UNO::startGame() {
     initGame();
 
-    while(!isWinner()){
-        playRound();
+}
+
+//modifications a faire pour le controller !!
+void UNO::playRound(int indexCardToPlay) {
+    if(isWinner()){
+        getWinner();
+        return;
     }
+
+    Card* temp = joueurs[actualPlaying]->playCard(indexCardToPlay);
+    if(cardPlayable(temp)){
+        deck.addCard(cardOnTop);
+        cardOnTop = temp;
+        getIndexOfParseCard();
+
+        nextPlayer();
+    }
+
+
 }
 
-void UNO::playRound() {
-    cardOnTop = joueurs[actualPlaying]->playCard();
-}
 
+int UNO::getIndexOfParseCard() {
+    switch (cardOnTop->getId()) {
+        case 10:
+            nextPlayer();
+            plusTwo();
+            break;
+        case 11:
+            nextPlayer();
+            break;
+        case 12:
+            reversed();
+            break;
+        case 13:
+            return 1;
+        case 14:
+            nextPlayer();
+            plusFour();
+            break;
+    }
 
-int UNO::whichCardWins() {
     return 0;
 }
 
@@ -80,14 +111,14 @@ int UNO::getWinner() {
 
 
 
-void UNO::plusTwo(int playerIndex) {
+void UNO::plusTwo() {
     for(int i = 0; i < 2; i ++){
         joueurs[actualPlaying]->addCard(deck.getCard());
     }
 }
 
 
-void UNO::plusFour(int playerIndex){
+void UNO::plusFour(){
     for(int i = 0; i < 4; i ++){
         joueurs[actualPlaying]->addCard(deck.getCard());
     }

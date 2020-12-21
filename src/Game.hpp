@@ -30,8 +30,8 @@ public:
 
     virtual int getWinner() = 0;
 
-    virtual int whichCardWins() = 0;
-    virtual void playRound() = 0;
+    virtual int getIndexOfParseCard() = 0;
+    virtual void playRound(int indexCardToPlay) = 0;
     virtual void distributeCards() = 0;
 };
 

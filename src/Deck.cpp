@@ -23,8 +23,13 @@ void Deck::addCard(Card *pCard) {
 }
 
 Card *Deck::getCard() {
-    Card* temp = deck_of_cards.back();
-    deck_of_cards.pop_back();
+    Card* temp = deck_of_cards.front();
+    deck_of_cards.erase(deck_of_cards.begin());
 
     return temp;
 }
+
+void Deck::shuffleCards() {
+
+}
+

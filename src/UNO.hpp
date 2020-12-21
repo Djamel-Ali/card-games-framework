@@ -9,9 +9,10 @@ class UNO : public Game{
 
 protected:
     Card* cardOnTop{};
-    COLOR actualColor = NONE;
     bool sensInverse;
-    int actualPlaying = 0;
+    int actualPlaying = -1;
+
+
 
 public:
     explicit UNO(const Deck &deck);
@@ -19,13 +20,13 @@ public:
     void startGame() override;
     bool isWinner() override;
     int getWinner() override;
-    int whichCardWins() override;
-    void playRound() override;
+    int getIndexOfParseCard() override;
+    void playRound(int indexCardToPlay) override;
     void distributeCards() override;
 
     void nextPlayer();
-    void plusTwo(int playerIndex);
-    void plusFour(int playerIndex);
+    void plusTwo();
+    void plusFour();
     void reversed();
     void changeColor();
 
