@@ -1,7 +1,8 @@
+#include <iostream>
 #include "UNO.hpp"
 
-UNO::UNO(const Deck &deck) : Game(deck) {
-
+UNO::UNO(const Deck &deck) : Game(deck), sensInverse{false} {
+    cout << "\nConstruct UNO\n" << endl;
 }
 
 void UNO::initGame() {
@@ -43,7 +44,7 @@ void UNO::startGame() {
 
 }
 
-//modifications a faire pour le controller !!
+//todo: modifications a faire pour le controller !!
 void UNO::playRound(int indexCardToPlay) {
     if(isWinner()){
         getWinner();
@@ -58,33 +59,32 @@ void UNO::playRound(int indexCardToPlay) {
 
         nextPlayer();
     }
-
-
     while(!isWinner()){
         playRound();
     }
-}
-
-void UNO::playRound() {
-    cardOnTop = joueurs[actualPlaying]->playCard();
 }
 
 
 int UNO::getIndexOfParseCard() {
     switch (cardOnTop->getId()) {
         case 10:
+            // "+2" (le joueur suivant doit piocher 2 cartes et passe son tour)
             nextPlayer();
             plusTwo();
             break;
         case 11:
+            // "passerTour" (le joueur suivant doit passer son tour)
             nextPlayer();
             break;
         case 12:
+            // "sensInverse"
             reversed();
             break;
         case 13:
+            // "changerCouleur" (il peut ou non choisir de changer de couleur en l’annonçant aux autre joueurs)
             return 1;
         case 14:
+            // "+4" ( le joueur suivant doit piocher 4 cartes et passer son tour)
             nextPlayer();
             plusFour();
             break;
@@ -92,24 +92,23 @@ int UNO::getIndexOfParseCard() {
     return 0;
 }
 
-
+// cherche dans la liste des joueurs actuels s'il y a un gagnant
 bool UNO::isWinner() {
     for(Player* player : joueurs){
         if(player->handEmpty()){
             return true;
         }
     }
-
     return false;
 }
 
+// retourne l'index du gagnant dans la liste des joueurs
 int UNO::getWinner() {
     for(int i = 0; i < joueurs.size(); i ++){
         if (joueurs.at(i)->handEmpty()){
             return i;
         }
     }
-
     return -1;
 }
 

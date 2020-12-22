@@ -1,5 +1,8 @@
 #include "Player.hpp"
 
+// Initialization of static var
+int Player::player_id_counter = 0;
+
 // Ctor
 Player::Player(const int _uid, const string &_name, const vector<Card*> &_hand, int _score = 0) : unique_id(
         _uid), name(_name), hand(_hand), current_score(_score) {}
@@ -47,4 +50,8 @@ Card *Player::playCard(int index) {
 
 void Player::addCard(Card *toAdd) {
     hand.push_back(toAdd);
+}
+
+int Player::get_fresh_player_uid() {
+    return player_id_counter++;
 }

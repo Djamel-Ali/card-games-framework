@@ -9,14 +9,13 @@ class HuitAmericain : Game {
 
 protected:
     Card *cardOnTop{};
-    COLOR actualColor = NONE;
     bool sensInverse;
-
-    int actualPlaying = 0;
+    int actualPlaying = -1;
 public:
     HuitAmericain(const Deck &deck);
 
-private:
+    virtual ~HuitAmericain();
+
     void initGame() override;
 
     void startGame() override;
@@ -30,6 +29,18 @@ private:
     void playRound(int indexCardToPlay) override;
 
     void distributeCards() override;
+
+    void nextPlayer();
+
+    void plusTwo();
+
+    void plusFour();
+
+    void reversed();
+
+    void changeColor();
+
+    bool cardPlayable(Card* toPlay);
 
 };
 

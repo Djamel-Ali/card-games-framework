@@ -16,8 +16,13 @@ public:
     explicit UNO(const Deck &deck);
     void initGame() override;
     void startGame() override;
+
+    // cherche dans la liste des joueurs actuels s'il y a un gagnant
     bool isWinner() override;
+
+    // retourne l'index du gagnant dans la liste des joueurs
     int getWinner() override;
+
     int getIndexOfParseCard() override;
     void playRound(int indexCardToPlay) override;
     void distributeCards() override;

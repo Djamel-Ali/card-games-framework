@@ -6,11 +6,6 @@
 #include "Deck.hpp"
 #include "Player.hpp"
 
-using namespace std;
-
-using namespace std;
-
-
 class Game {
 
 private:
