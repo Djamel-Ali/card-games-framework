@@ -16,13 +16,6 @@ private:
     string name;
     vector<Card*> hand;
     int current_score;
-
-    // Used by the get_fresh_player_uid() method to generate unique IDs
-    static int player_id_counter;
-
-    // Generates a new identifier for each call that is different from the previous ones returned.
-    static int get_fresh_player_uid();
-
 public:
 
     // Ctor

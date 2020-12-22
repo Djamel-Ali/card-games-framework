@@ -4,12 +4,12 @@
 
 #include <vector>
 #include "Card.hpp"
-
+#include "Player.hpp"
 using namespace std;
 
 class Deck {
 private:
-    std::vector<Card*> deck_of_cards;
+    vector<Card*> deck_of_cards;
 
 public:
     // Ctor
@@ -27,6 +27,8 @@ public:
     Card* getCard();
 
     void shuffleCards();
+
+    void distributeCards(int nbCards, const vector<Player*> &players);
 };
 
 

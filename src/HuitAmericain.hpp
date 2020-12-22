@@ -9,29 +9,26 @@ class HuitAmericain : public Game{
 
 protected:
     Card* cardOnTop{};
-    bool sensInverse;
+    bool sensInverse{};
     int actualPlaying = -1;
-    COLOR actualColor = NONE;
-
+    COLOR* colors;
 
 public:
     explicit HuitAmericain(const Deck &deck);
-    void initGame() override;
+    void createCards() override;
     void startGame() override;
     bool isWinner() override;
     int getWinner() override;
     int getIndexOfParseCard() override;
     void playRound(int indexCardToPlay) override;
-    void distributeCards() override;
 
     void nextPlayer();
     void plusTwo();
     void plusFour();
     void reversed();
     void changeColor();
-
     bool cardPlayable(Card* toPlay);
-
+    bool playerCanPlay(const vector<Card*>& hand);
 };
 
 

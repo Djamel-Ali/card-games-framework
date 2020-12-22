@@ -23,17 +23,24 @@ void Deck::addCard(Card *pCard) {
 }
 
 Card *Deck::getCard() {
-    if(!deck_of_cards.empty())
-    {
-        Card* temp = deck_of_cards.front();
-        deck_of_cards.erase(deck_of_cards.begin());
-        return temp;
-    }
-    // Normalement la pioche n'est jamais vide dans les 5 jeux q'on a codé ici (mais on traite quend même ce cas)
-    throw std::runtime_error("La pioche est vide !");
+    Card* temp = deck_of_cards.front();
+    deck_of_cards.erase(deck_of_cards.begin());
+
+    return temp;
 }
 
 void Deck::shuffleCards() {
 
 }
+
+
+void Deck::distributeCards(int nbCards, const vector<Player *> &players) {
+    for(Player* player: players){
+        for(int i = 0; i < nbCards; i++){
+            player->addCard(this->getCard());
+        }
+    }
+}
+
+
 

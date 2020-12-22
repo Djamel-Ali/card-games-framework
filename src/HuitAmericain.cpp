@@ -1,37 +1,50 @@
+#include <iostream>
 #include "HuitAmericain.hpp"
 
 HuitAmericain::HuitAmericain(const Deck &deck) : Game(deck) {
+    colors = new COLOR[5];
+    colors[0] = TREFLE;
+    colors[1] = COEUR;
+    colors[2] = CARREAU;
+    colors[3] = PIQUE;
+    colors[4] = NONE;
 
 }
 
-void HuitAmericain::initGame() {
-    COLOR colors[] = {PIQUE, COEUR, CARREAU, TREFLE, NONE};
-    string noms[] = {"Valet", "Dame", "Roi", "As"};
-    int valeurs[] = {20, 3, 4, 5, 6, 7, 50, 9, 10, 11, 12, 13};
-                   //  2  3  4  5  6  7   8  9, 20v, 10d, 10r, 20a, 50j
-    for (int i = 2; i < 14; i++) {
-        for (int j = 0; j < 4; j++) {
-            if (i < 10) {
-                deck.addCard(new ColoredCard(to_string(i), i, valeurs[i], colors[j]));
-            } else {
-                deck.addCard(new ColoredCard(noms[j], i, valeurs[i], colors[4]));
-            }
+void HuitAmericain::createCards() {
+    COLOR symbols[] = {TREFLE, COEUR, CARREAU, PIQUE, NONE};
+
+    // cards  3 - 7 (Leur propre valeur numérale)
+    for (int numero = 3; numero <= 7; numero++){
+        for (int symbol = 0; symbol < 4; symbol++){
+            deck.addCard(new ColoredCard(to_string(numero), numero, numero, symbols[symbol]));
         }
     }
-
-    for(int i = 0; i < 4; i++){
-        deck.addCard(new ColoredCard("JOKER", 14, 50, colors[i]));
+    // cards  "9" (leur propre valeur numérale)
+    for (int symbol = 0; symbol < 4; symbol++){
+        deck.addCard(new ColoredCard(to_string(9), 9,9,symbols[symbol]));
     }
 
-    deck.shuffleCards();
-}
-
-void HuitAmericain::distributeCards() {
-    for(Player* player : joueurs){
-        for(int i = 0; i < 8; i++){
-            player->addCard(deck.getCard());
-        }
+    // cards  "Dame" and "Roi" (value 10 points)
+    for (int symbol = 0; symbol < 4; symbol++){
+        deck.addCard(new ColoredCard("DAME", 10,10,symbols[symbol]));
+        deck.addCard(new ColoredCard("ROI", 11,10,symbols[symbol]));
     }
+
+    // cards  Valet, AS, 2 (value 20 points )
+    for (int symbol = 0; symbol < 4; symbol++){
+        deck.addCard(new ColoredCard("VALET", 12,20, symbols[symbol]));
+        deck.addCard(new ColoredCard("AS", 13,20, symbols[symbol]));
+        deck.addCard(new ColoredCard("2", 2,20, symbols[symbol]));
+    }
+
+    // cards "8" and "Joker" : (value 50 points )
+    // (4 cartes de 8 et 2 cartes de jocker avec NONE comme symbol)
+    for (int symbol = 0; symbol < 4; symbol++)
+        deck.addCard(new ColoredCard(to_string(8),  8,50, symbols[4]));
+
+    deck.addCard(new ColoredCard("JOKER", 14, 50, symbols[4]));
+    deck.addCard(new ColoredCard("JOKER", 14, 50, symbols[4]));
 }
 
 void HuitAmericain::startGame() {
@@ -64,15 +77,15 @@ int HuitAmericain::getIndexOfParseCard() {
             nextPlayer();
             plusTwo();
             break;
+        case 8: //8
+            changeColor();
+            return 1;
         case 10://VALET
             nextPlayer();
             break;
         case 12: //AS
             reversed();
             break;
-        case 8: //8
-            changeColor();
-            return 1;
         case 13://JOKER
             nextPlayer();
             plusFour();
@@ -126,23 +139,50 @@ void HuitAmericain::nextPlayer() {
 }
 
 void HuitAmericain::changeColor() {
-    switch (1) {
-        case 1:
+    int color = -1;
 
+    do{
+        cout << "Choisissez la nouvelle couleur: \n";
+        cout << "  1 pour " << colors[0] << endl;
+        cout << "  2 pour " << colors[1] << endl;
+        cout << "  3 pour " << colors[2] << endl;
+        cout << "  4 pour " << colors[3] << endl;
+        cin >> color;
+
+    } while (color < 0 || color > 4);
+
+    switch (color) {
+        case 1:
+            colors[4] = colors[0];
             break;
         case 2:
-
+            colors[4] = colors[1];
             break;
         case 3:
-
+            colors[4] = colors[2];
             break;
         case 4:
-
+            colors[4] = colors[3];
+            break;
+        default:
+            cout << "Couleur Modifier";
             break;
     }
 }
 
 bool HuitAmericain::cardPlayable(Card *toPlay) {
 
-    return cardOnTop == toPlay;
+    return *dynamic_cast<ColoredCard*>(cardOnTop) == *dynamic_cast<ColoredCard*>(toPlay);
+}
+
+bool HuitAmericain::playerCanPlay(const vector<Card *>& hand) {
+    bool canPlay = false;
+
+    for(Card* card : hand){
+        if(cardPlayable(card)){
+            canPlay = true;
+        }
+    }
+
+    return canPlay;
 }

@@ -1,10 +1,15 @@
 #ifndef CARD_GAMES_FRAMEWORK_GAME_HPP
 #define CARD_GAMES_FRAMEWORK_GAME_HPP
 
-#include "Card.hpp"
 #include <vector>
+#include "Card.hpp"
 #include "Deck.hpp"
 #include "Player.hpp"
+
+using namespace std;
+
+using namespace std;
+
 
 class Game {
 
@@ -16,18 +21,15 @@ protected:
 
 public:
     explicit Game(const Deck &_deck);
+    void initGame();
 
-    virtual void initGame() = 0;
-
+    virtual void createCards() = 0;
     virtual void startGame() = 0;
-
     virtual bool isWinner() = 0;
-
     virtual int getWinner() = 0;
-
     virtual int getIndexOfParseCard() = 0;
     virtual void playRound(int indexCardToPlay) = 0;
-    virtual void distributeCards() = 0;
+
 };
 
 

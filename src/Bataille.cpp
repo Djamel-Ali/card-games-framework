@@ -3,7 +3,8 @@
 #include <algorithm>
 #include <random>
 
-void Bataille::initGame() {
+
+void Bataille::createCards() {
     string noms[] = {"Valet", "Dame", "Roi", "As"};
     int valeurs[] = {11, 12, 13, 14};
 
@@ -18,13 +19,6 @@ void Bataille::initGame() {
     }
 }
 
-void Bataille::distributeCards() {
-    for(int j = 0; j < 2; j++){
-        for(int i = 0; i < 16; i++){
-            joueurs.at(j)->addCard(deck.getCard());
-        }
-    }
-}
 
 void Bataille::startGame() {
     initGame();
@@ -80,6 +74,3 @@ int Bataille::getIndexOfParseCard() {
 }
 
 
-
-
-Bataille::Bataille() = default;

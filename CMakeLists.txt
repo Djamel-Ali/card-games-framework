@@ -3,7 +3,8 @@ project(card-games-framework)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(main.cpp
+add_executable(card-games-framework
+	main.cpp
         src/Game.hpp src/Game.cpp
         src/Card.hpp src/Card.cpp
         src/ColoredCard.hpp src/ColoredCard.cpp

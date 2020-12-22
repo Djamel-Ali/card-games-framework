@@ -3,6 +3,7 @@
 
 #include <string>
 
+
 using namespace std;
 
 class Card {
@@ -21,10 +22,10 @@ public:
     int getId() const;
 
     string getName() const;
-
     int getValue() const;
-    bool operator==(Card const & other) const;
-    bool operator>(Card const & other) const;
+    virtual bool operator== (Card const & other) const;
+    virtual bool operator> (Card const & other) const;
+    friend ostream& operator<<(ostream& out, const Card &fs);
 };
 
 

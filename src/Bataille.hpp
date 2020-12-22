@@ -1,10 +1,10 @@
 #ifndef CARD_GAMES_FRAMEWORK_BATAILLE_HPP
 #define CARD_GAMES_FRAMEWORK_BATAILLE_HPP
 
-#include "HuitAmericain.hpp"
+#include "Game.hpp"
 #include "Card.hpp"
 
-class Bataille : public HuitAmericain {
+class Bataille : public Game {
 
 protected:
     vector<Card *> tapis;
@@ -13,20 +13,12 @@ protected:
 public:
     Bataille();
 
-    void initGame() override;
-
+    void createCards() override;
     void startGame() override;
-
     bool isWinner() override;
-
     int getWinner() override;
-
     int getIndexOfParseCard() override;
-
     void playRound(int indexCardToPlay) override;
-
-    void distributeCards() override;
-
 };
 
 

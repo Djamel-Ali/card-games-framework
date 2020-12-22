@@ -1,5 +1,7 @@
 #include "Card.hpp"
+#include <iostream>
 
+using namespace std;
 
 Card::Card(const string &_name, int _id, int _value) : name(_name), id(_id), value(_value) {
 
@@ -21,11 +23,26 @@ int Card::getValue() const {
 }
 
 bool Card::operator==(const Card &other) const {
-    return this->value == other.getValue();
+    cout << "== de Card \n";
+    return this->value == other.value;
 }
 
 bool Card::operator>(const Card &other) const {
     return this->value > other.getValue();
 }
+
+ostream &operator<<(ostream &out, const Card &fs) {
+
+    out << fs.getName()<<"\n";
+    out << fs.getId()<<"\n";
+    out << fs.getValue()<<"\n";
+
+    return out;
+}
+
+
+
+
+
 
 
