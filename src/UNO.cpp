@@ -24,7 +24,7 @@ void UNO::initGame() {
     // card "changerCouleur", "+4"
     for (int numero = 13; numero <= 14; numero++){
         for (int x = 0; x < 4; x++){
-            deck.addCard(new ColoredCard(to_string(numero), numero, 0, colors[4]));
+            deck.addCard(new ColoredCard(to_string(numero), numero, 50, colors[4]));
         }
     }
 
@@ -59,11 +59,7 @@ void UNO::playRound(int indexCardToPlay) {
 
         nextPlayer();
     }
-    while(!isWinner()){
-        playRound();
-    }
 }
-
 
 int UNO::getIndexOfParseCard() {
     switch (cardOnTop->getId()) {
@@ -89,6 +85,7 @@ int UNO::getIndexOfParseCard() {
             plusFour();
             break;
     }
+
     return 0;
 }
 
@@ -111,10 +108,6 @@ int UNO::getWinner() {
     }
     return -1;
 }
-
-
-
-
 
 void UNO::plusTwo() {
     for(int i = 0; i < 2; i ++){
@@ -141,7 +134,20 @@ void UNO::nextPlayer() {
 }
 
 void UNO::changeColor() {
+    switch (1) {
+        case 1:
 
+            break;
+        case 2:
+
+            break;
+        case 3:
+
+            break;
+        case 4:
+
+            break;
+    }
 }
 
 bool UNO::cardPlayable(Card *toPlay) {

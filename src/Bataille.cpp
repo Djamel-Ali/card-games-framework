@@ -29,7 +29,7 @@ void Bataille::distributeCards() {
 void Bataille::startGame() {
     initGame();
     while(!isWinner()){
-        playRound();
+        playRound(0);
     }
 
 }

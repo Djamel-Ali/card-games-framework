@@ -1,10 +1,10 @@
 #ifndef CARD_GAMES_FRAMEWORK_BATAILLE_HPP
 #define CARD_GAMES_FRAMEWORK_BATAILLE_HPP
 
-#include "Game.hpp"
+#include "HuitAmericain.hpp"
 #include "Card.hpp"
 
-class Bataille : public Game {
+class Bataille : public HuitAmericain {
 
 protected:
     vector<Card *> tapis;
