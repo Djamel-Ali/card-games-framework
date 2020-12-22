@@ -1,6 +1,7 @@
 #include <iostream>
+#include <algorithm>
 #include "Deck.hpp"
-
+#include <cstdlib>
 // Ctor
 Deck::Deck(const vector<Card*> &_deckOfCards) : deck_of_cards(_deckOfCards) {
     std::cout << "construction of Deck" << std::endl;
@@ -30,7 +31,7 @@ Card *Deck::getCard() {
 }
 
 void Deck::shuffleCards() {
-
+    random_shuffle(deck_of_cards.begin(), deck_of_cards.end());
 }
 
 

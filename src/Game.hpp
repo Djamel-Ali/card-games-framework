@@ -8,9 +8,6 @@
 
 using namespace std;
 
-using namespace std;
-
-
 class Game {
 
 private:
@@ -21,12 +18,12 @@ protected:
 
 public:
     explicit Game(const Deck &_deck);
-    void initGame();
+    void initGame(); // mise en commun
 
     virtual void createCards() = 0;
-    virtual void startGame() = 0;
-    virtual bool isWinner() = 0;
-    virtual int getWinner() = 0;
+    virtual void startGame() = 0; // a mettre en commun plus tard
+    virtual bool isWinner() = 0; // a mettre en commun plus tard (pour bataille, uno et 8us)
+    virtual int getWinner() = 0; // a mettre en commun plus tard (pour bataille, uno et 8us)
     virtual int getIndexOfParseCard() = 0;
     virtual void playRound(int indexCardToPlay) = 0;
 
