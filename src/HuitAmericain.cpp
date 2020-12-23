@@ -17,7 +17,7 @@ void HuitAmericain::createCards() {
     // cards  3 - 7 (Leur propre valeur numérale)
     for (int numero = 3; numero <= 7; numero++){
         for (int symbol = 0; symbol < 4; symbol++){
-            deck.addCard(new ColoredCard(to_string(numero), numero, numero, symbols[symbol]));
+            deck.addCard(new ColoredCard(to_string(numero), numero, (float)numero, symbols[symbol]));
         }
     }
     // cards  "9" (leur propre valeur numérale)

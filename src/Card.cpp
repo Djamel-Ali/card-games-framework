@@ -3,7 +3,7 @@
 
 using namespace std;
 
-Card::Card(const string &_name, int _id, int _value) : name(_name), id(_id), value(_value) {
+Card::Card(const string &_name, int _id, float _value) : name(_name), id(_id), value(_value) {
 
 }
 
@@ -17,7 +17,7 @@ string Card::getName() const {
     return name;
 }
 
-int Card::getValue() const {
+float Card::getValue() const {
     return value;
 
 }
@@ -31,18 +31,11 @@ bool Card::operator>(const Card &other) const {
     return this->value > other.getValue();
 }
 
-ostream &operator<<(ostream &out, const Card &fs) {
+ostream &operator<<(ostream &out, const Card &card) {
 
-    out << fs.getName()<<"\n";
-    out << fs.getId()<<"\n";
-    out << fs.getValue()<<"\n";
+    out << card.getName() << "\n";
+    out << card.getId() << "\n";
+    out << card.getValue() << "\n";
 
     return out;
 }
-
-
-
-
-
-
-

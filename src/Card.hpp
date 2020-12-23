@@ -10,11 +10,11 @@ class Card {
 private:
     const string name;
     const int id;
-    int value; // non const car les points des cartes de la belote changent quand ils sont atouts !
+    float value; // non const car les points des cartes de la belote changent quand ils sont atouts !
 
 public:
     // Ctor and Dtor :
-    Card(const string &_name, int _id, int _value);
+    Card(const string &_name, int _id, float _value);
 
     ~Card();
 
@@ -22,10 +22,10 @@ public:
     int getId() const;
 
     string getName() const;
-    int getValue() const;
+    float getValue() const;
     virtual bool operator== (Card const & other) const;
     virtual bool operator> (Card const & other) const;
-    friend ostream& operator<<(ostream& out, const Card &fs);
+    friend ostream& operator<<(ostream& out, const Card &card);
 };
 
 

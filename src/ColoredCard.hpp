@@ -3,8 +3,9 @@
 
 #include "Card.hpp"
 #include <iostream>
+// ETOILE est spécifique au jeu de Tarot (porté par la carte : L'EXCUSE)
 enum COLOR {
-    BLEU, VERT, JAUNE, ROUGE, TREFLE, COEUR, CARREAU, PIQUE, NONE
+    BLEU, VERT, JAUNE, ROUGE, TREFLE, COEUR, CARREAU, PIQUE , NONE
 };
 
 static std::ostream& operator<<(std::ostream& out, COLOR colo)
@@ -48,7 +49,7 @@ private:
     COLOR color;
 
 public:
-    ColoredCard(const string &_name, int id, int _value, COLOR _color);
+    ColoredCard(const string &_name, int id, float _value, COLOR _color);
 
     ~ColoredCard();
 
@@ -56,7 +57,7 @@ public:
 
     virtual bool operator==(ColoredCard const & other) const;
 
-    friend ostream& operator<<(ostream& out, const ColoredCard &fs);
+    friend ostream& operator<<(ostream& out, const ColoredCard &coloredCard);
 
     friend ostream& operator<<(ostream& out, const COLOR &colo);
 

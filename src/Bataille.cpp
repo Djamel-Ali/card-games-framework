@@ -11,9 +11,9 @@ void Bataille::createCards() {
     for (int i = 2; i < 15; i++) {
         for (int j = 0; j < 4; j++) {
             if (i < 11) {
-                deck.addCard(new Card(to_string(i), i, 0));
+                deck.addCard(new Card(to_string(i), i, (float)i));
             } else {
-                deck.addCard(new Card(noms[j], valeurs[j], 0));
+                deck.addCard(new Card(noms[j], valeurs[j], (float)valeurs[j]));
             }
         }
     }
@@ -22,6 +22,7 @@ void Bataille::createCards() {
 
 void Bataille::startGame() {
     initGame();
+    deck.distributeCards(16, joueurs);
     while(!isWinner()){
         playRound(0);
     }
