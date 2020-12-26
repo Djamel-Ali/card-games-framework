@@ -1,7 +1,6 @@
 #include <iostream>
 #include <algorithm>
 #include "Deck.hpp"
-#include <cstdlib>
 #include <random>
 // Ctor
 Deck::Deck(const vector<Card*> &_deckOfCards) : deck_of_cards(_deckOfCards) {
@@ -24,6 +23,7 @@ void Deck::addCard(Card *pCard) {
     deck_of_cards.push_back(pCard);
 }
 
+// Renvoie la carte qui est au sommet de la pioche et la supprime de cette dernière
 Card *Deck::getCard() {
     Card* temp = deck_of_cards.front();
     deck_of_cards.erase(deck_of_cards.begin());
@@ -42,6 +42,10 @@ void Deck::distributeCards(int nbCards, const vector<Player *> &players) {
             player->addCard(this->getCard());
         }
     }
+}
+
+void Deck::setDeckOfCards(const vector<Card *> &_deckOfCards) {
+    deck_of_cards = _deckOfCards;
 }
 
 

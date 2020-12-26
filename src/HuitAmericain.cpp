@@ -149,7 +149,7 @@ void HuitAmericain::changeColor() {
         cout << "  4 pour " << colors[3] << endl;
         cin >> color;
 
-    } while (color < 0 || color > 4);
+    } while (color <= 0 || color > 4);
 
     switch (color) {
         case 1:
@@ -165,7 +165,7 @@ void HuitAmericain::changeColor() {
             colors[4] = colors[3];
             break;
         default:
-            cout << "Couleur Modifier";
+            cout << "Couleur Modifiée";
             break;
     }
 }

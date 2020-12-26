@@ -18,12 +18,15 @@ public:
     // Dtor
     virtual ~Deck();
 
-    // Getters :
-    const vector<Card*> &getDeckOfCards() const;
+    // Getters and Setters :
+    vector<Card*> &getDeckOfCards() const;
+
+    void setDeckOfCards(const vector<Card *> &_deckOfCards);
 
     // Other methods :
     void addCard(Card *pCard);
 
+    // Renvoie la carte qui est au sommet de la pioche et la supprime de cette dernière
     Card* getCard();
 
     void shuffleCards();

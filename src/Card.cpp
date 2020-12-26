@@ -33,9 +33,10 @@ bool Card::operator>(const Card &other) const {
 
 ostream &operator<<(ostream &out, const Card &card) {
 
-    out << card.getName() << "\n";
-    out << card.getId() << "\n";
-    out << card.getValue() << "\n";
+    out << card.getName();
+    // Pour simplifier l'affichage des cartes au joueur, il vaut mieux ne pas afficher id et value.
+//    out << card.getId() << "\n";
+//    out << card.getValue() << "\n";
 
     return out;
 }
