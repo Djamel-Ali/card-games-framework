@@ -20,7 +20,7 @@ void UNO::createCards() {
     for (int numero = 1; numero <= 12; numero++){
         for (int x = 0; x < 2; x++){
             for (int color = 0; color < 4; color++){
-                deck.addCard(new ColoredCard(to_string(numero), numero, numero, colors[color]));
+                deck.addCard(new ColoredCard(to_string(numero), numero, (float)numero, colors[color]));
             }
         }
     }
@@ -35,7 +35,6 @@ void UNO::createCards() {
 
 void UNO::startGame() {
     initGame();
-
 }
 
 //modifications a faire pour le controller !!
@@ -57,25 +56,23 @@ void UNO::playRound(int indexCardToPlay) {
     }else{
         nextPlayer();
     }
-
-
 }
 
 int UNO::getIndexOfParseCard() {
     switch (cardOnTop->getId()) {
-        case 10:
+        case 10: //"+2"
             nextPlayer();
             plusTwo();
             break;
-        case 11:
+        case 11: // "passerTour"
             nextPlayer();
             break;
-        case 12:
+        case 12: // "sensInverse"
             reversed();
             break;
-        case 13:
+        case 13: // "changerCouleur"
             return 1;
-        case 14:
+        case 14: // "+4"
             nextPlayer();
             plusFour();
             break;
