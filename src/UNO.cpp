@@ -35,7 +35,7 @@ void UNO::createCards() {
 
 void UNO::startGame() {
     initGame();
-
+    deck.distributeCards(7, joueurs);
 }
 
 //modifications a faire pour le controller !!

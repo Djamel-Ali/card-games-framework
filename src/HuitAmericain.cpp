@@ -49,7 +49,7 @@ void HuitAmericain::createCards() {
 
 void HuitAmericain::startGame() {
     initGame();
-
+    deck.distributeCards(7, joueurs);
 }
 
 //modifications a faire pour le controller !!
@@ -59,16 +59,14 @@ void HuitAmericain::playRound(int indexCardToPlay) {
         return;
     }
 
-    Card* temp = joueurs[actualPlaying]->playCard(indexCardToPlay);
+    Card* temp = joueurs[actualPlaying]->getHand().at(indexCardToPlay);
     if(cardPlayable(temp)){
         deck.addCard(cardOnTop);
-        cardOnTop = temp;
+        cardOnTop = joueurs[actualPlaying]->playCard(indexCardToPlay);
         getIndexOfParseCard();
 
         nextPlayer();
     }
-
-
 }
 
 int HuitAmericain::getIndexOfParseCard() {
@@ -134,8 +132,7 @@ void HuitAmericain::reversed(){
 void HuitAmericain::nextPlayer() {
     actualPlaying = (sensInverse) ? (actualPlaying -1) : (actualPlaying +1);
 
-    if(actualPlaying < 0) actualPlaying = int(joueurs.size()) -1;
-    if(actualPlaying >= joueurs.size()) actualPlaying = 0;
+    actualPlaying = actualPlaying % (int)joueurs.size();
 }
 
 void HuitAmericain::changeColor() {
@@ -165,7 +162,7 @@ void HuitAmericain::changeColor() {
             colors[4] = colors[3];
             break;
         default:
-            cout << "Couleur Modifier";
+            cout << "Couleur Modifiée";
             break;
     }
 }
@@ -176,13 +173,11 @@ bool HuitAmericain::cardPlayable(Card *toPlay) {
 }
 
 bool HuitAmericain::playerCanPlay(const vector<Card *>& hand) {
-    bool canPlay = false;
-
     for(Card* card : hand){
         if(cardPlayable(card)){
-            canPlay = true;
+            return true;
         }
     }
 
-    return canPlay;
+    return false;
 }
