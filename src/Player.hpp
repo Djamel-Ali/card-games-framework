@@ -15,8 +15,14 @@ class Player {
 private:
     const int unique_id;
     string name;
-    vector<Card*> hand;
+    vector<Card *> hand;
+    vector<Card *> reserve;
+
+    // score intermediaire (calculé pour chaque donne)
     int current_score;
+
+    // score final calculé à partir des scores intermediaires de chaque donne
+    int final_score;
 
     // Used by the get_fresh_player_uid() method to generate unique IDs
     static int player_id_counter;
@@ -27,7 +33,7 @@ private:
 public:
 
     // Ctor
-    Player(int _uid, const string &_name, const vector<Card*> &_hand, int _score = 0);
+    Player(int _uid, const string &_name, const vector<Card *> &_hand, int _score = 0);
 
     // copy ctor
     Player(const Player &player);
@@ -41,31 +47,49 @@ public:
 
     const string &getName() const;
 
-    vector<Card*> &getHand();
+    vector<Card *> &getHand();
 
     int getCurrentScore() const;
 
+    int getFinalScore() const;
+
+    vector<Card *> getReserve() const;
+
+    int getIdOfCardToPlay();
     // Setters :
 
-    void setCurrentScore(int score);
+    void setCurrentScore(float _score);
 
     void setHand(const vector<Card *> &_hand);
+
+    void setReserve(const vector<Card *> &_reserve);
 
     // Other methods :
 
     bool handEmpty();
 
-    Card* playCard(int index);
+    //todo : Player::playCard(arg) : il faut se mettre d'accord si on passe l'index ou l'ID en arg
+    Card *playCard(int index);
 
     // ajoute la carte (au fait c'est son pointeur) passée en argument à la main du joueur courant
-    void addCard(Card* toAdd);
+    void addCard(Card *toAdd);
 
     void displayHand();
 
     // Remettre les cartes de la main du joueur courant dans le Deck passé en arg
     // (ça sert à remélanger et redistribuer par e.g)
     void putBackHand(Deck &_deck);
+
+    // Remettre les cartes qui sont dans la réserve (cartes gagnées) du joueur courant dans le Deck passé en arg
+    // (ça sert à remélanger et redistribuer par e.g)
+    void putBackReserve(Deck &_deck);
+
+    void setFinalScore(int finalScore);
+
+    bool existsInHand(int card_id);
 };
 
+/// Surcharge de l’opérateur <<
+std::ostream &operator<<(std::ostream &out, const Player &a_player);
 
 #endif //CARD_GAMES_FRAMEWORK_PLAYER_HPP

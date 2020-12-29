@@ -26,6 +26,9 @@ public:
 
     friend ostream& operator<<(ostream& out, const COLOR &colo);
 
+    virtual bool operator> (ColoredCard const & other) const;
+
+
 };
 
 

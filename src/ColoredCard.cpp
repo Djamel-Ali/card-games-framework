@@ -60,5 +60,10 @@ ostream &operator<<(ostream &out, const COLOR &colo) {
     return out;
 }
 
+bool ColoredCard::operator>(const ColoredCard &other) const {
+    return this->getId() > other.getId();
+
+}
+
 
 

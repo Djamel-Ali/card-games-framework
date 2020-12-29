@@ -11,3 +11,15 @@ void Game::initGame() {
     deck.shuffleCards();
 }
 
+Card *Game::getCardById(const vector<Card *> &vect_of_cards, int card_id) {
+    for(Card *pCard : vect_of_cards){
+        if(pCard->getId() == card_id)
+            return pCard;
+    }
+    return nullptr;
+}
+
+void Game::moveFromTo(vector<Card *> src, vector<Card *> dest) {
+
+}
+

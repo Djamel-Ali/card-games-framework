@@ -19,6 +19,8 @@ protected:
 public:
     explicit Game(const Deck &_deck);
     void initGame(); // mise en commun
+    static Card *getCardById(const vector<Card*> &vect_of_cards, int card_id);
+    static void moveFromTo(vector<Card*> src, vector<Card*> dest);
 
     virtual void createCards() = 0;
     virtual void startGame() = 0; // a mettre en commun plus tard

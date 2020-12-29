@@ -24,11 +24,11 @@ float Card::getValue() const {
 
 bool Card::operator==(const Card &other) const {
     cout << "== de Card \n";
-    return this->value == other.value;
+    return this->getId() == other.getId();
 }
 
 bool Card::operator>(const Card &other) const {
-    return this->value > other.getValue();
+    return this->getId() > other.getId();
 }
 
 ostream &operator<<(ostream &out, const Card &card) {
