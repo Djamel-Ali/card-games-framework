@@ -8,19 +8,24 @@
 
 class Tarot : public Game {
 private:
+    const string name;
+
+    // constantes qui représentent les différents types de contrats (ou de stratégies)
     static constexpr int PETITE = 1;
     static constexpr int GARDE = 2;
     static constexpr int GARDE_SANS_CHIEN = 3;
     static constexpr int GARDE_CONTRE_CHIEN = 4;
-    static constexpr int GAMEPLAY_OBJECTIVE = 100;
+
+    // constante qui représente le score que doit atteindre le gagnant de la partie de Tarot.
+    static constexpr int GAMEPLAY_OBJECTIVE = 150;
 
     static vector<Card *> tapis;
     vector<Card *> chien;
-    COLOR *colors;
+    COLOR *colors{};
     int id_of_attacker;
     Player *gagnantDuPli;
 
-    // Le nombre de point que l'attaquant doit atteindre à la fin de la partie (initialement 56 pts, mais peut diminuer
+    // Le nombre de point que l'attaquant doit atteindre à la fin de la donne (initialement 56 pts, mais peut diminuer
     // à 51, 41 ou 36 s'il a 1 bout, 2 bouts ou 3 bouts respectivement dans les cartes gagnées à la fin de la partie)
     int goal_of_the_attacker;
 
@@ -67,6 +72,8 @@ public:
 
     Player *getAttacker();
 
+    string getName() const override;
+
     // indexes [0..3]
     Player *getDefenderOfIndex(int index);
 
@@ -74,7 +81,7 @@ public:
 
     void setGagnantDuPli(Player *_gagnantDuPli);
 
-
+    Player *getPlayerByID(int _id) override;
     // Other methods
 
     // Phase dont laquelle un des joueur décide de jouer le role de l'attaquant
@@ -89,21 +96,21 @@ public:
     void integrateChien();
 
     // L'attaquant choisit les 6 cartes à écarter de sa main (pour les remettre au chien)
-    void discardAdditionalCards();
+    bool discardAdditionalCards();
 
-    static bool moveCardFromTo(vector<Card *> &srcVectOfCards, vector<Card *> &targetVectOfCards, int idOfCard);
+    static bool moveCardFromTo(vector<Card *> &srcVectOfCards, vector<Card *> &targetVectOfCards, int indexOfCard);
 
     // update current and final scores of players
     void updatesScores();
 
     // mis à jour les scores finaux des défenseurs de la donne courante
-    void updateDefenderScores(int newGain);
+    void updateDefendersScores(int newGain);
 
     //todo: il faut changer : attaquant n'est pas fix pour toute la partie (donc pour modifier toutes les méthodes
     // concernées en passant à chaque fois l'ID de l'attaquant courant par e.g.)
 
     // Afficher les scores des autres joueurs (autre que l'attaquant de la donne qui vient de finir).
-    void displayDefendersScores();
+    void displayDefendersFinalScores();
 
     // Affiche les résultats finaux
     void displayFinalResults();
@@ -112,21 +119,23 @@ public:
     void displayIntermediateResults();
 
     // Affiche les résultats intermediaires avec des explications détatillées du comptage de points
-    void displayPointCountingExplanations();
+    void displayCalculationSummary();
 
     // récupération de toutes les cartes (mains des joueurs + Le Chien) pour les mettre dans Deck
-    void collectHandsAndChien();
+    void collectAllTheCards();
 
     // récupération de toutes les cartes (qui sont dans les réserves de chaque joueur qui comprennent le Chien)
     // pour les mettre dans Deck
     void collectReservesOfPlayers();
 
     // Returns 'true' when One of the players won (i.e. it reaches or exceeds the target number of points).
-    bool oneOfThePlayersWon();
+    bool someoneAchievedGoal();
 
     void makeTheDefendersPlay();
 
-    static int getStrongestCardId(int idCard1, int idCard2);
+    static int getStrongestCardIndex(int indexCard1, int indexCard2);
+
+    static int getStrongestCardIndex(const vector<Card*> &listOfCards);
 
     static float getSumOfPointsInTapis();
 

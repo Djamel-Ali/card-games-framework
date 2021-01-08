@@ -15,6 +15,7 @@ private:
 protected:
     Deck deck;
     vector <Player*> joueurs;
+    const string name;
 
 public:
     explicit Game(const Deck &_deck);
@@ -28,6 +29,8 @@ public:
     virtual int getWinner() = 0; // a mettre en commun plus tard (pour bataille, uno et 8us)
     virtual int getIndexOfParseCard() = 0;
     virtual void playRound(int indexCardToPlay) = 0;
+    virtual string getName() const = 0;
+    virtual Player *getPlayerByID(int _id) = 0;
 
 };
 

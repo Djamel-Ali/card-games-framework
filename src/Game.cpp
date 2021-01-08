@@ -23,3 +23,7 @@ void Game::moveFromTo(vector<Card *> src, vector<Card *> dest) {
 
 }
 
+std::ostream &operator<<(std::ostream &out, const Game &a_game) {
+    out << "\n\n\t" << a_game.getName() << a_game.printGameBoard() << a_game.printPlayers();
+    return out;
+}

@@ -55,7 +55,7 @@ public:
 
     vector<Card *> getReserve() const;
 
-    int getIdOfCardToPlay();
+    int getIndexOfCardToPlay();
     // Setters :
 
     void setCurrentScore(float _score);
@@ -74,7 +74,7 @@ public:
     // ajoute la carte (au fait c'est son pointeur) passée en argument à la main du joueur courant
     void addCard(Card *toAdd);
 
-    void displayHand();
+    void displayHand() const;
 
     // Remettre les cartes de la main du joueur courant dans le Deck passé en arg
     // (ça sert à remélanger et redistribuer par e.g)
@@ -86,10 +86,9 @@ public:
 
     void setFinalScore(int finalScore);
 
-    bool existsInHand(int card_id);
 };
 
 /// Surcharge de l’opérateur <<
-std::ostream &operator<<(std::ostream &out, const Player &a_player);
+std::ostream &operator<<(std::ostream &out, const Player &a_game);
 
 #endif //CARD_GAMES_FRAMEWORK_PLAYER_HPP

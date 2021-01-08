@@ -74,22 +74,30 @@ int Player::get_fresh_player_uid() {
     return player_id_counter++;
 }
 
-void Player::displayHand() {
+void Player::displayHand() const {
     cout << "HAND : ";
+    auto counter = -1;
     for (Card *pCard: hand) {
-        cout << *pCard << " ; ";
+        cout << "(" << counter++ << "): " << *pCard << " ; ";
     }
 }
 
 // Remettre les cartes de la main du joueur courant dans le Deck passé en arg
 void Player::putBackHand(Deck &_deck) {
-    _deck.getDeckOfCards().insert(_deck.getDeckOfCards().end(), hand.begin(), hand.end());
-    hand.clear();
+    if(!handEmpty())
+    {
+        _deck.getDeckOfCards().insert(_deck.getDeckOfCards().end(), hand.begin(), hand.end());
+        hand.clear();
+    }
 }
 
+// Remettre les cartes gagnées dans la pioche (passée en arg)
 void Player::putBackReserve(Deck &_deck) {
-    _deck.getDeckOfCards().insert(_deck.getDeckOfCards().end(), reserve.begin(), reserve.end());
-    reserve.clear();
+    if(!reserve.empty())
+    {
+        _deck.getDeckOfCards().insert(_deck.getDeckOfCards().end(), reserve.begin(), reserve.end());
+        reserve.clear();
+    }
 }
 
 vector<Card *> Player::getReserve() const {
@@ -100,28 +108,19 @@ void Player::setReserve(const vector<Card *> &_reserve) {
     Player::reserve = _reserve;
 }
 
-int Player::getIdOfCardToPlay() {
-    int chosen_id = -1;
+int Player::getIndexOfCardToPlay() {
+    int chosen_index = -1;
 
     //Afficher la main du joueur pour qu'il puisse choisir la carte à jouer
     displayHand();
 
     do {
-        cout << "Saisissez l'ID de la carte à jouer svp : ";
-        cin >> chosen_id;
-    }while (!existsInHand(chosen_id));
+        cout << "Saisissez l'indice de la carte à jouer svp : ";
+        cin >> chosen_index;
+    }while (chosen_index < 0 or chosen_index > hand.size()-1);
 
-    return chosen_id;
+    return chosen_index;
 }
-
-bool Player::existsInHand(int card_id) {
-    for(Card *pCard : hand){
-        if(pCard->getId() == card_id)
-            return true;
-    }
-    return false;
-}
-
 
 
 std::ostream &operator<<(std::ostream &out, const Player &a_player) {

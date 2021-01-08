@@ -12,4 +12,4 @@ add_executable(card-games-framework
         src/Deck.hpp src/Deck.cpp
         src/Bataille.hpp src/Bataille.cpp
         src/UNO.hpp src/UNO.cpp
-        src/HuitAmericain.cpp src/HuitAmericain.hpp src/Tarot.cpp src/Tarot.hpp)
+        src/HuitAmericain.cpp src/HuitAmericain.hpp src/Tarot.cpp src/Tarot.hpp src/View/TerminalView.cpp src/View/TerminalView.hpp)
