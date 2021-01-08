@@ -19,10 +19,10 @@ private:
     vector<Card *> reserve;
 
     // score intermediaire (calculé pour chaque donne)
-    int current_score;
+    float current_score;
 
     // score final calculé à partir des scores intermediaires de chaque donne
-    int final_score;
+    float final_score;
 
     // Used by the get_fresh_player_uid() method to generate unique IDs
     static int player_id_counter;
@@ -49,9 +49,9 @@ public:
 
     vector<Card *> &getHand();
 
-    int getCurrentScore() const;
+    float getCurrentScore() const;
 
-    int getFinalScore() const;
+    float getFinalScore() const;
 
     vector<Card *> getReserve() const;
 
@@ -84,7 +84,7 @@ public:
     // (ça sert à remélanger et redistribuer par e.g)
     void putBackReserve(Deck &_deck);
 
-    void setFinalScore(int finalScore);
+    void setFinalScore(float finalScore);
 
 };
 

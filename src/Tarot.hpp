@@ -25,6 +25,7 @@ private:
     int id_of_attacker;
     Player *gagnantDuPli;
 
+
     // Le nombre de point que l'attaquant doit atteindre à la fin de la donne (initialement 56 pts, mais peut diminuer
     // à 51, 41 ou 36 s'il a 1 bout, 2 bouts ou 3 bouts respectivement dans les cartes gagnées à la fin de la partie)
     int goal_of_the_attacker;
@@ -59,29 +60,6 @@ public:
 
     void startGame() override;
 
-
-
-
-    // Getters and setters :
-
-    const vector<Card *> &getChien() const;
-
-    void setChien(const vector<Card *> &_chien);
-
-    int getIdOfAttacker() const;
-
-    Player *getAttacker();
-
-    string getName() const override;
-
-    // indexes [0..3]
-    Player *getDefenderOfIndex(int index);
-
-    Player *getGagnantDuPli() const;
-
-    void setGagnantDuPli(Player *_gagnantDuPli);
-
-    Player *getPlayerByID(int _id) override;
     // Other methods
 
     // Phase dont laquelle un des joueur décide de jouer le role de l'attaquant
@@ -131,7 +109,7 @@ public:
     // Returns 'true' when One of the players won (i.e. it reaches or exceeds the target number of points).
     bool someoneAchievedGoal();
 
-    void makeTheDefendersPlay();
+    void makeTheOthersPlay();
 
     static int getStrongestCardIndex(int indexCard1, int indexCard2);
 
@@ -140,6 +118,34 @@ public:
     static float getSumOfPointsInTapis();
 
 
+
+
+    // Getters and setters :
+
+    const vector<Card *> &getChien() const;
+
+    void setChien(const vector<Card *> &_chien);
+
+    int getIdOfAttacker() const;
+
+    Player *getAttacker();
+
+    string getName() const override;
+
+    // gagnantDuPli est toujours le 1st player
+    // if gagnantDuPli = 0 then 2nd, 3rd, and 4th player are in indexes {1, 2, 3}
+    // if gagnantDuPli = 1 then 2nd, 3rd, and 4th player are in indexes {2, 3, 0}
+    // if gagnantDuPli = 2 then 2nd, 3rd, and 4th player are in indexes {3, 0, 1}
+    // if gagnantDuPli = 3 then 2nd, 3rd, and 4th player are in indexes {0, 1, 2}
+    Player *get_ith_player(int _ith);
+
+    Player *getGagnantDuPli() const;
+
+    void setGagnantDuPli(Player *_gagnantDuPli);
+
+    Player *getPlayerByID(int _id) override;
+
+    int getIndexOfGagnantDuPli(const Player *_gagnantDuPli);
 
 
 };

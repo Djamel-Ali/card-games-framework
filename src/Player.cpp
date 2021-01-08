@@ -42,7 +42,7 @@ void Player::setCurrentScore(float _score) {
     current_score = _score;
 }
 
-void Player::setFinalScore(int finalScore) {
+void Player::setFinalScore(float finalScore) {
     final_score = finalScore;
 }
 
