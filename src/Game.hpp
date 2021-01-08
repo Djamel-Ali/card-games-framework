@@ -2,15 +2,12 @@
 #define CARD_GAMES_FRAMEWORK_GAME_HPP
 
 #include <vector>
-#include "Card.hpp"
 #include "Deck.hpp"
 #include "Player.hpp"
 
 using namespace std;
 
 class Game {
-
-private:
 
 protected:
     Deck deck;
