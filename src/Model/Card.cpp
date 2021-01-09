@@ -34,6 +34,7 @@ bool Card::operator>(const Card &other) const {
 ostream &operator<<(ostream &out, const Card &fs) {
     out << " --- " << endl;
     out << "| " <<fs.getName()<<" |" << endl;
+    out << "| " <<fs.getValue()<<" |" << endl;
     out << " --- " << endl;
 
     return out;

@@ -18,8 +18,10 @@ Game *Controller::setGame(int jeu) {
             return new UNO(deck);
         case 4:
             return new Belote(deck);
-        default:
+        case 5:
             return new Belote(deck);
+        default:
+            return new Bataille(deck);
     }
 
 }
@@ -34,9 +36,9 @@ void Controller::startGame() {
     while (!game -> isWinner()){
         game -> playRound(view->play((int)game->getActualPlaying()->getHand().size() -1, game->getActualPlaying()));
         updateView();
-        game -> nextPlayer();
     }
 
+    view ->printPlayer(*game->getPlayer(game->getWinner()));
 }
 
 void Controller::setVue(View *vue) {

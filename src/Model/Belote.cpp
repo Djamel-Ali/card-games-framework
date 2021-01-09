@@ -5,7 +5,7 @@
 #include "Belote.hpp"
 
 Belote::Belote(const Deck &deck) : Game(deck) {
-    atout = NONE;
+    atout = PIQUE;
     fold = NONE;
     lastFoldWinner = -1;
     actualPlaying = 0;
@@ -45,18 +45,20 @@ void Belote::playRound(int indexCardToPlay) {
             fold = dynamic_cast<ColoredCard*>(temp)->getColor();
             lastFoldWinner = actualPlaying;
         }else{
-            getIndexOfParseCard();
+            lastFoldWinner = getIndexOfParseCard();
         }
 
         nextPlayer();
+    }else{
+        cout << "La carte ne peut pas etre jouée" << endl;
     }
 }
 
 bool Belote::isWinner() {
-    if(joueurs.at(0)->getCurrentScore() > pointsMax){
+    if(joueurs.at(0)->getCurrentScore() > 500){
         return true;
     }else{
-        return joueurs.at(1)->getCurrentScore() > pointsMax;
+        return joueurs.at(1)->getCurrentScore() > 500;
     }
 }
 
@@ -98,6 +100,9 @@ bool Belote::cardPlayable(Card *toPlay) {
 
 
 void Belote::nextPlayer() {
+    cout << "next ==========================================================================================================================" << endl;
+
+
     actualPlaying++;
     actualPlaying = actualPlaying % (int)joueurs.size();
 
@@ -105,19 +110,27 @@ void Belote::nextPlayer() {
         if(card == nullptr) return;
     }
 
+    actualPlaying = lastFoldWinner;
+
     setPoints();
 
     if(joueurs[actualPlaying]->handEmpty()){
         if(!isWinner()){
-            startGame();
+            if(tempScore[ordreDeJeu %2] > 80){
+                joueurs[ordreDeJeu %2]->setCurrentScore(joueurs[ordreDeJeu %2]->getCurrentScore() + 161);
+                joueurs[(ordreDeJeu +1) %2]->setCurrentScore(joueurs[(ordreDeJeu +1) %2]->getCurrentScore() +tempScore[(ordreDeJeu +1) %2]);
+            }else{
+                joueurs[ordreDeJeu %2]->setCurrentScore(joueurs[ordreDeJeu %2]->getCurrentScore() +tempScore[ordreDeJeu %2]);
+                joueurs[(ordreDeJeu +1) %2]->setCurrentScore(joueurs[(ordreDeJeu +1) %2]->getCurrentScore() + 161);
+            }
 
-            joueurs[0]->setCurrentScore(tempScore[0]);
-            joueurs[1]->setCurrentScore(tempScore[1]);
             tempScore[0] = 0;
             tempScore[1] = 0;
 
             ordreDeJeu ++;
             ordreDeJeu = ordreDeJeu %4;
+
+            startGame();
         }
     }
 }
@@ -134,19 +147,21 @@ bool Belote::playerHaveColor(COLOR color) {
 
 void Belote::setCardsAtout(){
     for(Card * card : deck.getDeckOfCards()){
-        auto * temp = dynamic_cast<ColoredCard *>(card);
+        ColoredCard * temp = dynamic_cast<ColoredCard *>(card);
         if(temp->getId() == 9 && temp->getColor() == atout){
+            cout << "set 9 atout" << endl;
             temp->setValue(14);
         }
         if(temp->getId() == 11 && temp->getColor() == atout){
+            cout << "set valet atout"<< endl;
             temp->setValue(20);
         }
     }
 }
 
 void Belote::setPoints() {
-    for(auto &card : tapis){
-        tempScore[actualPlaying %4] += card->getValue();
+    for(Card* &card : tapis){
+        tempScore[actualPlaying %2] += card->getValue();
         if(card->getValue() == 20){
             dynamic_cast<ColoredCard *>(card) -> setValue(2);
         }
@@ -159,10 +174,10 @@ void Belote::setPoints() {
 }
 
 void Belote::distribution() {
+    setCardsAtout();
+
     deck.distributeCards(5, joueurs);
     deck.distributeCards(3, joueurs);
-
-    setCardsAtout();
 }
 
 void Belote::print(ostream &out) {

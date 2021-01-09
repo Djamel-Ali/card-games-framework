@@ -23,3 +23,7 @@ Player* Game::getActualPlaying() const {
     return joueurs.at(actualPlaying);
 }
 
+Player *Game::getPlayer(int iPlayer) const {
+    return joueurs[iPlayer];
+}
+

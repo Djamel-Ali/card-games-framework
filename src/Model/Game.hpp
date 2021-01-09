@@ -17,7 +17,7 @@ public:
     explicit Game(const Deck &_deck);
     void initGame(); // mise en commun
     Player* getActualPlaying() const;
-
+    Player* getPlayer(int iPlayer) const;
 
     virtual void createCards() = 0;
     virtual void startGame() = 0; // a mettre en commun plus tard

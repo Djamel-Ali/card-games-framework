@@ -10,7 +10,7 @@ void Bataille::createCards() {
             if (i < 11) {
                 deck.addCard(new Card(to_string(i), i, i));
             } else {
-                deck.addCard(new Card(noms[j], valeurs[j], i));
+                deck.addCard(new Card(noms[j], i, valeurs[j]));
             }
         }
     }
@@ -26,6 +26,8 @@ void Bataille::startGame() {
 
 void Bataille::playRound(int indexCardToPlay) {
     tapis.insert(tapis.begin(), joueurs.at(actualPlaying)->playCard(0));
+
+    nextPlayer();
 }
 
 bool Bataille::isWinner() {
@@ -40,9 +42,11 @@ bool Bataille::isWinner() {
 
 int Bataille::getWinner() {
     if(joueurs.at(0)->handEmpty()){
+        joueurs[0]->setCurrentScore(joueurs[0]->getCurrentScore() +1);
         return 0;
     }
 
+    joueurs[1]->setCurrentScore(joueurs[1]->getCurrentScore() +1);
     return 1;
 }
 
@@ -69,6 +73,7 @@ void Bataille::nextPlayer() {
     actualPlaying = actualPlaying % (int)joueurs.size();
 
     if(actualPlaying == 0){
+        cout << *this;
         decideWinner();
     }
 }

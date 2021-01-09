@@ -20,15 +20,16 @@ public:
     int getWinner() override;
     int getIndexOfParseCard() override;
     void playRound(int indexCardToPlay) override;
+    void print(ostream& out) override;
+    void nextPlayer() override;
 
-    void nextPlayer();
     void plusTwo();
     void plusFour();
     void reversed();
     void changeColor();
     bool cardPlayable(Card* toPlay);
     bool playerCanPlay(const vector<Card*>& hand);
-    void print(ostream& out) override;
+    void setPoints(int iPlayer);
 
     int actualPlaying = -1;
 };

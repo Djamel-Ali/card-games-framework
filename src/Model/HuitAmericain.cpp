@@ -111,13 +111,16 @@ bool HuitAmericain::isWinner() {
 }
 
 int HuitAmericain::getWinner() {
+    int winner = -1;
     for(int i = 0; i < joueurs.size(); i ++){
         if (joueurs.at(i)->handEmpty()){
-            return i;
+            winner = i;
+        }else{
+            setPoints(i);
         }
     }
 
-    return -1;
+    return winner;
 }
 
 void HuitAmericain::plusTwo() {
@@ -207,4 +210,10 @@ void HuitAmericain::print(ostream &out) {
         out << *dynamic_cast<ColoredCard*>(card);
     }
 
+}
+
+void HuitAmericain::setPoints(int iPlayer) {
+    for(Card* card : joueurs[iPlayer]->getHand()){
+        joueurs[iPlayer]->setCurrentScore(joueurs[iPlayer]->getCurrentScore() +card->getValue());
+    }
 }
