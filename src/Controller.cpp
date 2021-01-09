@@ -7,16 +7,22 @@ Controller::Controller(View * vue, int jeu) :view(vue){
     switch (jeu) {
         case 1:
             game = new Bataille(deck, 0);
+            break;
         case 2:
             game = new HuitAmericain(deck, 0);
+            break;
         case 3:
             game = new UNO(deck, 0);
+            break;
         case 4:
             game = new Belote(deck, 0);
+            break;
         case 5:
             game = new Belote(deck, 0);
+            break;
         default:
             game = new Bataille(deck, player);
+            break;
 
     }
 

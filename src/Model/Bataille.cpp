@@ -5,6 +5,7 @@ Bataille::Bataille(Deck *deck, int player) : Game(deck, player) {
     ohBataille = false;
     joueurs.push_back(new Player(0, "Djamel", vector<Card *> {}, 0));
     joueurs.push_back(new Player(1, "Yacine", vector<Card *> {}, 0));
+    std::cout << "Construction of Bataille" << std::endl;
 }
 
 void Bataille::createCards() {

@@ -32,7 +32,6 @@ public:
     bool playerCanPlay(const vector<Card*>& hand);
     void setPoints(int iPlayer);
 
-    int actualPlaying = -1;
 };
 
 

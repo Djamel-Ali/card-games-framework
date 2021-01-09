@@ -1,8 +1,9 @@
 #include <iostream>
 #include "Game.hpp"
 
-Game::Game(Deck *_deck, int player) : actualPlaying(player), joueurs{}{
+Game::Game(Deck *_deck, int player) :joueurs{}{
     deck = _deck;
+    actualPlaying = 0;
     std::cout << "Construction of Game" << std::endl;
 }
 
@@ -34,7 +35,6 @@ void Game::startGame() {
 }
 
 void Game::createCards() {
-    deck =  new Deck();
     cout  << "Create cards Game" << endl;
 }
 

@@ -14,6 +14,7 @@ Belote::Belote(Deck *_deck, int player) : Game(_deck, player) {
     joueurs.push_back(new Player(2, "Yacine", vector<Card *> {}, 0));
     joueurs.push_back(new Player(3, "Ghandi", vector<Card *> {}, 0));
 
+    std::cout << "Construction of Belote" << std::endl;
 }
 
 void Belote::createCards() {

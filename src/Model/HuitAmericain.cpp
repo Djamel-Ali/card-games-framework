@@ -13,7 +13,7 @@ HuitAmericain::HuitAmericain(Deck *_deck, int player) : Game(_deck, player){
     joueurs.push_back(new Player(1, "Yacine", vector<Card *> {}, 0));
 
     cardOnTop = new ColoredCard("3", 3, 3, TREFLE);
-
+    cout << "CONSTRUC 8US : ACTUAL " << actualPlaying << endl;
 }
 
 void HuitAmericain::createCards() {
