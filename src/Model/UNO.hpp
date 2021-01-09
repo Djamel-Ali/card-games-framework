@@ -9,8 +9,6 @@ public:
     explicit UNO(const Deck &deck);
 
     void createCards() override;
-    void startGame() override;
-    void playRound(int indexCardToPlay) override;
     int getIndexOfParseCard() override;
 };
 

@@ -69,17 +69,20 @@ int Belote::getIndexOfParseCard() {
     if(dynamic_cast<ColoredCard*>(tapis[actualPlaying])->getColor() != fold
        && dynamic_cast<ColoredCard*>(tapis[lastFoldWinner])->getColor() == fold) return lastFoldWinner;
 
-
+    if(dynamic_cast<ColoredCard *>(tapis[actualPlaying]) > dynamic_cast<ColoredCard *>(tapis[lastFoldWinner])) lastFoldWinner = actualPlaying;
 
     return 1;
 }
 
-// a completer pour false
+
 bool Belote::cardPlayable(Card *toPlay) {
 
     if(fold == NONE) return true;
-    if(fold == dynamic_cast<ColoredCard*>(toPlay)->getColor()) return true;
+    if(fold == dynamic_cast<ColoredCard *>(toPlay)->getColor()) return true;
+    if(lastFoldWinner == ((actualPlaying +2) %4)) return true;
+    if(playerHaveColor(fold)) return false;
     if(atout == dynamic_cast<ColoredCard*>(toPlay)->getColor()) return true;
+    if(playerHaveColor(atout)) return false;
 
     return true;
 }
@@ -90,6 +93,16 @@ void Belote::print(ostream &out) {
 
 void Belote::nextPlayer() {
 
+}
+
+bool Belote::playerHaveColor(COLOR color) {
+    for(Card * card : joueurs.at(actualPlaying)->getHand()){
+        if(dynamic_cast<ColoredCard *>(card)->getColor() == color){
+            return true;
+        }
+    }
+
+    return false;
 }
 
 

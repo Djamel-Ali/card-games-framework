@@ -10,7 +10,6 @@ protected:
     COLOR atout; // couleur de l'atout du round
     COLOR fold; // couleur du pli
     int lastFoldWinner; // dernier vinqueur d'un pli
-    int actualPlaying; // index du joueur actuel
     int pointsMax{1500};
 
     Card* tapis[4]{};
@@ -26,6 +25,7 @@ public:
     void print(ostream& out) override;
     void nextPlayer() override;
     bool cardPlayable(Card* toPlay);
+    bool playerHaveColor(COLOR color);
 };
 
 

@@ -48,30 +48,6 @@ void UNO::createCards() {
 
 }
 
-void UNO::startGame() {
-    initGame();
-    cout << "size des players" << joueurs.size();
-    deck.distributeCards(7, joueurs);
-
-}
-
-//modifications a faire pour le controller !!
-void UNO::playRound(int indexCardToPlay) {
-    if(playerCanPlay(joueurs[actualPlaying]->getHand())){
-        Card* temp = joueurs[actualPlaying]->playCard(indexCardToPlay);
-        if(cardPlayable(temp)){
-            deck.addCard(cardOnTop);
-            cardOnTop = temp;
-            getIndexOfParseCard();
-
-            nextPlayer();
-        }else{
-            cout << "La carte ne peut pas etre jouée" << endl;
-        }
-    }else{
-        nextPlayer();
-    }
-}
 
 int UNO::getIndexOfParseCard() {
     switch (cardOnTop->getId()) {

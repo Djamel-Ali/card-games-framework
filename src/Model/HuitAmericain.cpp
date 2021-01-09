@@ -60,17 +60,18 @@ void HuitAmericain::startGame() {
 
 //modifications a faire pour le controller !!
 void HuitAmericain::playRound(int indexCardToPlay) {
-    if(isWinner()){
-        getWinner();
-        return;
-    }
+    if(playerCanPlay(joueurs[actualPlaying]->getHand())){
+        Card* temp = joueurs[actualPlaying]->playCard(indexCardToPlay);
+        if(cardPlayable(temp)){
+            deck.addCard(cardOnTop);
+            cardOnTop = temp;
+            getIndexOfParseCard();
 
-    Card* temp = joueurs[actualPlaying]->getHand().at(indexCardToPlay);
-    if(cardPlayable(temp)){
-        deck.addCard(cardOnTop);
-        cardOnTop = joueurs[actualPlaying]->playCard(indexCardToPlay);
-        getIndexOfParseCard();
-
+            nextPlayer();
+        }else{
+            cout << "La carte ne peut pas etre jouée" << endl;
+        }
+    }else{
         nextPlayer();
     }
 }
