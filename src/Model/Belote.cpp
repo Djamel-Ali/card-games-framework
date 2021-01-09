@@ -10,6 +10,11 @@ Belote::Belote(const Deck &deck) : Game(deck) {
     lastFoldWinner = -1;
     actualPlaying = 0;
 
+    joueurs.push_back(new Player(0, "Djamel", vector<Card *> {}, 0));
+    joueurs.push_back(new Player(1, "Mandela", vector<Card *> {}, 0));
+    joueurs.push_back(new Player(2, "Yacine", vector<Card *> {}, 0));
+    joueurs.push_back(new Player(3, "Ghandi", vector<Card *> {}, 0));
+
 }
 
 void Belote::createCards() {
@@ -27,10 +32,8 @@ void Belote::createCards() {
 
 void Belote::startGame() {
     initGame();
-    deck.distributeCards(5, joueurs);
-    deck.distributeCards(3, joueurs);
-
-
+    distribution();
+    actualPlaying = ordreDeJeu;
 }
 
 void Belote::playRound(int indexCardToPlay) {
@@ -43,13 +46,18 @@ void Belote::playRound(int indexCardToPlay) {
             lastFoldWinner = actualPlaying;
         }else{
             getIndexOfParseCard();
-
         }
+
+        nextPlayer();
     }
 }
 
 bool Belote::isWinner() {
-    return false;
+    if(joueurs.at(0)->getCurrentScore() > pointsMax){
+        return true;
+    }else{
+        return joueurs.at(1)->getCurrentScore() > pointsMax;
+    }
 }
 
 int Belote::getWinner() {
@@ -69,7 +77,7 @@ int Belote::getIndexOfParseCard() {
     if(dynamic_cast<ColoredCard*>(tapis[actualPlaying])->getColor() != fold
        && dynamic_cast<ColoredCard*>(tapis[lastFoldWinner])->getColor() == fold) return lastFoldWinner;
 
-    if(dynamic_cast<ColoredCard *>(tapis[actualPlaying]) > dynamic_cast<ColoredCard *>(tapis[lastFoldWinner])) lastFoldWinner = actualPlaying;
+    if(dynamic_cast<ColoredCard *>(tapis[actualPlaying])->getId() > dynamic_cast<ColoredCard *>(tapis[lastFoldWinner])->getId()) lastFoldWinner = actualPlaying;
 
     return 1;
 }
@@ -87,12 +95,31 @@ bool Belote::cardPlayable(Card *toPlay) {
     return true;
 }
 
-void Belote::print(ostream &out) {
 
-}
 
 void Belote::nextPlayer() {
+    actualPlaying++;
+    actualPlaying = actualPlaying % (int)joueurs.size();
 
+    for(auto & card : tapis){
+        if(card == nullptr) return;
+    }
+
+    setPoints();
+
+    if(joueurs[actualPlaying]->handEmpty()){
+        if(!isWinner()){
+            startGame();
+
+            joueurs[0]->setCurrentScore(tempScore[0]);
+            joueurs[1]->setCurrentScore(tempScore[1]);
+            tempScore[0] = 0;
+            tempScore[1] = 0;
+
+            ordreDeJeu ++;
+            ordreDeJeu = ordreDeJeu %4;
+        }
+    }
 }
 
 bool Belote::playerHaveColor(COLOR color) {
@@ -105,4 +132,70 @@ bool Belote::playerHaveColor(COLOR color) {
     return false;
 }
 
+void Belote::setCardsAtout(){
+    for(Card * card : deck.getDeckOfCards()){
+        auto * temp = dynamic_cast<ColoredCard *>(card);
+        if(temp->getId() == 9 && temp->getColor() == atout){
+            temp->setValue(14);
+        }
+        if(temp->getId() == 11 && temp->getColor() == atout){
+            temp->setValue(20);
+        }
+    }
+}
 
+void Belote::setPoints() {
+    for(auto &card : tapis){
+        tempScore[actualPlaying %4] += card->getValue();
+        if(card->getValue() == 20){
+            dynamic_cast<ColoredCard *>(card) -> setValue(2);
+        }
+        if(card->getValue() == 20){
+            dynamic_cast<ColoredCard *>(card) -> setValue(0);
+        }
+        deck.addCard(card);
+        card = nullptr;
+    }
+}
+
+void Belote::distribution() {
+    deck.distributeCards(5, joueurs);
+    deck.distributeCards(3, joueurs);
+
+    setCardsAtout();
+}
+
+void Belote::print(ostream &out) {
+    out << "score Round: " << endl;
+    out << "Equipe 1 : " << tempScore[0] << endl;
+    out << "Equipe 2 : " << tempScore[0] << endl;
+
+    out << "------------------------------" << endl;
+
+    out << "score Partie: " << endl;
+    out << "Equipe 1 : " << joueurs[0]->getCurrentScore() << endl;
+    out << "Equipe 2 : " << joueurs[1]->getCurrentScore() << endl;
+
+    out << "------------------------------" << endl;
+
+    out << "Le tapis :" << endl;
+    for(Card * card : tapis){
+        if(card != nullptr){
+            out << *dynamic_cast<ColoredCard *>(card);
+        }
+    }
+
+    out << "------------------------------" << endl;
+
+    out << "Atout du round :" << endl;
+    out << atout << endl;
+
+    out << "------------------------------" << endl;
+
+    out << "joueur en cours : " << endl;
+    out << joueurs[actualPlaying]->getName() << endl;
+    out << "sa main : " << endl;
+    for(Card* card : joueurs.at(actualPlaying)->getHand()){
+        out << *dynamic_cast<ColoredCard*>(card);
+    }
+}

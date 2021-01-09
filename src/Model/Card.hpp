@@ -10,8 +10,10 @@ class Card {
 private:
     const string name;
     const int id;
-    int value; // non const car les points des cartes de la belote changent quand ils sont atouts !
+    // non const car les points des cartes de la belote changent quand ils sont atouts !
 
+protected:
+    int value;
 public:
     // Ctor and Dtor :
     Card(const string &_name, int _id, int _value);

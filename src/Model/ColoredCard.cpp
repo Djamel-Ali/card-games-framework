@@ -10,6 +10,8 @@ COLOR ColoredCard::getColor() const {
     return color;
 }
 
+
+
 bool ColoredCard::operator==(const ColoredCard &other) const {
     cout << "== de ColoredCard \n";
 
@@ -25,6 +27,10 @@ ostream &operator<<(ostream &out, const ColoredCard &fs) {
     out << " --- " << endl;
 
     return out;
+}
+
+void ColoredCard::setValue(int v) {
+    value = v;
 }
 
 

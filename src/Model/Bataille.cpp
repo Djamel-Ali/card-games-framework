@@ -67,7 +67,7 @@ Bataille::Bataille(const Deck &deck) : Game(deck) {
 void Bataille::nextPlayer() {
     actualPlaying++;
     actualPlaying = actualPlaying % (int)joueurs.size();
-    cout << "Acutail playing " << actualPlaying << endl;
+
     if(actualPlaying == 0){
         decideWinner();
     }

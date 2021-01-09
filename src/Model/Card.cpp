@@ -19,7 +19,6 @@ string Card::getName() const {
 
 int Card::getValue() const {
     return value;
-
 }
 
 bool Card::operator==(const Card &other) const {

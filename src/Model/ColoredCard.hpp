@@ -60,6 +60,7 @@ public:
 
     friend ostream& operator<<(ostream& out, const COLOR &colo);
 
+    void setValue(int v);
 };
 
 

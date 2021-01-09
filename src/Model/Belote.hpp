@@ -11,7 +11,8 @@ protected:
     COLOR fold; // couleur du pli
     int lastFoldWinner; // dernier vinqueur d'un pli
     int pointsMax{1500};
-
+    int ordreDeJeu = 0;
+    int tempScore[2]{0, 0};
     Card* tapis[4]{};
 
 public:
@@ -26,6 +27,9 @@ public:
     void nextPlayer() override;
     bool cardPlayable(Card* toPlay);
     bool playerHaveColor(COLOR color);
+    void setCardsAtout();
+    void setPoints();
+    void distribution();
 };
 
 
