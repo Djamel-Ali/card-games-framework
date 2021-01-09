@@ -1,13 +1,14 @@
 #include "View.hpp"
+
 #include <limits>
+
 View::View()
 {
-    controller = new Controller(this);
+
 }
 
 void View::start() {
-    controller->setGame(printWelcomeInterface());
-    controller->startGame();
+
 }
 
 int View::printWelcomeInterface() {
@@ -57,8 +58,8 @@ void View::printHand(const Player &player) {
     }
 }
 
-void View::update() {
-    cout << *(controller ->game);
+void View::update(Game *game) {
+    cout << *(game);
 
 }
 

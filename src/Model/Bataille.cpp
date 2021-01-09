@@ -1,6 +1,12 @@
 #include "Bataille.hpp"
 #include "iostream"
 
+Bataille::Bataille(Deck *deck, int player) : Game(deck, player) {
+    ohBataille = false;
+    joueurs.push_back(new Player(0, "Djamel", vector<Card *> {}, 0));
+    joueurs.push_back(new Player(1, "Yacine", vector<Card *> {}, 0));
+}
+
 void Bataille::createCards() {
     string noms[] = {"Valet", "Dame", "Roi", "As"};
     int valeurs[] = {11, 12, 13, 14};
@@ -8,9 +14,11 @@ void Bataille::createCards() {
     for (int i = 2; i < 15; i++) {
         for (int j = 0; j < 4; j++) {
             if (i < 11) {
-                deck.addCard(new Card(to_string(i), i, i));
+                Card *temp = new Card(to_string(i), i, i);
+                deck->addCard(temp);
             } else {
-                deck.addCard(new Card(noms[j], i, valeurs[j]));
+                Card *temp = new Card(noms[j], i, valeurs[j]);
+                deck->addCard(temp);
             }
         }
     }
@@ -21,7 +29,7 @@ void Bataille::createCards() {
 
 void Bataille::startGame() {
     initGame();
-    deck.distributeCards(16, joueurs);
+
 }
 
 void Bataille::playRound(int indexCardToPlay) {
@@ -62,11 +70,6 @@ int Bataille::getIndexOfParseCard() {
     return *tapis.at(0) > *tapis.at(1) ? 1 : 0;
 }
 
-Bataille::Bataille(const Deck &deck) : Game(deck) {
-    ohBataille = false;
-    joueurs.push_back(new Player(0, "Djamel", vector<Card *> {}, 0));
-    joueurs.push_back(new Player(1, "Yacine", vector<Card *> {}, 0));
-}
 
 void Bataille::nextPlayer() {
     actualPlaying++;
@@ -114,6 +117,10 @@ void Bataille::decideWinner() {
         }
     }
 
+}
+
+void Bataille::distribution() {
+    deck->distributeCards(16, joueurs);
 }
 
 

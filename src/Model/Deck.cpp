@@ -6,12 +6,16 @@
 #include <chrono>
 
 // Ctor
-Deck::Deck(const vector<Card*> &_deckOfCards) : deck_of_cards(_deckOfCards) {
+Deck::Deck() {
     std::cout << "construction of Deck" << std::endl;
 }
 
 // Dtor
-Deck::~Deck() = default;
+Deck::~Deck(){
+    for(Card* temp : deck_of_cards){
+        delete temp;
+    }
+}
 
 // Getters :
 

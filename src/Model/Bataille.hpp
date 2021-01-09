@@ -11,17 +11,21 @@ protected:
     bool ohBataille;
 
 public:
-    Bataille(const Deck &deck);
+    Bataille(Deck *deck, int player);
 
     void createCards() override;
-    void startGame() override;
+
     bool isWinner() override;
     int getWinner() override;
     int getIndexOfParseCard() override;
     void playRound(int indexCardToPlay) override;
     void nextPlayer() override;
     void print(ostream& out) override;
+    void distribution() override;
+
+    void startGame();
     void decideWinner();
+
 };
 
 

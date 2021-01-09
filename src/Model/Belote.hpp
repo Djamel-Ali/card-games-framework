@@ -15,20 +15,22 @@ protected:
     Card* tapis[4]{};
 
 public:
-    explicit Belote(const Deck &deck);
+    explicit Belote(Deck *_deck, int player);
     void createCards() override;
-    void startGame() override;
+
     bool isWinner() override;
     int getWinner() override;
     int getIndexOfParseCard() override;
     void playRound(int indexCardToPlay) override;
     void print(ostream& out) override;
     void nextPlayer() override;
+
+    void startGame();
     bool cardPlayable(Card* toPlay);
     bool playerHaveColor(COLOR color);
     void setCardsAtout();
     void setPoints();
-    void distribution();
+    void distribution() override;
 };
 
 

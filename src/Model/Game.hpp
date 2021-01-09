@@ -10,17 +10,19 @@ using namespace std;
 class Game {
 
 protected:
-    Deck deck;
+    Deck *deck;
     vector <Player*> joueurs;
-    int actualPlaying = 0;
+    int actualPlaying;
 public:
-    explicit Game(const Deck &_deck);
+    explicit Game(Deck *deck, int player);
     void initGame(); // mise en commun
     Player* getActualPlaying() const;
     Player* getPlayer(int iPlayer) const;
 
+    void startGame();
+
+    virtual void distribution() = 0;
     virtual void createCards() = 0;
-    virtual void startGame() = 0; // a mettre en commun plus tard
     virtual bool isWinner() = 0; // a mettre en commun plus tard (pour bataille, uno et 8us)
     virtual int getWinner() = 0; // a mettre en commun plus tard (pour bataille, uno et 8us)
     virtual int getIndexOfParseCard() = 0;

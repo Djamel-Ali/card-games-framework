@@ -4,11 +4,10 @@
 
 #include "Belote.hpp"
 
-Belote::Belote(const Deck &deck) : Game(deck) {
+Belote::Belote(Deck *_deck, int player) : Game(_deck, player) {
     atout = PIQUE;
     fold = NONE;
     lastFoldWinner = -1;
-    actualPlaying = 0;
 
     joueurs.push_back(new Player(0, "Djamel", vector<Card *> {}, 0));
     joueurs.push_back(new Player(1, "Mandela", vector<Card *> {}, 0));
@@ -25,7 +24,7 @@ void Belote::createCards() {
 
     for(int i = 0; i < 8; i++){
         for(auto & color : colors){
-            deck.addCard(new ColoredCard(nom[i], id[i], valeur[i], color));
+            deck->addCard(new ColoredCard(nom[i], id[i], valeur[i], color));
         }
     }
 }
@@ -146,7 +145,7 @@ bool Belote::playerHaveColor(COLOR color) {
 }
 
 void Belote::setCardsAtout(){
-    for(Card * card : deck.getDeckOfCards()){
+    for(Card * card : deck->getDeckOfCards()){
         ColoredCard * temp = dynamic_cast<ColoredCard *>(card);
         if(temp->getId() == 9 && temp->getColor() == atout){
             cout << "set 9 atout" << endl;
@@ -168,7 +167,7 @@ void Belote::setPoints() {
         if(card->getValue() == 20){
             dynamic_cast<ColoredCard *>(card) -> setValue(0);
         }
-        deck.addCard(card);
+        deck->addCard(card);
         card = nullptr;
     }
 }
@@ -176,8 +175,8 @@ void Belote::setPoints() {
 void Belote::distribution() {
     setCardsAtout();
 
-    deck.distributeCards(5, joueurs);
-    deck.distributeCards(3, joueurs);
+    deck->distributeCards(5, joueurs);
+    deck->distributeCards(3, joueurs);
 }
 
 void Belote::print(ostream &out) {

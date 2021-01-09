@@ -1,7 +1,7 @@
 #include <iostream>
 #include "HuitAmericain.hpp"
 
-HuitAmericain::HuitAmericain(const Deck &deck) : Game(deck) {
+HuitAmericain::HuitAmericain(Deck *_deck, int player) : Game(_deck, player){
     colors = new COLOR[5];
     colors[0] = TREFLE;
     colors[1] = COEUR;
@@ -14,7 +14,6 @@ HuitAmericain::HuitAmericain(const Deck &deck) : Game(deck) {
 
     cardOnTop = new ColoredCard("3", 3, 3, TREFLE);
 
-    actualPlaying = 0;
 }
 
 void HuitAmericain::createCards() {
@@ -23,39 +22,39 @@ void HuitAmericain::createCards() {
     // cards  3 - 7 (Leur propre valeur numérale)
     for (int numero = 3; numero <= 7; numero++){
         for (int symbol = 0; symbol < 4; symbol++){
-            deck.addCard(new ColoredCard(to_string(numero), numero, numero, symbols[symbol]));
+            deck->addCard(new ColoredCard(to_string(numero), numero, numero, symbols[symbol]));
         }
     }
     // cards  "9" (leur propre valeur numérale)
     for (int symbol = 0; symbol < 4; symbol++){
-        deck.addCard(new ColoredCard(to_string(9), 9,9,symbols[symbol]));
+        deck->addCard(new ColoredCard(to_string(9), 9,9,symbols[symbol]));
     }
 
     // cards  "Dame" and "Roi" (value 10 points)
     for (int symbol = 0; symbol < 4; symbol++){
-        deck.addCard(new ColoredCard("DAME", 10,10,symbols[symbol]));
-        deck.addCard(new ColoredCard("ROI", 11,10,symbols[symbol]));
+        deck->addCard(new ColoredCard("DAME", 10,10,symbols[symbol]));
+        deck->addCard(new ColoredCard("ROI", 11,10,symbols[symbol]));
     }
 
     // cards  Valet, AS, 2 (value 20 points )
     for (int symbol = 0; symbol < 4; symbol++){
-        deck.addCard(new ColoredCard("VALET", 12,20, symbols[symbol]));
-        deck.addCard(new ColoredCard("AS", 13,20, symbols[symbol]));
-        deck.addCard(new ColoredCard("2", 2,20, symbols[symbol]));
+        deck->addCard(new ColoredCard("VALET", 12,20, symbols[symbol]));
+        deck->addCard(new ColoredCard("AS", 13,20, symbols[symbol]));
+        deck->addCard(new ColoredCard("2", 2,20, symbols[symbol]));
     }
 
     // cards "8" and "Joker" : (value 50 points )
     // (4 cartes de 8 et 2 cartes de jocker avec NONE comme symbol)
     for (int symbol = 0; symbol < 4; symbol++)
-        deck.addCard(new ColoredCard(to_string(8),  8,50, symbols[4]));
+        deck->addCard(new ColoredCard(to_string(8),  8,50, symbols[4]));
 
-    deck.addCard(new ColoredCard("JOKER", 14, 50, symbols[4]));
-    deck.addCard(new ColoredCard("JOKER", 14, 50, symbols[4]));
+    deck->addCard(new ColoredCard("JOKER", 14, 50, symbols[4]));
+    deck->addCard(new ColoredCard("JOKER", 14, 50, symbols[4]));
 }
 
 void HuitAmericain::startGame() {
     initGame();
-    deck.distributeCards(7, joueurs);
+
 }
 
 //modifications a faire pour le controller !!
@@ -63,7 +62,7 @@ void HuitAmericain::playRound(int indexCardToPlay) {
     if(playerCanPlay(joueurs[actualPlaying]->getHand())){
         Card* temp = joueurs[actualPlaying]->playCard(indexCardToPlay);
         if(cardPlayable(temp)){
-            deck.addCard(cardOnTop);
+            deck->addCard(cardOnTop);
             cardOnTop = temp;
             getIndexOfParseCard();
 
@@ -125,13 +124,13 @@ int HuitAmericain::getWinner() {
 
 void HuitAmericain::plusTwo() {
     for(int i = 0; i < 2; i ++){
-        joueurs[actualPlaying]->addCard(deck.getCard());
+        joueurs[actualPlaying]->addCard(deck->getCard());
     }
 }
 
 void HuitAmericain::plusFour(){
     for(int i = 0; i < 4; i ++){
-        joueurs[actualPlaying]->addCard(deck.getCard());
+        joueurs[actualPlaying]->addCard(deck->getCard());
     }
 }
 
@@ -216,4 +215,8 @@ void HuitAmericain::setPoints(int iPlayer) {
     for(Card* card : joueurs[iPlayer]->getHand()){
         joueurs[iPlayer]->setCurrentScore(joueurs[iPlayer]->getCurrentScore() +card->getValue());
     }
+}
+
+void HuitAmericain::distribution() {
+    deck->distributeCards(7, joueurs);
 }

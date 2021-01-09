@@ -1,33 +1,29 @@
 #include "Controller.hpp"
-#include "View.hpp"
 
-Controller::Controller(View * vue) :view(vue){
 
-}
-
-Game *Controller::setGame(int jeu) {
-    vector<Card *> cards;
-    Deck deck{cards};
-
+Controller::Controller(View * vue, int jeu) :view(vue){
+    Deck * deck = new Deck();
+    int player = 0;
     switch (jeu) {
         case 1:
-            return new Bataille(deck);
+            game = new Bataille(deck, 0);
         case 2:
-            return new HuitAmericain(deck);
+            game = new HuitAmericain(deck, 0);
         case 3:
-            return new UNO(deck);
+            game = new UNO(deck, 0);
         case 4:
-            return new Belote(deck);
+            game = new Belote(deck, 0);
         case 5:
-            return new Belote(deck);
+            game = new Belote(deck, 0);
         default:
-            return new Bataille(deck);
+            game = new Bataille(deck, player);
+
     }
 
 }
 
 void Controller::updateView() {
-    view -> update();
+    view -> update(game);
 }
 
 void Controller::startGame() {
@@ -41,6 +37,3 @@ void Controller::startGame() {
     view ->printPlayer(*game->getPlayer(game->getWinner()));
 }
 
-void Controller::setVue(View *vue) {
-     view = vue;
-}

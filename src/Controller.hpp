@@ -1,15 +1,11 @@
 #ifndef CARD_GAMES_FRAMEWORK_CONTROLLER_HPP
 #define CARD_GAMES_FRAMEWORK_CONTROLLER_HPP
-
-
-
+#include "View.hpp"
 #include "Model/Game.hpp"
 #include "Model/Bataille.hpp"
 #include "Model/HuitAmericain.hpp"
 #include "Model/UNO.hpp"
 #include "Model/Belote.hpp"
-
-class View;
 
 class Controller {
 
@@ -20,10 +16,8 @@ protected:
     friend class View;
 
 public:
-    Controller(View *vue);
-    Game * setGame(int jeu);
+    Controller(View *vue, int jeu);
 
-    void setVue(View * vue);
     void startGame();
     void updateView();
 };

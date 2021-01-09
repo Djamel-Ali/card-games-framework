@@ -1,13 +1,14 @@
 #include <iostream>
 #include "Game.hpp"
 
-Game::Game(const Deck &_deck) : deck(_deck) {
+Game::Game(Deck *_deck, int player) : actualPlaying(player), joueurs{}{
+    deck = _deck;
     std::cout << "Construction of Game" << std::endl;
 }
 
 void Game::initGame() {
     createCards();
-    deck.shuffleCards();
+    deck->shuffleCards();
 }
 
 ostream &operator<<(ostream &out, Game &game) {
@@ -25,5 +26,15 @@ Player* Game::getActualPlaying() const {
 
 Player *Game::getPlayer(int iPlayer) const {
     return joueurs[iPlayer];
+}
+
+void Game::startGame() {
+    initGame();
+    distribution();
+}
+
+void Game::createCards() {
+    deck =  new Deck();
+    cout  << "Create cards Game" << endl;
 }
 

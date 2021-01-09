@@ -1,18 +1,13 @@
 #ifndef CARD_GAMES_FRAMEWORK_VIEW_HPP
 #define CARD_GAMES_FRAMEWORK_VIEW_HPP
 
-#include "Controller.hpp"
 #include <iostream>
-
+#include "Model/Player.hpp"
+#include "Model/Game.hpp"
 
 using namespace std;
 
 class View {
-
-protected:
-    Controller *controller;
-
-    friend class Controller;
 
 public:
     View();
@@ -20,10 +15,12 @@ public:
     int printWelcomeInterface();
     void printPlayer(const Player &player);
     void printHand(const Player &player);
-    void update();
+    void update(Game *game);
 
     int play(int max, Player * player);
     void start();
+
+
 };
 
 
