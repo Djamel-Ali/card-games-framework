@@ -82,10 +82,7 @@ public:
     void updatesScores();
 
     // mis à jour les scores finaux des défenseurs de la donne courante
-    void updateDefendersScores(int newGain);
-
-    //todo: il faut changer : attaquant n'est pas fix pour toute la partie (donc pour modifier toutes les méthodes
-    // concernées en passant à chaque fois l'ID de l'attaquant courant par e.g.)
+    void updateDefendersScores(float newGain);
 
     // Afficher les scores des autres joueurs (autre que l'attaquant de la donne qui vient de finir).
     void displayDefendersFinalScores();
@@ -102,10 +99,6 @@ public:
     // récupération de toutes les cartes (mains des joueurs + Le Chien) pour les mettre dans Deck
     void collectAllTheCards();
 
-    // récupération de toutes les cartes (qui sont dans les réserves de chaque joueur qui comprennent le Chien)
-    // pour les mettre dans Deck
-    void collectReservesOfPlayers();
-
     // Returns 'true' when One of the players won (i.e. it reaches or exceeds the target number of points).
     bool someoneAchievedGoal();
 
@@ -116,8 +109,6 @@ public:
     static int getStrongestCardIndex(const vector<Card*> &listOfCards);
 
     static float getSumOfPointsInTapis();
-
-
 
 
     // Getters and setters :
@@ -147,6 +138,7 @@ public:
 
     int getIndexOfGagnantDuPli(const Player *_gagnantDuPli);
 
+    bool cardPlayable(Card* toPlay);
 
 };
 

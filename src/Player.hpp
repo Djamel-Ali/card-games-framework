@@ -16,7 +16,6 @@ private:
     const int unique_id;
     string name;
     vector<Card *> hand;
-    vector<Card *> reserve;
 
     // score intermediaire (calculé pour chaque donne)
     float current_score;
@@ -53,8 +52,6 @@ public:
 
     float getFinalScore() const;
 
-    vector<Card *> getReserve() const;
-
     int getIndexOfCardToPlay();
     // Setters :
 
@@ -62,7 +59,6 @@ public:
 
     void setHand(const vector<Card *> &_hand);
 
-    void setReserve(const vector<Card *> &_reserve);
 
     // Other methods :
 
@@ -78,11 +74,7 @@ public:
 
     // Remettre les cartes de la main du joueur courant dans le Deck passé en arg
     // (ça sert à remélanger et redistribuer par e.g)
-    void putBackHand(Deck &_deck);
-
-    // Remettre les cartes qui sont dans la réserve (cartes gagnées) du joueur courant dans le Deck passé en arg
-    // (ça sert à remélanger et redistribuer par e.g)
-    void putBackReserve(Deck &_deck);
+    void putBackHand(vector <Card*> _deckOfCards);
 
     void setFinalScore(float finalScore);
 

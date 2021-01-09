@@ -28,11 +28,11 @@ vector<Card *> &Player::getHand() {
     return hand;
 }
 
-int Player::getCurrentScore() const {
+float Player::getCurrentScore() const {
     return current_score;
 }
 
-int Player::getFinalScore() const {
+float Player::getFinalScore() const {
     return final_score;
 }
 
@@ -83,29 +83,12 @@ void Player::displayHand() const {
 }
 
 // Remettre les cartes de la main du joueur courant dans le Deck passé en arg
-void Player::putBackHand(Deck &_deck) {
+void Player::putBackHand(vector <Card*> _deckOfCards) {
     if(!handEmpty())
     {
-        _deck.getDeckOfCards().insert(_deck.getDeckOfCards().end(), hand.begin(), hand.end());
+        _deckOfCards.insert(_deckOfCards.end(), hand.begin(), hand.end());
         hand.clear();
     }
-}
-
-// Remettre les cartes gagnées dans la pioche (passée en arg)
-void Player::putBackReserve(Deck &_deck) {
-    if(!reserve.empty())
-    {
-        _deck.getDeckOfCards().insert(_deck.getDeckOfCards().end(), reserve.begin(), reserve.end());
-        reserve.clear();
-    }
-}
-
-vector<Card *> Player::getReserve() const {
-    return reserve;
-}
-
-void Player::setReserve(const vector<Card *> &_reserve) {
-    Player::reserve = _reserve;
 }
 
 int Player::getIndexOfCardToPlay() {
