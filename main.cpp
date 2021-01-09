@@ -1,6 +1,10 @@
-#include <iostream>
+
+#include "src/View.hpp"
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
-    return 0;
+
+    View *vue = new View();
+
+    vue -> start();
+
 }
