@@ -1,1 +1,0 @@
-/usr/bin/c++  -g   CMakeFiles/card_games_framework.dir/main.cpp.o  -o card_games_framework 

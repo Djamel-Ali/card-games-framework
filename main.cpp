@@ -1,6 +1,11 @@
-#include <iostream>
+#include "src/View.hpp"
+#include "src/Controller.hpp"
+
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
-    return 0;
+    View* vue = new View();
+
+    auto* controller = new Controller(vue, vue->printWelcomeInterface());
+    controller->startGame();
+
 }
