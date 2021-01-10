@@ -14,7 +14,6 @@ HuitAmericain::HuitAmericain(Deck *_deck) : Game(_deck){
     joueurs.push_back(new Player("Yacine", vector<Card *> {}, 0));
 
     cardOnTop = nullptr;
-    cout << "CONSTRUC 8US : ACTUAL " << actualPlaying << endl;
 }
 
 HuitAmericain::~HuitAmericain(){
@@ -169,8 +168,9 @@ void HuitAmericain::createCards() {
     deck->addCard(new ColoredCard("JOKER", 14, 50, symbols[4]));
 }
 
+// 7 cartes par joueur
 void HuitAmericain::distribution() {
-    deck->distributeCards(1, joueurs); //7
+    deck->distributeCards(7, joueurs);
     cardOnTop = deck->getCard();
 }
 

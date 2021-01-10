@@ -1,7 +1,9 @@
 #include "Player.hpp"
+#include "ColoredCard.hpp"
+#include <iostream>
 
 // Ctor
-Player::Player(const string &_name, const vector<Card*> &_hand, int _score = 0) : name(_name), hand(_hand), current_score(_score) {}
+Player::Player(const string &_name, const vector<Card*> &_hand, float _score = 0) : name(_name), hand(_hand), current_score(_score) {}
 
 //Dtor
 Player::~Player(){
@@ -57,4 +59,23 @@ Card *Player::playCard(int index) {
 
 void Player::addCard(Card *toAdd) {
     hand.push_back(toAdd);
+}
+
+void Player::displayHand() {
+    cout << "\nLa main de " << getName() << " : " << endl;
+    auto counter = -1;
+    for (Card *pCard: hand) {
+        auto temp = dynamic_cast<ColoredCard*>(pCard);
+        if (temp)
+            cout << "(" << ++counter << "): " << *temp << " ; ";
+        else
+            cout << "(" << ++counter << "): " << *pCard << " ; ";
+    }
+    cout <<"\n" << endl;
+}
+
+std::ostream &operator<<(std::ostream &out, const Player &a_player) {
+    out << "\n\n\t" << a_player.getName()
+        << " ======> Score : " << (float)a_player.getCurrentScore() << endl;
+    return out;
 }

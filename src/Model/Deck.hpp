@@ -17,7 +17,7 @@ public:
     ~Deck();
 
     // Getters :
-    const vector<Card*> &getDeckOfCards() const;
+    vector<Card*> &getDeckOfCards();
     Card* getCard();
 
     // Other methods :

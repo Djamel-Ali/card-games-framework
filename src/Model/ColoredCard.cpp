@@ -1,7 +1,7 @@
 #include "ColoredCard.hpp"
 #include <iostream>
 
-ColoredCard::ColoredCard(const string &_name, int id, int _value, COLOR _color) :
+ColoredCard::ColoredCard(const string &_name, int id, float _value, COLOR _color) :
         Card((_name), id, _value), color(_color) {}
 
 ColoredCard::~ColoredCard() = default;
@@ -10,7 +10,7 @@ COLOR ColoredCard::getColor() const {
     return color;
 }
 
-void ColoredCard::setValue(int v) {
+void ColoredCard::setValue(float v) {
     value = v;
 }
 

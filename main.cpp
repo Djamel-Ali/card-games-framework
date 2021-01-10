@@ -1,11 +1,18 @@
 #include "src/View.hpp"
 #include "src/Controller.hpp"
+#include <limits>
 
 
 int main() {
+   Controller * controller;
     View* vue = new View();
 
-    auto* controller = new Controller(vue, vue->printWelcomeInterface());
-    controller->startGame();
+    do {
+        controller = new Controller(vue, vue->printWelcomeInterface());
+        controller->startGame();
+        if(vue->rejouer()) break;
+    }while (true);
 
+    vue->aurevoir();
+    return 0;
 }

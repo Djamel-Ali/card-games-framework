@@ -4,7 +4,6 @@
 Game::Game(Deck *_deck) :joueurs{}{
     deck = _deck;
     actualPlaying = 0;
-    std::cout << "Construction of Game" << std::endl;
 }
 
 Game::~Game() {

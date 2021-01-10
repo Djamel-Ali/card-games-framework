@@ -16,7 +16,7 @@ private:
     float current_score;
 public:
     // Ctor Dtor
-    Player(const string &_name, const vector<Card*> &_hand, int _score);
+    Player(const string &_name, const vector<Card*> &_hand, float _score);
     ~Player();
 
     //Getters Setters :
@@ -29,7 +29,12 @@ public:
     bool handEmpty();
     Card* playCard(int index);
     void addCard(Card* toAdd);
+
+    void displayHand();
 };
+
+/// Surcharge de l’opérateur <<
+std::ostream &operator<<(std::ostream &out, const Player &a_game);
 
 
 #endif //CARD_GAMES_FRAMEWORK_PLAYER_HPP

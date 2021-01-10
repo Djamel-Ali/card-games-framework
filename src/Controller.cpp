@@ -17,7 +17,7 @@ Controller::Controller(View * vue, int jeu) :view(vue){
             game = new Belote(deck);
             break;
         case 5:
-            game = new Belote(deck);
+            game = new Tarot(deck);
             break;
         default:
             break;

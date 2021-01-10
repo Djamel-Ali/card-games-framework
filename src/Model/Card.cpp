@@ -3,7 +3,7 @@
 
 using namespace std;
 
-Card::Card(const string &_name, int _id, int _value) : name(_name), id(_id), value(_value)
+Card::Card(const string &_name, int _id, float _value) : name(_name), id(_id), value(_value)
 {
 }
 
@@ -17,7 +17,7 @@ string Card::getName() const {
     return name;
 }
 
-int Card::getValue() const {
+float Card::getValue() const {
     return value;
 }
 
