@@ -50,7 +50,7 @@ private:
 public:
     ColoredCard(const string &_name, int id, int _value, COLOR _color);
 
-    ~ColoredCard();
+    ~ColoredCard() override;
 
     COLOR getColor() const;
 

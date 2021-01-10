@@ -1,7 +1,7 @@
 #include <iostream>
 #include "Game.hpp"
 
-Game::Game(Deck *_deck, int player) :joueurs{}{
+Game::Game(Deck *_deck) :joueurs{}{
     deck = _deck;
     actualPlaying = 0;
     std::cout << "Construction of Game" << std::endl;
@@ -36,5 +36,12 @@ void Game::startGame() {
 
 void Game::createCards() {
     cout  << "Create cards Game" << endl;
+}
+
+Game::~Game() {
+    delete deck;
+    for(Player *player : joueurs){
+        delete player;
+    }
 }
 

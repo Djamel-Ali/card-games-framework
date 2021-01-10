@@ -96,5 +96,9 @@ void View::setGame(Game *_game) {
     game = _game;
 }
 
+View::~View() {
+    delete game;
+}
+
 
 

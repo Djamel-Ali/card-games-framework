@@ -1,6 +1,6 @@
 #include "UNO.hpp"
 
-UNO::UNO(Deck *_deck, int player) : HuitAmericain(_deck, player) {
+UNO::UNO(Deck *_deck) : HuitAmericain(_deck) {
     colors = new COLOR[5];
     colors[0] = BLEU;
     colors[1] = JAUNE;

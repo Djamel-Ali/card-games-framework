@@ -11,7 +11,7 @@ protected:
     bool ohBataille;
 
 public:
-    Bataille(Deck *deck, int player);
+    Bataille(Deck *deck);
 
     void createCards() override;
 

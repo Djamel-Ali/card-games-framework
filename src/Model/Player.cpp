@@ -5,7 +5,11 @@ Player::Player(const int _uid, const string &_name, const vector<Card*> &_hand, 
         _uid), name(_name), hand(_hand), current_score(_score) {}
 
 //Dtor
-Player::~Player() = default;
+Player::~Player(){
+    for(Card * temp : hand){
+        delete temp;
+    }
+}
 
 // Getters :
 

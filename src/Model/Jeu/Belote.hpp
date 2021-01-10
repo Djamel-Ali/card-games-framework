@@ -15,7 +15,7 @@ protected:
     Card* tapis[4]{};
 
 public:
-    explicit Belote(Deck *_deck, int player);
+    explicit Belote(Deck *_deck);
     void createCards() override;
 
     bool isWinner() override;

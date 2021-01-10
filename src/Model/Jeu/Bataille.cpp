@@ -1,7 +1,7 @@
 #include "Bataille.hpp"
 #include "iostream"
 
-Bataille::Bataille(Deck *deck, int player) : Game(deck, player) {
+Bataille::Bataille(Deck *deck) : Game(deck) {
     ohBataille = false;
     joueurs.push_back(new Player(0, "Djamel", vector<Card *> {}, 0));
     joueurs.push_back(new Player(1, "Yacine", vector<Card *> {}, 0));

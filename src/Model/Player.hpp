@@ -22,7 +22,7 @@ public:
     Player(int _uid, const string &_name, const vector<Card*> &_hand, int _score);
 
     // Dtor
-    virtual ~Player();
+    ~Player();
 
     //Getters :
 

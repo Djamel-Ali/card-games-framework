@@ -6,7 +6,7 @@
 class UNO : public HuitAmericain{
 
 public:
-    explicit UNO(Deck *_deck, int player);
+    explicit UNO(Deck *_deck);
 
     void createCards() override;
     int getIndexOfParseCard() override;

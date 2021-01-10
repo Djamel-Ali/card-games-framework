@@ -13,7 +13,9 @@ protected:
     COLOR* colors;
 
 public:
-    explicit HuitAmericain(Deck *_deck, int player);
+    explicit HuitAmericain(Deck *_deck);
+    ~HuitAmericain();
+
     void createCards() override;
     bool isWinner() override;
     int getWinner() override;

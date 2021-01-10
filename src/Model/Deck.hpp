@@ -16,7 +16,7 @@ public:
     Deck();
 
     // Dtor
-    virtual ~Deck();
+    ~Deck();
 
     // Getters :
     const vector<Card*> &getDeckOfCards() const;

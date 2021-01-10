@@ -1,6 +1,6 @@
 #include "Belote.hpp"
 
-Belote::Belote(Deck *_deck, int player) : Game(_deck, player) {
+Belote::Belote(Deck *_deck) : Game(_deck) {
     atout = PIQUE;
     fold = NONE;
     lastFoldWinner = -1;

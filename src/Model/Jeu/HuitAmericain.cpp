@@ -2,7 +2,7 @@
 #include <limits>
 #include "HuitAmericain.hpp"
 
-HuitAmericain::HuitAmericain(Deck *_deck, int player) : Game(_deck, player){
+HuitAmericain::HuitAmericain(Deck *_deck) : Game(_deck){
     colors = new COLOR[5];
     colors[0] = TREFLE;
     colors[1] = COEUR;
@@ -15,6 +15,10 @@ HuitAmericain::HuitAmericain(Deck *_deck, int player) : Game(_deck, player){
 
     cardOnTop = nullptr;
     cout << "CONSTRUC 8US : ACTUAL " << actualPlaying << endl;
+}
+
+HuitAmericain::~HuitAmericain(){
+    delete cardOnTop;
 }
 
 void HuitAmericain::createCards() {

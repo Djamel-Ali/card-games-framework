@@ -17,7 +17,7 @@ protected:
 
 public:
     Controller(View *vue, int jeu);
-
+    ~Controller();
     void startGame();
     void updateView();
 };

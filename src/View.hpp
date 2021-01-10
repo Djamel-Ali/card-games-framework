@@ -14,15 +14,14 @@ protected:
 
 public:
     View();
+    ~View();
 
     int printWelcomeInterface();
     void printPlayer(const Player &player);
     void printWinner(const Player &player);
-    void printHand(const Player &player);
     void update();
 
     int play(int max, Player * player);
-    void start();
     void setGame(Game * _game);
 
 };

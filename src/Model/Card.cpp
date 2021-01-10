@@ -7,9 +7,7 @@ Card::Card(const string &_name, int _id, int _value) : name(_name), id(_id), val
 
 }
 
-Card::~Card() {
-
-}
+Card::~Card() = default;
 
 int Card::getId() const {
     return id;
