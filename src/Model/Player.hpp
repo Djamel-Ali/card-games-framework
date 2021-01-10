@@ -20,8 +20,8 @@ public:
     ~Player();
 
     //Getters Setters :
-    const string &getName() const;
-    const vector<Card*> &getHand() const;
+    string &getName() ;
+    vector<Card*> &getHand() ;
     float getCurrentScore() const;
     void setCurrentScore(float score);
 

@@ -12,11 +12,11 @@ Player::~Player(){
 
 // Getters Setters :
 
-const string &Player::getName() const {
+string &Player::getName() {
     return name;
 }
 
-const vector<Card*> &Player::getHand() const {
+vector<Card*> &Player::getHand() {
     return hand;
 }
 
