@@ -129,30 +129,36 @@ void Belote::nextPlayer() {
     actualPlaying++;
     actualPlaying = actualPlaying % (int)joueurs.size();
 
+    //test fin du pli (tour de table)
     for(auto & card : tapis){
         if(card == nullptr) return;
     }
-
+    // couleur du pli
+    fold = NONE;
+    // le vinqueur du pli commence le suivant
     actualPlaying = lastFoldWinner;
-
+    //mise a jour des points du pli
     setPoints();
 
+    //test fin du round (8 plis)
     if(joueurs[actualPlaying]->handEmpty()){
+        // si l'équipe qui a pris la main remporte son contrat (faire minimum 81 points) elle gagne 161 points et l'équipe adverse les points des plis gagnés
+        if(tempScore[ordreDeJeu %2] > 80){
+            joueurs[ordreDeJeu %2]->setCurrentScore(joueurs[ordreDeJeu %2]->getCurrentScore() + 161);
+            joueurs[(ordreDeJeu +1) %2]->setCurrentScore(joueurs[(ordreDeJeu +1) %2]->getCurrentScore() +tempScore[(ordreDeJeu +1) %2]);
+        }else{// sinon elle est "dedans"
+            joueurs[ordreDeJeu %2]->setCurrentScore(joueurs[ordreDeJeu %2]->getCurrentScore() +tempScore[ordreDeJeu %2]);
+            joueurs[(ordreDeJeu +1) %2]->setCurrentScore(joueurs[(ordreDeJeu +1) %2]->getCurrentScore() + 161);
+        }
+
+        tempScore[0] = 0;
+        tempScore[1] = 0;
+
+        ordreDeJeu ++;
+        ordreDeJeu = ordreDeJeu %4;
+        
+        //round suivant tant qu'aucune équipe n'a fait 500 points
         if(!isWinner()){
-            if(tempScore[ordreDeJeu %2] > 80){
-                joueurs[ordreDeJeu %2]->setCurrentScore(joueurs[ordreDeJeu %2]->getCurrentScore() + 161);
-                joueurs[(ordreDeJeu +1) %2]->setCurrentScore(joueurs[(ordreDeJeu +1) %2]->getCurrentScore() +tempScore[(ordreDeJeu +1) %2]);
-            }else{
-                joueurs[ordreDeJeu %2]->setCurrentScore(joueurs[ordreDeJeu %2]->getCurrentScore() +tempScore[ordreDeJeu %2]);
-                joueurs[(ordreDeJeu +1) %2]->setCurrentScore(joueurs[(ordreDeJeu +1) %2]->getCurrentScore() + 161);
-            }
-
-            tempScore[0] = 0;
-            tempScore[1] = 0;
-
-            ordreDeJeu ++;
-            ordreDeJeu = ordreDeJeu %4;
-
             startGame();
         }
     }
@@ -197,13 +203,18 @@ void Belote::setCardsAtout(){
 void Belote::setPoints() {
     for(Card* &card : tapis){
         tempScore[actualPlaying %2] += card->getValue();
+        //remise a zero de la valeur du valet atout
         if(card->getValue() == 20){
             dynamic_cast<ColoredCard *>(card) -> setValue(2);
         }
+        //remise a zero de la valeur du 9 atout
         if(card->getValue() == 20){
             dynamic_cast<ColoredCard *>(card) -> setValue(0);
         }
+        //remise des cartes jouées dans le deck et melanger
         deck->addCard(card);
+        deck->shuffleCards();
+        //vider le tapis
         card = nullptr;
     }
 }
@@ -247,5 +258,7 @@ void Belote::print(ostream &out) {
     out << "sa main : " << endl;
     for(Card* card : joueurs.at(actualPlaying)->getHand()){
         out << *dynamic_cast<ColoredCard*>(card);
+        out << " -- " ;
     }
+    out << endl;
 }

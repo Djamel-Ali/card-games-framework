@@ -7,9 +7,6 @@ View::View()
 
 }
 
-void View::start() {
-
-}
 
 int View::printWelcomeInterface() {
     cout << "---------------------------------------------------------" << endl;

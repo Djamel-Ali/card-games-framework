@@ -32,7 +32,7 @@ bool Card::operator>(const Card &other) const {
 }
 
 ostream &operator<<(ostream &out, const Card &fs) {
-    out << " [ " << fs.getName() << " | " << fs.getValue() << " ] " << endl;
+    out << " [ " << fs.getName() << " | " << fs.getValue() << " ] ";
 
     return out;
 }
