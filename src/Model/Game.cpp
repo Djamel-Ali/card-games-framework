@@ -7,6 +7,9 @@ Game::Game(Deck *_deck) :joueurs{}{
     std::cout << "Construction of Game" << std::endl;
 }
 
+/**
+* Initiation de la Partie (Création des cartes + mélanger)
+ */
 void Game::initGame() {
     createCards();
     deck->shuffleCards();
@@ -21,13 +24,24 @@ ostream &operator<<(ostream &out, Game &game) {
     return out;
 }
 
+/**
+* Retourne l'indice du joueur actuel
+ */
+
 Player* Game::getActualPlaying() const {
     return joueurs.at(actualPlaying);
 }
 
+/**
+* Retourn un joueur selon son indice
+ */
 Player *Game::getPlayer(int iPlayer) const {
     return joueurs[iPlayer];
 }
+
+/**
+* Initiation de la partie et distribution des cartes
+ */
 
 void Game::startGame() {
     initGame();

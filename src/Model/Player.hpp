@@ -1,7 +1,6 @@
 #ifndef CARD_GAMES_FRAMEWORK_PLAYER_HPP
 #define CARD_GAMES_FRAMEWORK_PLAYER_HPP
 
-
 #include <string>
 #include <vector>
 

@@ -59,44 +59,73 @@ bool Belote::isWinner() {
 }
 
 int Belote::getWinner() {
-    return 0;
+    if(joueurs.at(0)->getCurrentScore() > 500){
+        return 0;
+    }
+
+    return 1;
 }
 
+/**
+ * Verifie le gagnant du pli
+ */
+
 int Belote::getIndexOfParseCard() {
+
+    // si la carte jouée est un atout et que la plus forte du tapis ne l'est pas
     if(dynamic_cast<ColoredCard*>(tapis[actualPlaying])->getColor() == atout
        && dynamic_cast<ColoredCard*>(tapis[lastFoldWinner])->getColor()!= atout) return actualPlaying;
 
+    // si la carte jouée n'est pas un atout et que la plus forte du tapis l'est
     if(dynamic_cast<ColoredCard*>(tapis[actualPlaying])->getColor() != atout
        && dynamic_cast<ColoredCard*>(tapis[lastFoldWinner])->getColor()== atout) return lastFoldWinner;
 
+    // si la carte jouée est de la couleur du pli et que la plus forte du tapis ne l'est pas
     if(dynamic_cast<ColoredCard*>(tapis[actualPlaying])->getColor() == fold
        && dynamic_cast<ColoredCard*>(tapis[lastFoldWinner])->getColor()!= fold) return actualPlaying;
 
+    // si la carte jouée n'est pas de la couleur du pli et que la plus forte du tapis l'est
     if(dynamic_cast<ColoredCard*>(tapis[actualPlaying])->getColor() != fold
        && dynamic_cast<ColoredCard*>(tapis[lastFoldWinner])->getColor() == fold) return lastFoldWinner;
 
+    // derniers choix - on compare les valeurs des deux cartes
     if(dynamic_cast<ColoredCard *>(tapis[actualPlaying])->getId() > dynamic_cast<ColoredCard *>(tapis[lastFoldWinner])->getId()) return actualPlaying;
 
     return lastFoldWinner;
 }
 
+/**
+ * Verifie si la carte est jouable
+ */
 
 bool Belote::cardPlayable(Card *toPlay) {
 
+    // premiere carte du pli
     if(fold == NONE) return true;
+
+    // si c'est une carte de la meme couleur que le pli
     if(fold == dynamic_cast<ColoredCard *>(toPlay)->getColor()) return true;
+
+    // si le vinqueur du pli est son coéquipier
     if(lastFoldWinner == ((actualPlaying +2) %4)) return true;
+
+    // si le joueur possede une carte de la meme couleur que le pli
     if(playerHaveColor(fold)) return false;
+
+    // si c'est une carte atout
     if(atout == dynamic_cast<ColoredCard*>(toPlay)->getColor()) return true;
+
+    // si il a un atout et qui ne le joue pas - dernier cas
     if(playerHaveColor(atout)) return false;
 
     return true;
 }
 
-
+/**
+ * passe au joueur suivant, met a jour le score et une nouvelle partie si le round est terminé
+ */
 
 void Belote::nextPlayer() {
-
     actualPlaying++;
     actualPlaying = actualPlaying % (int)joueurs.size();
 
@@ -129,6 +158,10 @@ void Belote::nextPlayer() {
     }
 }
 
+/**
+ * Vérifie si un joueur possede une Couleur (Carte de la Couleur) dans sa main
+ */
+
 bool Belote::playerHaveColor(COLOR color) {
     for(Card * card : joueurs.at(actualPlaying)->getHand()){
         if(dynamic_cast<ColoredCard *>(card)->getColor() == color){
@@ -138,6 +171,10 @@ bool Belote::playerHaveColor(COLOR color) {
 
     return false;
 }
+
+/**
+ * Modifie les valeurs des cartes atouts
+ */
 
 void Belote::setCardsAtout(){
     for(Card * card : deck->getDeckOfCards()){
@@ -152,6 +189,10 @@ void Belote::setCardsAtout(){
         }
     }
 }
+
+/**
+ * Compte et met à jour les points des équipes (tempScore : points du pli en cours)
+ */
 
 void Belote::setPoints() {
     for(Card* &card : tapis){

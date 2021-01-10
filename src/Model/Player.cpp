@@ -25,6 +25,7 @@ const vector<Card*> &Player::getHand() const {
     return hand;
 }
 
+//retourne le score du joueur
 int Player::getCurrentScore() const {
     return current_score;
 }
@@ -37,9 +38,16 @@ void Player::setCurrentScore(int score) {
 
 // Other methods :
 
+/**
+* retourne si la main est vide (un joueur n'a plus de carte)
+ */
+
 bool Player::handEmpty() {
     return hand.empty();
 }
+/**
+* return une carte et la supprime de la main (avec l'index)
+ */
 
 Card *Player::playCard(int index) {
     Card* temp = hand.at(index);
@@ -48,6 +56,9 @@ Card *Player::playCard(int index) {
 
     return temp;
 }
+/**
+* ajouter une carte à la main
+ */
 
 void Player::addCard(Card *toAdd) {
     hand.push_back(toAdd);

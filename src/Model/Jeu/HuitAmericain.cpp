@@ -62,7 +62,11 @@ void HuitAmericain::startGame() {
 
 }
 
-//modifications a faire pour le controller !!
+/**
+ * Vérifie que le joueur possede une carte Jouable,
+ * Pioche une nouvelle carte dans le cas contraire qui est
+ * ou jouée automatiquement ou ajoutée a la main de ce dernier
+ */
 void HuitAmericain::playRound(int indexCardToPlay) {
     if(playerCanPlay(joueurs[actualPlaying]->getHand())){
         Card* temp = joueurs[actualPlaying]->playCard(indexCardToPlay);
@@ -96,6 +100,12 @@ void HuitAmericain::playRound(int indexCardToPlay) {
     }
 
 }
+
+/**
+ * Vérifie la dernière carte jouée,
+ * et fait les actions selon la carte
+ * 2, 8, Valet, AS, Joker
+ */
 
 int HuitAmericain::getIndexOfParseCard() {
     switch (cardOnTop->getId()) {
@@ -146,6 +156,10 @@ int HuitAmericain::getWinner() {
     return winner;
 }
 
+/**
+ * Ajoute 2 cartes au joueur suivant, et le fait passer (carte +2)
+ */
+
 void HuitAmericain::plusTwo() {
     cout << joueurs[actualPlaying]->getName() << " +2 cartes et passe son tour" << endl;
     for(int i = 0; i < 2; i ++){
@@ -153,6 +167,9 @@ void HuitAmericain::plusTwo() {
     }
 }
 
+/**
+ * Ajoute 4 cartes au joueur suivant, et le fait passer (carte +4)
+ */
 void HuitAmericain::plusFour(){
     cout << joueurs[actualPlaying]->getName() << " +4 cartes et passe son tour" << endl;
     for(int i = 0; i < 4; i ++){
@@ -160,16 +177,27 @@ void HuitAmericain::plusFour(){
     }
 }
 
+/**
+ * Change le sens du jeu (carte changerSens)
+ */
 void HuitAmericain::reversed(){
     cout << joueurs[actualPlaying]->getName() << " a changé le sens du jeu" << endl;
     sensInverse = !sensInverse;
 }
+
+/**
+ * Passer au joueur suivant
+ */
 
 void HuitAmericain::nextPlayer() {
     actualPlaying = (sensInverse) ? (actualPlaying -1) : (actualPlaying +1);
 
     actualPlaying = actualPlaying % (int)joueurs.size();
 }
+
+/**
+ * Change le couleur du jeu (Carte changerColor)
+ */
 
 void HuitAmericain::changeColor() {
 
@@ -212,6 +240,10 @@ void HuitAmericain::changeColor() {
     }
 }
 
+/**
+ * Vérifie si une carte est jouable, selon la couleur, le numéro ou carte Joker
+ */
+
 bool HuitAmericain::cardPlayable(Card *toPlay) {
     if(dynamic_cast<ColoredCard*>(cardOnTop)->getColor() == NONE && colors[4] != NONE){
         return dynamic_cast<ColoredCard*>(toPlay)->getColor() == colors[4];
@@ -219,6 +251,10 @@ bool HuitAmericain::cardPlayable(Card *toPlay) {
 
     return *dynamic_cast<ColoredCard*>(cardOnTop) == *dynamic_cast<ColoredCard*>(toPlay);
 }
+
+/**
+ * Vérifie si un joueur possede une carte jouable
+ */
 
 bool HuitAmericain::playerCanPlay(const vector<Card *>& hand) {
     for(Card* card : hand){
@@ -259,6 +295,10 @@ void HuitAmericain::print(ostream &out) {
     }
 
 }
+
+/**
+ * Met a jout les points des joueurs
+ */
 
 void HuitAmericain::setPoints(int iPlayer) {
     for(Card* card : joueurs[iPlayer]->getHand()){

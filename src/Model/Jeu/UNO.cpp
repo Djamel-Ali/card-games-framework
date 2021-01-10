@@ -47,6 +47,11 @@ void UNO::createCards() {
 
 }
 
+/**
+ * Vérifie la dernière carte jouée,
+ * et fait les actions selon la carte
+ * +2, +4, ChangerCouleur, nextPlayer, changerSens
+ */
 
 int UNO::getIndexOfParseCard() {
     switch (cardOnTop->getId()) {

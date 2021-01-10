@@ -33,6 +33,10 @@ void Bataille::startGame() {
 
 }
 
+/**
+ * Jouer la 1e carte de la main
+ */
+
 void Bataille::playRound(int indexCardToPlay) {
     tapis.insert(tapis.begin(), joueurs.at(actualPlaying)->playCard(0));
 
@@ -59,6 +63,10 @@ int Bataille::getWinner() {
     return 0;
 }
 
+/**
+ * Verifie le gagnant de la manche ou égalité (ohBataille !)
+ */
+
 int Bataille::getIndexOfParseCard() {
     if(*tapis.at(0) == *tapis.at(1)){
         cout << "Bataille !" << endl;
@@ -71,6 +79,9 @@ int Bataille::getIndexOfParseCard() {
     return *tapis.at(0) > *tapis.at(1) ? 1 : 0;
 }
 
+/**
+ * passe au joueur suivant, affiche le vinqueur s'il y en a un
+ */
 
 void Bataille::nextPlayer() {
     actualPlaying++;

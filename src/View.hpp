@@ -24,6 +24,7 @@ public:
     int play(int max, Player * player);
     void setGame(Game * _game);
 
+    void printHand(const Player &player);
 };
 
 
