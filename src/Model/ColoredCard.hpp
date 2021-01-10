@@ -49,16 +49,15 @@ private:
 
 public:
     ColoredCard(const string &_name, int id, int _value, COLOR _color);
-
     ~ColoredCard() override;
 
     COLOR getColor() const;
+    void setValue(int v);
 
     virtual bool operator==(ColoredCard const & other) const;
-
     friend ostream& operator<<(ostream& out, const ColoredCard &fs);
 
-    void setValue(int v);
+
 };
 
 

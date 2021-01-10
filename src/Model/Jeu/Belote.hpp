@@ -16,21 +16,21 @@ protected:
 
 public:
     explicit Belote(Deck *_deck);
-    void createCards() override;
 
-    bool isWinner() override;
-    int getWinner() override;
-    int getIndexOfParseCard() override;
-    void playRound(int indexCardToPlay) override;
-    void print(ostream& out) override;
-    void nextPlayer() override;
-
-    void startGame();
     bool cardPlayable(Card* toPlay);
     bool playerHaveColor(COLOR color);
     void setCardsAtout();
     void setPoints();
+
+    void createCards() override;
     void distribution() override;
+    bool isWinner() override;
+    int getWinner() override;
+    int getIndexOfParseCard() override;
+    void playRound(int indexCardToPlay) override;
+    void nextPlayer() override;
+    void print(ostream& out) override;
+
 };
 
 

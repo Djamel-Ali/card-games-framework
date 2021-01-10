@@ -1,6 +1,5 @@
 #include "Controller.hpp"
 
-
 Controller::Controller(View * vue, int jeu) :view(vue){
     Deck * deck = new Deck();
 
@@ -21,10 +20,14 @@ Controller::Controller(View * vue, int jeu) :view(vue){
             game = new Belote(deck);
             break;
         default:
-            game = new Bataille(deck);
             break;
     }
     view ->setGame(game);
+}
+
+Controller::~Controller() {
+    delete game;
+    delete view;
 }
 
 void Controller::updateView() {
@@ -42,8 +45,4 @@ void Controller::startGame() {
     view ->printWinner(*game->getPlayer(game->getWinner()));
 }
 
-Controller::~Controller() {
-    delete game;
-    delete view;
-}
 

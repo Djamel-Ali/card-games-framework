@@ -13,18 +13,23 @@ protected:
     Deck *deck;
     vector <Player*> joueurs;
     int actualPlaying;
+
 public:
+    //ctor dtor
     explicit Game(Deck *deck);
     virtual ~Game();
 
-    void initGame(); // mise en commun
+    //getters
     Player* getActualPlaying() const;
     Player* getPlayer(int iPlayer) const;
 
+    //fonctions en commun
+    void initGame();
     void startGame();
 
-    virtual void distribution() = 0;
+    //fonctions pures
     virtual void createCards() = 0;
+    virtual void distribution() = 0;
     virtual bool isWinner() = 0;
     virtual int getWinner() = 0;
     virtual int getIndexOfParseCard() = 0;

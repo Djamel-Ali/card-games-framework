@@ -12,22 +12,17 @@ private:
     vector<Card*> deck_of_cards;
 
 public:
-    // Ctor
+    // Ctor Dtor
     Deck();
-
-    // Dtor
     ~Deck();
 
     // Getters :
     const vector<Card*> &getDeckOfCards() const;
+    Card* getCard();
 
     // Other methods :
     void addCard(Card *pCard);
-
-    Card* getCard();
-
     void shuffleCards();
-
     void distributeCards(int nbCards, const vector<Player*> &players);
 };
 

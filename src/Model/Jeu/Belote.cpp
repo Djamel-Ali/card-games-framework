@@ -5,93 +5,12 @@ Belote::Belote(Deck *_deck) : Game(_deck) {
     fold = NONE;
     lastFoldWinner = -1;
 
-    joueurs.push_back(new Player(0, "Djamel", vector<Card *> {}, 0));
-    joueurs.push_back(new Player(1, "Mandela", vector<Card *> {}, 0));
-    joueurs.push_back(new Player(2, "Yacine", vector<Card *> {}, 0));
-    joueurs.push_back(new Player(3, "Ghandi", vector<Card *> {}, 0));
+    joueurs.push_back(new Player("Djamel", vector<Card *> {}, 0));
+    joueurs.push_back(new Player("Mandela", vector<Card *> {}, 0));
+    joueurs.push_back(new Player("Yacine", vector<Card *> {}, 0));
+    joueurs.push_back(new Player("Ghandi", vector<Card *> {}, 0));
 
     std::cout << "Construction of Belote" << std::endl;
-}
-
-void Belote::createCards() {
-    COLOR colors[] = {PIQUE, CARREAU, TREFLE, COEUR};
-    string nom[] = {"7", "8", "9", "10", "VALET", "DAME", "ROI", "AS"};
-    int id[] = {7, 8, 9, 10, 11, 12, 13, 14};
-    int valeur[] = {0, 0, 0, 10, 2, 3, 4, 11};
-
-    for(int i = 0; i < 8; i++){
-        for(auto & color : colors){
-            deck->addCard(new ColoredCard(nom[i], id[i], valeur[i], color));
-        }
-    }
-}
-
-void Belote::startGame() {
-    initGame();
-    distribution();
-    actualPlaying = ordreDeJeu;
-}
-
-void Belote::playRound(int indexCardToPlay) {
-    Card* temp = joueurs[actualPlaying]->getHand().at(indexCardToPlay);
-
-    if(cardPlayable(temp)){
-        tapis[actualPlaying] = joueurs[actualPlaying]->playCard(indexCardToPlay);
-        if(fold == NONE && lastFoldWinner == -1){
-            fold = dynamic_cast<ColoredCard*>(temp)->getColor();
-            lastFoldWinner = actualPlaying;
-        }else{
-            lastFoldWinner = getIndexOfParseCard();
-        }
-
-        nextPlayer();
-    }else{
-        cout << "La carte ne peut pas etre jouée" << endl;
-    }
-}
-
-bool Belote::isWinner() {
-    if(joueurs.at(0)->getCurrentScore() > 500){
-        return true;
-    }else{
-        return joueurs.at(1)->getCurrentScore() > 500;
-    }
-}
-
-int Belote::getWinner() {
-    if(joueurs.at(0)->getCurrentScore() > 500){
-        return 0;
-    }
-
-    return 1;
-}
-
-/**
- * Verifie le gagnant du pli
- */
-
-int Belote::getIndexOfParseCard() {
-
-    // si la carte jouée est un atout et que la plus forte du tapis ne l'est pas
-    if(dynamic_cast<ColoredCard*>(tapis[actualPlaying])->getColor() == atout
-       && dynamic_cast<ColoredCard*>(tapis[lastFoldWinner])->getColor()!= atout) return actualPlaying;
-
-    // si la carte jouée n'est pas un atout et que la plus forte du tapis l'est
-    if(dynamic_cast<ColoredCard*>(tapis[actualPlaying])->getColor() != atout
-       && dynamic_cast<ColoredCard*>(tapis[lastFoldWinner])->getColor()== atout) return lastFoldWinner;
-
-    // si la carte jouée est de la couleur du pli et que la plus forte du tapis ne l'est pas
-    if(dynamic_cast<ColoredCard*>(tapis[actualPlaying])->getColor() == fold
-       && dynamic_cast<ColoredCard*>(tapis[lastFoldWinner])->getColor()!= fold) return actualPlaying;
-
-    // si la carte jouée n'est pas de la couleur du pli et que la plus forte du tapis l'est
-    if(dynamic_cast<ColoredCard*>(tapis[actualPlaying])->getColor() != fold
-       && dynamic_cast<ColoredCard*>(tapis[lastFoldWinner])->getColor() == fold) return lastFoldWinner;
-
-    // derniers choix - on compare les valeurs des deux cartes
-    if(dynamic_cast<ColoredCard *>(tapis[actualPlaying])->getId() > dynamic_cast<ColoredCard *>(tapis[lastFoldWinner])->getId()) return actualPlaying;
-
-    return lastFoldWinner;
 }
 
 /**
@@ -119,49 +38,6 @@ bool Belote::cardPlayable(Card *toPlay) {
     if(playerHaveColor(atout)) return false;
 
     return true;
-}
-
-/**
- * passe au joueur suivant, met a jour le score et une nouvelle partie si le round est terminé
- */
-
-void Belote::nextPlayer() {
-    actualPlaying++;
-    actualPlaying = actualPlaying % (int)joueurs.size();
-
-    //test fin du pli (tour de table)
-    for(auto & card : tapis){
-        if(card == nullptr) return;
-    }
-    // couleur du pli
-    fold = NONE;
-    // le vinqueur du pli commence le suivant
-    actualPlaying = lastFoldWinner;
-    //mise a jour des points du pli
-    setPoints();
-
-    //test fin du round (8 plis)
-    if(joueurs[actualPlaying]->handEmpty()){
-        // si l'équipe qui a pris la main remporte son contrat (faire minimum 81 points) elle gagne 161 points et l'équipe adverse les points des plis gagnés
-        if(tempScore[ordreDeJeu %2] > 80){
-            joueurs[ordreDeJeu %2]->setCurrentScore(joueurs[ordreDeJeu %2]->getCurrentScore() + 161);
-            joueurs[(ordreDeJeu +1) %2]->setCurrentScore(joueurs[(ordreDeJeu +1) %2]->getCurrentScore() +tempScore[(ordreDeJeu +1) %2]);
-        }else{// sinon elle est "dedans"
-            joueurs[ordreDeJeu %2]->setCurrentScore(joueurs[ordreDeJeu %2]->getCurrentScore() +tempScore[ordreDeJeu %2]);
-            joueurs[(ordreDeJeu +1) %2]->setCurrentScore(joueurs[(ordreDeJeu +1) %2]->getCurrentScore() + 161);
-        }
-
-        tempScore[0] = 0;
-        tempScore[1] = 0;
-
-        ordreDeJeu ++;
-        ordreDeJeu = ordreDeJeu %4;
-        
-        //round suivant tant qu'aucune équipe n'a fait 500 points
-        if(!isWinner()){
-            startGame();
-        }
-    }
 }
 
 /**
@@ -219,11 +95,130 @@ void Belote::setPoints() {
     }
 }
 
+void Belote::createCards() {
+    COLOR colors[] = {PIQUE, CARREAU, TREFLE, COEUR};
+    string nom[] = {"7", "8", "9", "10", "VALET", "DAME", "ROI", "AS"};
+    int id[] = {7, 8, 9, 10, 11, 12, 13, 14};
+    int valeur[] = {0, 0, 0, 10, 2, 3, 4, 11};
+
+    for(int i = 0; i < 8; i++){
+        for(auto & color : colors){
+            deck->addCard(new ColoredCard(nom[i], id[i], valeur[i], color));
+        }
+    }
+}
+
 void Belote::distribution() {
+    actualPlaying = ordreDeJeu;
     setCardsAtout();
 
     deck->distributeCards(5, joueurs);
     deck->distributeCards(3, joueurs);
+}
+
+bool Belote::isWinner() {
+    if(joueurs.at(0)->getCurrentScore() > 500){
+        return true;
+    }else{
+        return joueurs.at(1)->getCurrentScore() > 500;
+    }
+}
+
+int Belote::getWinner() {
+    if(joueurs.at(0)->getCurrentScore() > 500){
+        return 0;
+    }
+
+    return 1;
+}
+
+/**
+ * Verifie le gagnant du pli
+ */
+
+int Belote::getIndexOfParseCard() {
+
+    // si la carte jouée est un atout et que la plus forte du tapis ne l'est pas
+    if(dynamic_cast<ColoredCard*>(tapis[actualPlaying])->getColor() == atout
+       && dynamic_cast<ColoredCard*>(tapis[lastFoldWinner])->getColor()!= atout) return actualPlaying;
+
+    // si la carte jouée n'est pas un atout et que la plus forte du tapis l'est
+    if(dynamic_cast<ColoredCard*>(tapis[actualPlaying])->getColor() != atout
+       && dynamic_cast<ColoredCard*>(tapis[lastFoldWinner])->getColor()== atout) return lastFoldWinner;
+
+    // si la carte jouée est de la couleur du pli et que la plus forte du tapis ne l'est pas
+    if(dynamic_cast<ColoredCard*>(tapis[actualPlaying])->getColor() == fold
+       && dynamic_cast<ColoredCard*>(tapis[lastFoldWinner])->getColor()!= fold) return actualPlaying;
+
+    // si la carte jouée n'est pas de la couleur du pli et que la plus forte du tapis l'est
+    if(dynamic_cast<ColoredCard*>(tapis[actualPlaying])->getColor() != fold
+       && dynamic_cast<ColoredCard*>(tapis[lastFoldWinner])->getColor() == fold) return lastFoldWinner;
+
+    // derniers choix - on compare les valeurs des deux cartes
+    if(dynamic_cast<ColoredCard *>(tapis[actualPlaying])->getId() > dynamic_cast<ColoredCard *>(tapis[lastFoldWinner])->getId()) return actualPlaying;
+
+    return lastFoldWinner;
+}
+
+void Belote::playRound(int indexCardToPlay) {
+    Card* temp = joueurs[actualPlaying]->getHand().at(indexCardToPlay);
+
+    if(cardPlayable(temp)){
+        tapis[actualPlaying] = joueurs[actualPlaying]->playCard(indexCardToPlay);
+        if(fold == NONE && lastFoldWinner == -1){
+            fold = dynamic_cast<ColoredCard*>(temp)->getColor();
+            lastFoldWinner = actualPlaying;
+        }else{
+            lastFoldWinner = getIndexOfParseCard();
+        }
+
+        nextPlayer();
+    }else{
+        cout << "La carte ne peut pas etre jouée" << endl;
+    }
+}
+
+/**
+ * passe au joueur suivant, met a jour le score et une nouvelle partie si le round est terminé
+ */
+
+void Belote::nextPlayer() {
+    actualPlaying++;
+    actualPlaying = actualPlaying % (int)joueurs.size();
+
+    //test fin du pli (tour de table)
+    for(auto & card : tapis){
+        if(card == nullptr) return;
+    }
+    // couleur du pli
+    fold = NONE;
+    // le vinqueur du pli commence le suivant
+    actualPlaying = lastFoldWinner;
+    //mise a jour des points du pli
+    setPoints();
+
+    //test fin du round (8 plis)
+    if(joueurs[actualPlaying]->handEmpty()){
+        // si l'équipe qui a pris la main remporte son contrat (faire minimum 81 points) elle gagne 161 points et l'équipe adverse les points des plis gagnés
+        if(tempScore[ordreDeJeu %2] > 80){
+            joueurs[ordreDeJeu %2]->setCurrentScore(joueurs[ordreDeJeu %2]->getCurrentScore() + 161);
+            joueurs[(ordreDeJeu +1) %2]->setCurrentScore(joueurs[(ordreDeJeu +1) %2]->getCurrentScore() +tempScore[(ordreDeJeu +1) %2]);
+        }else{// sinon elle est "dedans"
+            joueurs[ordreDeJeu %2]->setCurrentScore(joueurs[ordreDeJeu %2]->getCurrentScore() +tempScore[ordreDeJeu %2]);
+            joueurs[(ordreDeJeu +1) %2]->setCurrentScore(joueurs[(ordreDeJeu +1) %2]->getCurrentScore() + 161);
+        }
+
+        tempScore[0] = 0;
+        tempScore[1] = 0;
+
+        ordreDeJeu ++;
+        ordreDeJeu = ordreDeJeu %4;
+
+        //round suivant tant qu'aucune équipe n'a fait 500 points
+        if(!isWinner()){
+            startGame();
+        }
+    }
 }
 
 void Belote::print(ostream &out) {

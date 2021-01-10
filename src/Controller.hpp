@@ -1,5 +1,6 @@
 #ifndef CARD_GAMES_FRAMEWORK_CONTROLLER_HPP
 #define CARD_GAMES_FRAMEWORK_CONTROLLER_HPP
+
 #include "View.hpp"
 #include "Model/Game.hpp"
 #include "Model/Jeu/Bataille.hpp"
@@ -18,6 +19,7 @@ protected:
 public:
     Controller(View *vue, int jeu);
     ~Controller();
+
     void startGame();
     void updateView();
 };

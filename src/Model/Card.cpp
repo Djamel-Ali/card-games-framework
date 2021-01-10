@@ -3,8 +3,8 @@
 
 using namespace std;
 
-Card::Card(const string &_name, int _id, int _value) : name(_name), id(_id), value(_value) {
-
+Card::Card(const string &_name, int _id, int _value) : name(_name), id(_id), value(_value)
+{
 }
 
 Card::~Card() = default;

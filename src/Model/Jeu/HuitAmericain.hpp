@@ -14,18 +14,8 @@ protected:
 
 public:
     explicit HuitAmericain(Deck *_deck);
-    ~HuitAmericain();
+    ~HuitAmericain() override;
 
-    void createCards() override;
-    bool isWinner() override;
-    int getWinner() override;
-    int getIndexOfParseCard() override;
-    void playRound(int indexCardToPlay) override;
-    void print(ostream& out) override;
-    void nextPlayer() override;
-    void distribution() override;
-
-    void startGame();
     void plusTwo();
     void plusFour();
     void reversed();
@@ -34,6 +24,14 @@ public:
     bool playerCanPlay(const vector<Card*>& hand);
     void setPoints(int iPlayer);
 
+    void createCards() override;
+    void distribution() override;
+    bool isWinner() override;
+    int getWinner() override;
+    int getIndexOfParseCard() override;
+    void playRound(int indexCardToPlay) override;
+    void nextPlayer() override;
+    void print(ostream& out) override;
 };
 
 

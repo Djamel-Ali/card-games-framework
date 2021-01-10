@@ -4,9 +4,11 @@
 
 View::View()
 {
-
 }
 
+View::~View() {
+    delete game;
+}
 
 int View::printWelcomeInterface() {
     cout << "---------------------------------------------------------" << endl;
@@ -54,13 +56,6 @@ void View::printWinner(const Player &player) {
 
 }
 
-void View::printHand(const Player &player) {
-    int index = 0;
-    for(Card* card: player.getHand()){
-        cout << index << " : " << *card << endl;
-        index ++;
-    }
-}
 
 void View::update() {
     cout << *(game);
@@ -93,9 +88,7 @@ void View::setGame(Game *_game) {
     game = _game;
 }
 
-View::~View() {
-    delete game;
-}
+
 
 
 

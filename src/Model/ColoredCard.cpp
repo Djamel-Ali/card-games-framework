@@ -10,7 +10,9 @@ COLOR ColoredCard::getColor() const {
     return color;
 }
 
-
+void ColoredCard::setValue(int v) {
+    value = v;
+}
 
 bool ColoredCard::operator==(const ColoredCard &other) const {
     return this->getValue() == other.getValue() || this->color == other.color || other.color == NONE;
@@ -21,10 +23,4 @@ ostream &operator<<(ostream &out, const ColoredCard &fs) {
 
     return out;
 }
-
-void ColoredCard::setValue(int v) {
-    value = v;
-}
-
-
 

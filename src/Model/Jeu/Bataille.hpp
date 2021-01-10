@@ -11,21 +11,16 @@ protected:
     bool ohBataille;
 
 public:
-    Bataille(Deck *deck);
+    explicit Bataille(Deck *deck);
 
     void createCards() override;
-
+    void distribution() override;
     bool isWinner() override;
     int getWinner() override;
     int getIndexOfParseCard() override;
     void playRound(int indexCardToPlay) override;
     void nextPlayer() override;
     void print(ostream& out) override;
-    void distribution() override;
-
-    void startGame();
-    void decideWinner();
-
 };
 
 

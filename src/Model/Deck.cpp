@@ -6,11 +6,13 @@
 #include <chrono>
 
 // Ctor
+
 Deck::Deck() {
     std::cout << "construction of Deck" << std::endl;
 }
 
 // Dtor
+
 Deck::~Deck(){
     for(Card* temp : deck_of_cards){
         delete temp;
@@ -23,15 +25,6 @@ const vector<Card*> &Deck::getDeckOfCards() const {
     return deck_of_cards;
 }
 
-// Other methods :
-
-/**
-* Ajouter un carte au Deck
- */
-void Deck::addCard(Card *pCard) {
-    deck_of_cards.push_back(pCard);
-}
-
 /**
 * Retourne la prémière carte du Deck et la supprime de ce dernier
  */
@@ -42,6 +35,17 @@ Card *Deck::getCard() {
 
     return temp;
 }
+// Other methods :
+
+/**
+* Ajouter un carte au Deck
+ */
+
+void Deck::addCard(Card *pCard) {
+    deck_of_cards.push_back(pCard);
+}
+
+
 /**
 * Mélanger les cartes
  */
@@ -67,6 +71,3 @@ void Deck::distributeCards(int nbCards, const vector<Player *> &players) {
 
     cout << "Cartes distribuées aux players" << endl;
 }
-
-
-

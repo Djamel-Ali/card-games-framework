@@ -7,6 +7,29 @@ Game::Game(Deck *_deck) :joueurs{}{
     std::cout << "Construction of Game" << std::endl;
 }
 
+Game::~Game() {
+    delete deck;
+    for(Player *player : joueurs){
+        delete player;
+    }
+}
+
+/**
+* Retourne l'indice du joueur actuel
+ */
+
+Player* Game::getActualPlaying() const {
+    return joueurs.at(actualPlaying);
+}
+
+/**
+* Retourn un joueur selon son indice
+ */
+Player *Game::getPlayer(int iPlayer) const {
+    return joueurs[iPlayer];
+}
+
+
 /**
 * Initiation de la Partie (Création des cartes + mélanger)
  */
@@ -25,21 +48,6 @@ ostream &operator<<(ostream &out, Game &game) {
 }
 
 /**
-* Retourne l'indice du joueur actuel
- */
-
-Player* Game::getActualPlaying() const {
-    return joueurs.at(actualPlaying);
-}
-
-/**
-* Retourn un joueur selon son indice
- */
-Player *Game::getPlayer(int iPlayer) const {
-    return joueurs[iPlayer];
-}
-
-/**
 * Initiation de la partie et distribution des cartes
  */
 
@@ -47,15 +55,3 @@ void Game::startGame() {
     initGame();
     distribution();
 }
-
-void Game::createCards() {
-    cout  << "Create cards Game" << endl;
-}
-
-Game::~Game() {
-    delete deck;
-    for(Player *player : joueurs){
-        delete player;
-    }
-}
-
