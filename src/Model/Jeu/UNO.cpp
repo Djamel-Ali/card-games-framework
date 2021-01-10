@@ -7,9 +7,6 @@ UNO::UNO(Deck *_deck) : HuitAmericain(_deck) {
     colors[2] = VERT;
     colors[3] = ROUGE;
     colors[4] = NONE;
-
-    cardOnTop = new ColoredCard("3", 3, 3, JAUNE);
-    joueurs[0]->addCard(new ColoredCard("+2", 10, 50, NONE));
 }
 
 void UNO::createCards() {

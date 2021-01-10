@@ -276,7 +276,10 @@ void HuitAmericain::playRound(int indexCardToPlay) {
 void HuitAmericain::nextPlayer() {
     actualPlaying = (sensInverse) ? (actualPlaying -1) : (actualPlaying +1);
 
-    actualPlaying = actualPlaying % (int)joueurs.size();
+    if(actualPlaying < 0)
+        actualPlaying+=(int)joueurs.size();
+    else
+        actualPlaying = actualPlaying % (int)joueurs.size();
 }
 
 void HuitAmericain::print(ostream &out) {
