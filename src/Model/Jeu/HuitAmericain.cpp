@@ -1,4 +1,5 @@
 #include <iostream>
+#include <limits>
 #include "HuitAmericain.hpp"
 
 HuitAmericain::HuitAmericain(Deck *_deck, int player) : Game(_deck, player){
@@ -12,7 +13,7 @@ HuitAmericain::HuitAmericain(Deck *_deck, int player) : Game(_deck, player){
     joueurs.push_back(new Player(0, "Djamel", vector<Card *> {}, 0));
     joueurs.push_back(new Player(1, "Yacine", vector<Card *> {}, 0));
 
-    cardOnTop = new ColoredCard("3", 3, 3, TREFLE);
+    cardOnTop = nullptr;
     cout << "CONSTRUC 8US : ACTUAL " << actualPlaying << endl;
 }
 
@@ -68,11 +69,28 @@ void HuitAmericain::playRound(int indexCardToPlay) {
 
             nextPlayer();
         }else{
+            joueurs[actualPlaying]->addCard(temp);
             cout << "La carte ne peut pas etre jouée" << endl;
         }
     }else{
+        cout << "Aucune carte a jouer !" << endl;
+        cout << "Pioche ..." << endl;
+        Card * pioche = deck->getCard();
+
+        cout << *dynamic_cast<ColoredCard *>(pioche) << endl;
+
+        if(cardPlayable(pioche)){
+            cout << "la carte est jouée automatiquement !" << endl;
+            deck->addCard(cardOnTop);
+            cardOnTop = pioche;
+        }else{
+            cout << "dommage la carte est non jouable, elle est ajoutée à ta main " << endl;
+            joueurs[actualPlaying]->addCard(pioche);
+        }
+
         nextPlayer();
     }
+
 }
 
 int HuitAmericain::getIndexOfParseCard() {
@@ -85,6 +103,7 @@ int HuitAmericain::getIndexOfParseCard() {
             changeColor();
             return 1;
         case 10://VALET
+            cout << joueurs[actualPlaying]->getName() << " a fait passer le tour du prochain joueur" << endl;
             nextPlayer();
             break;
         case 12: //AS
@@ -93,6 +112,7 @@ int HuitAmericain::getIndexOfParseCard() {
         case 13://JOKER
             nextPlayer();
             plusFour();
+            changeColor();
             break;
     }
 
@@ -111,7 +131,7 @@ bool HuitAmericain::isWinner() {
 
 int HuitAmericain::getWinner() {
     int winner = -1;
-    for(int i = 0; i < joueurs.size(); i ++){
+    for(int i = 0; i < (int)joueurs.size(); i ++){
         if (joueurs.at(i)->handEmpty()){
             winner = i;
         }else{
@@ -123,18 +143,21 @@ int HuitAmericain::getWinner() {
 }
 
 void HuitAmericain::plusTwo() {
+    cout << joueurs[actualPlaying]->getName() << " +2 cartes et passe son tour" << endl;
     for(int i = 0; i < 2; i ++){
         joueurs[actualPlaying]->addCard(deck->getCard());
     }
 }
 
 void HuitAmericain::plusFour(){
+    cout << joueurs[actualPlaying]->getName() << " +4 cartes et passe son tour" << endl;
     for(int i = 0; i < 4; i ++){
         joueurs[actualPlaying]->addCard(deck->getCard());
     }
 }
 
 void HuitAmericain::reversed(){
+    cout << joueurs[actualPlaying]->getName() << " a changé le sens du jeu" << endl;
     sensInverse = !sensInverse;
 }
 
@@ -145,17 +168,26 @@ void HuitAmericain::nextPlayer() {
 }
 
 void HuitAmericain::changeColor() {
+
+    cout << "Tu as joué la carte cC : Changement de Couleur" << endl;
+    cout << "#1# pour " << colors[0] << endl;
+    cout << "#2# pour " << colors[1] << endl;
+    cout << "#3# pour " << colors[2] << endl;
+    cout << "#4# pour " << colors[3] << endl;
+
     int color = -1;
 
-    do{
-        cout << "Choisissez la nouvelle couleur: \n";
-        cout << "  1 pour " << colors[0] << endl;
-        cout << "  2 pour " << colors[1] << endl;
-        cout << "  3 pour " << colors[2] << endl;
-        cout << "  4 pour " << colors[3] << endl;
+    while (true)
+    {
         cin >> color;
-
-    } while (color < 0 || color > 4);
+        if (!cin || color < 1 || color > 4)
+        {
+            cout << "Erreur, merci d'entrer une couleur valide " << endl;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+        else break;
+    }
 
     switch (color) {
         case 1:
@@ -177,6 +209,9 @@ void HuitAmericain::changeColor() {
 }
 
 bool HuitAmericain::cardPlayable(Card *toPlay) {
+    if(dynamic_cast<ColoredCard*>(cardOnTop)->getColor() == NONE && colors[4] != NONE){
+        return dynamic_cast<ColoredCard*>(toPlay)->getColor() == colors[4];
+    }
 
     return *dynamic_cast<ColoredCard*>(cardOnTop) == *dynamic_cast<ColoredCard*>(toPlay);
 }
@@ -196,17 +231,27 @@ void HuitAmericain::print(ostream &out) {
 
     for(Player* player : joueurs){
         out << player-> getName() << " a " << player->getCurrentScore() << " points" << endl;
+        out << player-> getName() << " a " << player->getHand().size() << " cartes en main" << endl;
     }
+
+    out << "------------------------------" << endl;
 
     out << "Carte au dessus" << endl;
     out << *dynamic_cast<ColoredCard*>(cardOnTop);
 
-    out << "ACUTIAL PLAYING" << actualPlaying;
+    if(dynamic_cast<ColoredCard*>(cardOnTop)->getColor() == NONE && colors[4] != NONE){
+        out << "Couleur a jouer : " << endl;
+        out << colors[4] << endl;
+    }
 
-    out << "la main de " << joueurs.at(actualPlaying)->getName() << endl;
+    out << "------------------------------" << endl;
 
-    for(Card* card : joueurs.at(actualPlaying)->getHand()){
-        out << *dynamic_cast<ColoredCard*>(card);
+    if(! isWinner()){
+        out << "la main de " << joueurs.at(actualPlaying)->getName() << endl;
+
+        for(Card* card : joueurs.at(actualPlaying)->getHand()){
+            out << *dynamic_cast<ColoredCard*>(card);
+        }
     }
 
 }
@@ -218,5 +263,7 @@ void HuitAmericain::setPoints(int iPlayer) {
 }
 
 void HuitAmericain::distribution() {
-    deck->distributeCards(7, joueurs);
+    deck->distributeCards(1, joueurs); //7
+
+    cardOnTop = deck->getCard();
 }

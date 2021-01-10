@@ -18,7 +18,7 @@ public:
     // Ctor and Dtor :
     Card(const string &_name, int _id, int _value);
 
-    ~Card();
+    virtual ~Card();
 
     // Getters and Setters :
     int getId() const;

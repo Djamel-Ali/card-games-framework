@@ -13,7 +13,7 @@ void View::start() {
 
 int View::printWelcomeInterface() {
     cout << "---------------------------------------------------------" << endl;
-    cout << "Bonjour, et bienvenu à notre platforme de jeux ! " << endl;
+    cout << "Bonjour et bienvenu à notre platforme de jeux ! " << endl;
     cout << "---------------------------------------------------------" << endl;
     cout << "Liste des jeux : " << endl;
 
@@ -50,6 +50,13 @@ void View::printPlayer(const Player &player) {
 
 }
 
+void View::printWinner(const Player &player) {
+    cout << "Bravo, ";
+    cout << player.getName() << " ";
+    cout << "a gagné !" << endl;
+
+}
+
 void View::printHand(const Player &player) {
     int index = 0;
     for(Card* card: player.getHand()){
@@ -58,7 +65,7 @@ void View::printHand(const Player &player) {
     }
 }
 
-void View::update(Game *game) {
+void View::update() {
     cout << *(game);
 
 }
@@ -83,6 +90,10 @@ int View::play(int max, Player * player) {
     }
 
     return index;
+}
+
+void View::setGame(Game *_game) {
+    game = _game;
 }
 
 

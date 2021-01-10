@@ -9,7 +9,7 @@ using namespace std;
 
 class Deck {
 private:
-    vector<Card*> deck_of_cards{};
+    vector<Card*> deck_of_cards;
 
 public:
     // Ctor

@@ -1,7 +1,3 @@
-//
-// Created by mdyac on 23/12/2020.
-//
-
 #include "Belote.hpp"
 
 Belote::Belote(Deck *_deck, int player) : Game(_deck, player) {
@@ -100,8 +96,6 @@ bool Belote::cardPlayable(Card *toPlay) {
 
 
 void Belote::nextPlayer() {
-    cout << "next ==========================================================================================================================" << endl;
-
 
     actualPlaying++;
     actualPlaying = actualPlaying % (int)joueurs.size();

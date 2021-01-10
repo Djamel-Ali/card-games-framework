@@ -7,7 +7,9 @@ Card::Card(const string &_name, int _id, int _value) : name(_name), id(_id), val
 
 }
 
-Card::~Card() = default;
+Card::~Card() {
+
+}
 
 int Card::getId() const {
     return id;
@@ -32,10 +34,7 @@ bool Card::operator>(const Card &other) const {
 }
 
 ostream &operator<<(ostream &out, const Card &fs) {
-    out << " --- " << endl;
-    out << "| " <<fs.getName()<<" |" << endl;
-    out << "| " <<fs.getValue()<<" |" << endl;
-    out << " --- " << endl;
+    out << " [ " << fs.getName() << " | " << fs.getValue() << " ] " << endl;
 
     return out;
 }

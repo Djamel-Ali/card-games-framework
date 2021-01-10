@@ -23,13 +23,12 @@ Controller::Controller(View * vue, int jeu) :view(vue){
         default:
             game = new Bataille(deck, player);
             break;
-
     }
-
+    view ->setGame(game);
 }
 
 void Controller::updateView() {
-    view -> update(game);
+    view -> update();
 }
 
 void Controller::startGame() {
@@ -40,6 +39,6 @@ void Controller::startGame() {
         updateView();
     }
 
-    view ->printPlayer(*game->getPlayer(game->getWinner()));
+    view ->printWinner(*game->getPlayer(game->getWinner()));
 }
 

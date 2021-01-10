@@ -1,8 +1,8 @@
 #ifndef CARD_GAMES_FRAMEWORK_HUITAMERICAIN_HPP
 #define CARD_GAMES_FRAMEWORK_HUITAMERICAIN_HPP
 
-#include "Game.hpp"
-#include "ColoredCard.hpp"
+#include "../Game.hpp"
+#include "../ColoredCard.hpp"
 
 
 class HuitAmericain : public Game{

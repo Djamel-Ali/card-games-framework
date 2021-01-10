@@ -9,7 +9,7 @@ UNO::UNO(Deck *_deck, int player) : HuitAmericain(_deck, player) {
     colors[4] = NONE;
 
     cardOnTop = new ColoredCard("3", 3, 3, JAUNE);
-
+    joueurs[0]->addCard(new ColoredCard("+2", 10, 50, NONE));
 }
 
 void UNO::createCards() {
@@ -40,7 +40,7 @@ void UNO::createCards() {
     // card "changerCouleur", "+4"
     for (int numero = 13; numero <= 14; numero++){
         for (int x = 0; x < 4; x++){
-            deck->addCard(new ColoredCard(to_string(numero), numero, 50, colors[4]));
+            deck->addCard(new ColoredCard(noms[k], numero, 50, colors[4]));
         }
         k++;
     }
@@ -55,12 +55,14 @@ int UNO::getIndexOfParseCard() {
             plusTwo();
             break;
         case 11:
+            cout << joueurs[actualPlaying]->getName() << " a fait passer le tour du prochain joueur" << endl;
             nextPlayer();
             break;
         case 12:
             reversed();
             break;
         case 13:
+            changeColor();
             return 1;
         case 14:
             nextPlayer();

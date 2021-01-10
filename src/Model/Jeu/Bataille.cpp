@@ -42,7 +42,7 @@ void Bataille::playRound(int indexCardToPlay) {
 bool Bataille::isWinner() {
     for (Player *player : joueurs) {
         if (player->handEmpty()) {
-            return true;
+            return tapis.empty() || (!tapis.empty() && ohBataille);
         }
     }
 
@@ -51,12 +51,12 @@ bool Bataille::isWinner() {
 
 int Bataille::getWinner() {
     if(joueurs.at(0)->handEmpty()){
-        joueurs[0]->setCurrentScore(joueurs[0]->getCurrentScore() +1);
-        return 0;
+        joueurs[1]->setCurrentScore(joueurs[1]->getCurrentScore() +1);
+        return 1;
     }
 
-    joueurs[1]->setCurrentScore(joueurs[1]->getCurrentScore() +1);
-    return 1;
+    joueurs[0]->setCurrentScore(joueurs[0]->getCurrentScore() +1);
+    return 0;
 }
 
 int Bataille::getIndexOfParseCard() {
@@ -89,13 +89,23 @@ void Bataille::print(ostream &out) {
         out << player-> getName() << " possede " << player->getHand().size() << " cartes" << endl;
     }
 
-    if(! tapis.empty()){
-        out << " Le tapis :" << endl;
-        out << "la carte de " << joueurs.at(0)-> getName() << " : " << endl;
+    if(!tapis.empty()){
+        out << "Le tapis :" << endl;
+        if(tapis.size() % 2 == 0){
+            out << "la carte de " << joueurs.at(1)-> getName() << " : " << endl;
+        }else{
+            out << "la carte de " << joueurs.at(0)-> getName() << " : " << endl;
+        }
+
         for(Card* card : tapis){
             out << *card << endl;
         }
-        out << "la carte de " << joueurs.at(1)-> getName() << " : " << endl;
+        if(tapis.size() % 2 == 0){
+            out << "la carte de " << joueurs.at(0)-> getName() << " : " << endl;
+        }else{
+            out << "la carte de " << joueurs.at(1)-> getName() << " : " << endl;
+        }
+
     }
 
 
@@ -108,7 +118,7 @@ void Bataille::decideWinner() {
     if(roundWinner != -1){
         cout << "le joueur " << joueurs.at(roundWinner)->getName() << " gagne ce round"<< endl;
     }else{
-        cout << "BATAILLE !, les cartes sont remises en jeu " << endl;
+        cout << "les cartes sont remises en jeu " << endl;
     }
 
     if(!ohBataille){
@@ -121,7 +131,10 @@ void Bataille::decideWinner() {
 }
 
 void Bataille::distribution() {
-    deck->distributeCards(16, joueurs);
+    //deck->distributeCards(1, joueurs);
+    joueurs[0]->addCard(new Card("10", 10, 10));
+    joueurs[1]->addCard(new Card("10", 10, 10));
+    joueurs[1]->addCard(new Card("10", 10, 10));
 }
 
 

@@ -1,8 +1,8 @@
 #ifndef CARD_GAMES_FRAMEWORK_BATAILLE_HPP
 #define CARD_GAMES_FRAMEWORK_BATAILLE_HPP
 
-#include "Game.hpp"
-#include "Card.hpp"
+#include "../Game.hpp"
+#include "../Card.hpp"
 
 class Bataille : public Game {
 

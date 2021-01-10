@@ -7,7 +7,7 @@ enum COLOR {
     BLEU, VERT, JAUNE, ROUGE, TREFLE, COEUR, CARREAU, PIQUE, NONE
 };
 
-static std::ostream& operator<<(std::ostream& out, COLOR colo)
+inline std::ostream& operator<<(std::ostream& out, COLOR colo)
 {
     switch (colo) {
         case BLEU:

@@ -2,10 +2,10 @@
 #define CARD_GAMES_FRAMEWORK_CONTROLLER_HPP
 #include "View.hpp"
 #include "Model/Game.hpp"
-#include "Model/Bataille.hpp"
-#include "Model/HuitAmericain.hpp"
-#include "Model/UNO.hpp"
-#include "Model/Belote.hpp"
+#include "Model/Jeu/Bataille.hpp"
+#include "Model/Jeu/HuitAmericain.hpp"
+#include "Model/Jeu/UNO.hpp"
+#include "Model/Jeu/Belote.hpp"
 
 class Controller {
 
