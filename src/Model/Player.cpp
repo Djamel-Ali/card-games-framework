@@ -21,11 +21,11 @@ const vector<Card*> &Player::getHand() const {
 }
 
 //retourne le score du joueur
-int Player::getCurrentScore() const {
+float Player::getCurrentScore() const {
     return current_score;
 }
 
-void Player::setCurrentScore(int score) {
+void Player::setCurrentScore(float score) {
     current_score = score;
 }
 

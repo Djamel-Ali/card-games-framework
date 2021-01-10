@@ -13,7 +13,7 @@ class Player {
 private:
     string name;
     vector<Card*> hand;
-    int current_score;
+    float current_score;
 public:
     // Ctor Dtor
     Player(const string &_name, const vector<Card*> &_hand, int _score);
@@ -22,8 +22,8 @@ public:
     //Getters Setters :
     const string &getName() const;
     const vector<Card*> &getHand() const;
-    int getCurrentScore() const;
-    void setCurrentScore(int score);
+    float getCurrentScore() const;
+    void setCurrentScore(float score);
 
     // Other methods :
     bool handEmpty();
