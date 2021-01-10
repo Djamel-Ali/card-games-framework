@@ -7,6 +7,7 @@
 #include "Model/Jeu/HuitAmericain.hpp"
 #include "Model/Jeu/UNO.hpp"
 #include "Model/Jeu/Belote.hpp"
+#include "Model/Jeu/Tarot.hpp"
 
 class Controller {
 

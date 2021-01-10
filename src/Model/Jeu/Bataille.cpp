@@ -5,7 +5,6 @@ Bataille::Bataille(Deck *deck) : Game(deck) {
     ohBataille = false;
     joueurs.push_back(new Player("Djamel", vector<Card *> {}, 0));
     joueurs.push_back(new Player("Yacine", vector<Card *> {}, 0));
-    std::cout << "Construction of Bataille" << std::endl;
 }
 
 void Bataille::createCards() {
@@ -26,7 +25,7 @@ void Bataille::createCards() {
 
     cout << "Cartes batailles crees" << endl;
 }
-
+// 16 cartes par joueur
 void Bataille::distribution() {
     deck->distributeCards(16, joueurs);
 }

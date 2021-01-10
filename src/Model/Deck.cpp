@@ -7,9 +7,7 @@
 
 // Ctor
 
-Deck::Deck() {
-    std::cout << "construction of Deck" << std::endl;
-}
+Deck::Deck() = default;
 
 // Dtor
 
@@ -21,7 +19,7 @@ Deck::~Deck(){
 
 // Getters :
 
-const vector<Card*> &Deck::getDeckOfCards() const {
+vector<Card*> &Deck::getDeckOfCards(){
     return deck_of_cards;
 }
 
@@ -68,6 +66,4 @@ void Deck::distributeCards(int nbCards, const vector<Player *> &players) {
             player->addCard(this->getCard());
         }
     }
-
-    cout << "Cartes distribuées aux players" << endl;
 }

@@ -15,4 +15,4 @@ add_executable(card-games-framework
         src/Model/Jeu/HuitAmericain.cpp src/Model/Jeu/HuitAmericain.hpp
 		src/Model/Jeu/Belote.cpp        src/Model/Jeu/Belote.hpp
 		src/Controller.cpp              src/Controller.hpp
-		src/View.cpp                    src/View.hpp)
+		src/View.cpp                    src/View.hpp src/Model/Jeu/Tarot.cpp src/Model/Jeu/Tarot.hpp)

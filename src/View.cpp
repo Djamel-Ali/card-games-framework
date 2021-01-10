@@ -10,9 +10,31 @@ View::~View() {
     delete game;
 }
 
+int View::rejouer() {
+    int choice;
+    cout << "\n----------------------------------" << endl;
+    cout << "LA PARTIE EST TERMINÉE" << endl;
+    cout << "\n----------------------------------\n" << endl;
+
+    cout << "1 : REJOUER;  2 : QUITTER" << endl;
+    cin >> choice;
+
+    if (!cin || choice < 1 || choice > 2)
+    {
+        cout << "Erreur, merci d'entrer un choix valide " << endl;
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    }
+    return choice == 2 ? 1 : 0;
+}
+
+void View::aurevoir() {
+    cout << "\n\n AU REVOIR :) \n\n" << endl;
+}
+
 int View::printWelcomeInterface() {
     cout << "---------------------------------------------------------" << endl;
-    cout << "Bonjour et bienvenu à notre platforme de jeux ! " << endl;
+    cout << "Bonjour et bienvenue à notre platforme de jeux ! " << endl;
     cout << "---------------------------------------------------------" << endl;
     cout << "Liste des jeux : " << endl;
 

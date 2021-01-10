@@ -2,8 +2,8 @@ CPP=g++ --std=c++11 -Wall
 
 all : main
 
-main : main.o View.o Controller.o Game.o Deck.o Player.o Card.o ColoredCard.o Bataille.o HuitAmericain.o UNO.o Belote.o
-	$(CPP) -o main main.o View.o Controller.o Game.o Deck.o Player.o Card.o ColoredCard.o Bataille.o HuitAmericain.o UNO.o Belote.o
+main : main.o View.o Controller.o Game.o Deck.o Player.o Card.o ColoredCard.o Bataille.o HuitAmericain.o UNO.o Belote.o Tarot.o
+	$(CPP) -o main main.o View.o Controller.o Game.o Deck.o Player.o Card.o ColoredCard.o Bataille.o HuitAmericain.o UNO.o Belote.o Tarot.o
 
 main.o : main.cpp
 	$(CPP) -c main.cpp
@@ -41,5 +41,8 @@ UNO.o : src/Model/Jeu/UNO.cpp
 Belote.o : src/Model/Jeu/Belote.cpp
 	$(CPP) -c src/Model/Jeu/Belote.cpp
 
+Tarot.o : src/Model/Jeu/Tarot.cpp
+	$(CPP) -c src/Model/Jeu/Tarot.cpp
+
 clean :
-	rm *.o
+	rm -f *.o main

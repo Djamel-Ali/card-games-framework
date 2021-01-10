@@ -12,17 +12,17 @@ private:
     const int id;
 
 protected:
-    int value;
+    float value;
 
 public:
     // Ctor and Dtor :
-    Card(const string &_name, int _id, int _value);
+    Card(const string &_name, int _id, float _value);
     virtual ~Card();
 
     // Getters and Setters :
     int getId() const;
     string getName() const;
-    int getValue() const;
+    float getValue() const;
 
     virtual bool operator== (Card const & other) const;
     virtual bool operator> (Card const & other) const;

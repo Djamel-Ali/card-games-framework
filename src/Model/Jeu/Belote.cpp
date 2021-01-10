@@ -1,7 +1,7 @@
 #include "Belote.hpp"
 
 Belote::Belote(Deck *_deck) : Game(_deck) {
-    atout = PIQUE;
+    atout = NONE;
     fold = NONE;
     lastFoldWinner = -1;
 
@@ -10,7 +10,6 @@ Belote::Belote(Deck *_deck) : Game(_deck) {
     joueurs.push_back(new Player("Yacine", vector<Card *> {}, 0));
     joueurs.push_back(new Player("Ghandi", vector<Card *> {}, 0));
 
-    std::cout << "Construction of Belote" << std::endl;
 }
 
 /**
@@ -60,7 +59,7 @@ bool Belote::playerHaveColor(COLOR color) {
 
 void Belote::setCardsAtout(){
     for(Card * card : deck->getDeckOfCards()){
-        ColoredCard * temp = dynamic_cast<ColoredCard *>(card);
+        auto * temp = dynamic_cast<ColoredCard *>(card);
         if(temp->getId() == 9 && temp->getColor() == atout){
             cout << "set 9 atout" << endl;
             temp->setValue(14);
@@ -108,11 +107,13 @@ void Belote::createCards() {
     }
 }
 
+// 8 cartes par joueur
 void Belote::distribution() {
     actualPlaying = ordreDeJeu;
     setCardsAtout();
 
     deck->distributeCards(5, joueurs);
+    atout = dynamic_cast<ColoredCard*>(deck->getDeckOfCards().at(0))->getColor();
     deck->distributeCards(3, joueurs);
 }
 
