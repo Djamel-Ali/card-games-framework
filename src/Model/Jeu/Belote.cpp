@@ -75,9 +75,9 @@ int Belote::getIndexOfParseCard() {
     if(dynamic_cast<ColoredCard*>(tapis[actualPlaying])->getColor() != fold
        && dynamic_cast<ColoredCard*>(tapis[lastFoldWinner])->getColor() == fold) return lastFoldWinner;
 
-    if(dynamic_cast<ColoredCard *>(tapis[actualPlaying])->getId() > dynamic_cast<ColoredCard *>(tapis[lastFoldWinner])->getId()) lastFoldWinner = actualPlaying;
+    if(dynamic_cast<ColoredCard *>(tapis[actualPlaying])->getId() > dynamic_cast<ColoredCard *>(tapis[lastFoldWinner])->getId()) return actualPlaying;
 
-    return 1;
+    return lastFoldWinner;
 }
 
 
