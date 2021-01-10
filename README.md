@@ -5,6 +5,6 @@ in root ( card-games-framework directory) :
 
 * **Compilation :** ***`$ make`***
 
-* **Execution :** ***`$ ./execFile`***
+* **Execution :** ***`$ ./main`***
 
 * **Cleaning :** ***`$ make clean`***

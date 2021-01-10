@@ -13,18 +13,25 @@ protected:
     Deck *deck;
     vector <Player*> joueurs;
     int actualPlaying;
+
 public:
-    explicit Game(Deck *deck, int player);
-    void initGame(); // mise en commun
+    //ctor dtor
+    explicit Game(Deck *deck);
+    virtual ~Game();
+
+    //getters
     Player* getActualPlaying() const;
     Player* getPlayer(int iPlayer) const;
 
+    //fonctions en commun
+    void initGame();
     void startGame();
 
-    virtual void distribution() = 0;
+    //fonctions pures
     virtual void createCards() = 0;
-    virtual bool isWinner() = 0; // a mettre en commun plus tard (pour bataille, uno et 8us)
-    virtual int getWinner() = 0; // a mettre en commun plus tard (pour bataille, uno et 8us)
+    virtual void distribution() = 0;
+    virtual bool isWinner() = 0;
+    virtual int getWinner() = 0;
     virtual int getIndexOfParseCard() = 0;
     virtual void playRound(int indexCardToPlay) = 0;
     virtual void nextPlayer() = 0;

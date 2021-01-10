@@ -3,8 +3,8 @@
 
 using namespace std;
 
-Card::Card(const string &_name, int _id, int _value) : name(_name), id(_id), value(_value) {
-
+Card::Card(const string &_name, int _id, int _value) : name(_name), id(_id), value(_value)
+{
 }
 
 Card::~Card() = default;
@@ -32,10 +32,7 @@ bool Card::operator>(const Card &other) const {
 }
 
 ostream &operator<<(ostream &out, const Card &fs) {
-    out << " --- " << endl;
-    out << "| " <<fs.getName()<<" |" << endl;
-    out << "| " <<fs.getValue()<<" |" << endl;
-    out << " --- " << endl;
+    out << " [ " << fs.getName() << " | " << fs.getValue() << " ] ";
 
     return out;
 }

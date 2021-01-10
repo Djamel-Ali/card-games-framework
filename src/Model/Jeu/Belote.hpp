@@ -1,8 +1,8 @@
 #ifndef CARD_GAMES_FRAMEWORK_BELOTE_HPP
 #define CARD_GAMES_FRAMEWORK_BELOTE_HPP
 
-#include "Game.hpp"
-#include "ColoredCard.hpp"
+#include "../Game.hpp"
+#include "../ColoredCard.hpp"
 
 class Belote : public Game{
 
@@ -15,22 +15,22 @@ protected:
     Card* tapis[4]{};
 
 public:
-    explicit Belote(Deck *_deck, int player);
-    void createCards() override;
+    explicit Belote(Deck *_deck);
 
-    bool isWinner() override;
-    int getWinner() override;
-    int getIndexOfParseCard() override;
-    void playRound(int indexCardToPlay) override;
-    void print(ostream& out) override;
-    void nextPlayer() override;
-
-    void startGame();
     bool cardPlayable(Card* toPlay);
     bool playerHaveColor(COLOR color);
     void setCardsAtout();
     void setPoints();
+
+    void createCards() override;
     void distribution() override;
+    bool isWinner() override;
+    int getWinner() override;
+    int getIndexOfParseCard() override;
+    void playRound(int indexCardToPlay) override;
+    void nextPlayer() override;
+    void print(ostream& out) override;
+
 };
 
 

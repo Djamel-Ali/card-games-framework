@@ -10,28 +10,17 @@ COLOR ColoredCard::getColor() const {
     return color;
 }
 
-
-
-bool ColoredCard::operator==(const ColoredCard &other) const {
-    cout << "== de ColoredCard \n";
-
-    return this->getValue() == other.getValue() || this->color == other.color || other.color == NONE;
-}
-
-ostream &operator<<(ostream &out, const ColoredCard &fs) {
-
-    out << " --- " << endl;
-    out << "| " << fs.getName()<<" |" << endl;
-    out << "| " <<fs.getColor()<<" |" << endl;
-    out << "| " <<fs.getValue()<<" |" << endl;
-    out << " --- " << endl;
-
-    return out;
-}
-
 void ColoredCard::setValue(int v) {
     value = v;
 }
 
+bool ColoredCard::operator==(const ColoredCard &other) const {
+    return this->getValue() == other.getValue() || this->color == other.color || other.color == NONE;
+}
 
+ostream &operator<<(ostream &out, const ColoredCard &fs) {
+    out << " [ " << fs.getName() << " | " << fs.getColor() << " ] ";
+
+    return out;
+}
 

@@ -7,7 +7,7 @@ enum COLOR {
     BLEU, VERT, JAUNE, ROUGE, TREFLE, COEUR, CARREAU, PIQUE, NONE
 };
 
-static std::ostream& operator<<(std::ostream& out, COLOR colo)
+inline std::ostream& operator<<(std::ostream& out, COLOR colo)
 {
     switch (colo) {
         case BLEU:
@@ -49,16 +49,15 @@ private:
 
 public:
     ColoredCard(const string &_name, int id, int _value, COLOR _color);
-
-    ~ColoredCard();
+    ~ColoredCard() override;
 
     COLOR getColor() const;
+    void setValue(int v);
 
     virtual bool operator==(ColoredCard const & other) const;
-
     friend ostream& operator<<(ostream& out, const ColoredCard &fs);
 
-    void setValue(int v);
+
 };
 
 
