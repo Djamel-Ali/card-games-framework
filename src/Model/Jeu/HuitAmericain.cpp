@@ -237,7 +237,6 @@ int HuitAmericain::getIndexOfParseCard() {
             changeColor();
             return 1;
         case 12://VALET
-            cout << joueurs[actualPlaying]->getName() << " a fait passer le tour du prochain joueur" << endl;
             passerTour();
             break;
         case 13: //AS
@@ -304,7 +303,6 @@ void HuitAmericain::print(ostream &out) {
 }
 
 void HuitAmericain::passerTour() {
-    cout << "PasserTour 8US/UNO";
     actualPlaying = (sensInverse) ? (actualPlaying -1) : (actualPlaying +1);
     actualPlaying = actualPlaying % (int)joueurs.size();
 }

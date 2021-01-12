@@ -69,7 +69,6 @@ void Game::playRound(int indexCardToPlay) {
     if(cardPlayable(temp)){
         cout << "la carte est jouable " << endl;
         tapis.insert(tapis.begin(), temp);
-        cout << "carte dans tapis - tapis size == "<<tapis.size() << endl;
         nextPlayer();
     }else{
         joueurs[actualPlaying]->addCard(temp);
