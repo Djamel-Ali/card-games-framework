@@ -14,10 +14,10 @@ void Bataille::createCards() {
     for (int i = 2; i < 15; i++) {
         for (int j = 0; j < 4; j++) {
             if (i < 11) {
-                Card *temp = new Card(to_string(i), i, i);
+                Card *temp = new Card(to_string(i), i, float(i));
                 deck->addCard(temp);
             } else {
-                Card *temp = new Card(noms[j], i, valeurs[j]);
+                Card *temp = new Card(noms[j], i, (float )valeurs[j]);
                 deck->addCard(temp);
             }
         }
@@ -40,6 +40,7 @@ bool Bataille::isWinner() {
     return false;
 }
 
+/// Retourne l'indice du joueur gagnant
 int Bataille::getWinner() {
     if(joueurs.at(0)->handEmpty()){
         joueurs[1]->setCurrentScore(joueurs[1]->getCurrentScore() +1);
@@ -55,6 +56,7 @@ int Bataille::getWinner() {
  */
 
 int Bataille::getIndexOfParseCard() {
+    // Si les 2 joueurs posent chacun sa carte mais elles ont la même valeur --> donc Bataille
     if(tapis.size() %2 == 0 && *tapis.at(0) == *tapis.at(1)){
         cout << "Bataille !" << endl;
         cout << "les cartes sont remises en jeu " << endl;
@@ -62,6 +64,7 @@ int Bataille::getIndexOfParseCard() {
 
         return -1;
     }
+    // Sinon, Si pas de Bataille on met à jour 'ohBataille' et l'indice du gagnant du round courant
     if(tapis.size() %2 == 0){
         ohBataille = false;
     }
@@ -70,6 +73,7 @@ int Bataille::getIndexOfParseCard() {
 
     cout << "le joueur " << joueurs.at(roundWinner)->getName() << " gagne ce round"<< endl;
 
+    // Le gagnant du round courant empoche toutes les cartes du tapis
     while (!tapis.empty()){
         joueurs.at(roundWinner)->addCard(tapis.back());
         tapis.pop_back();
@@ -81,6 +85,7 @@ int Bataille::getIndexOfParseCard() {
  * Jouer la 1e carte de la main
  */
 
+// On joue toujours la toute 1ere carte de la main du joueur (peu importe l'indice passé en arg).
 void Bataille::playRound(int indexCardToPlay) {
     tapis.insert(tapis.begin(), joueurs.at(actualPlaying)->playCard(0));
 
