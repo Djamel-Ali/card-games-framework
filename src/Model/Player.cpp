@@ -3,7 +3,7 @@
 #include <iostream>
 
 // Ctor
-Player::Player(const string &_name, const vector<Card*> &_hand, float _score = 0, bool _bot = false) : name(_name), hand(_hand), current_score(_score), bot(_bot) {}
+Player::Player(const string &_name, const vector<Card*> &_hand, float _score = 0, bool _bot) : name(_name), hand(_hand), current_score(_score), bot(_bot) {}
 
 //Dtor
 Player::~Player(){

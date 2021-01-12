@@ -17,7 +17,7 @@ private:
     bool bot;
 public:
     // Ctor Dtor
-    Player(const string &_name, const vector<Card*> &_hand, float _score, bool _bot);
+    Player(const string &_name, const vector<Card*> &_hand, float _score, bool _bot = false);
     ~Player();
 
     //Getters Setters :
