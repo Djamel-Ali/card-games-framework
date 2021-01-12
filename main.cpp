@@ -4,11 +4,14 @@
 int main() {
     Controller * controller;
     View* vue = new View();
-
+    int jeu = vue->printWelcomeInterface();
     do {
-        controller = new Controller(vue, vue->printWelcomeInterface());
+        controller = new Controller(vue, jeu);
         controller->startGame();
-        if(vue->rejouer()) break;
+
+        int rejouer = vue -> rejouer();
+        if(rejouer == 2) jeu = vue->printWelcomeInterface();
+        if(rejouer == 3) break;
     }while (true);
 
     vue->aurevoir();

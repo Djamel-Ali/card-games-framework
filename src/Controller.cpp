@@ -44,10 +44,9 @@ void Controller::startGame() {
         }else{
             view -> cantPlay();
         }
-
     }
-
     view ->printWinner(*game->getPlayer(game->getWinner()));
+
 }
 
 

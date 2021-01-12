@@ -16,16 +16,16 @@ int View::rejouer() {
     cout << "LA PARTIE EST TERMINÉE" << endl;
     cout << "\n----------------------------------\n" << endl;
 
-    cout << "1 : REJOUER;  2 : QUITTER" << endl;
+    cout << "1 : REJOUER - 2 : JOUER A UN AUTRE JEU - 3 : QUITTER" << endl;
     cin >> choice;
 
-    if (!cin || choice < 1 || choice > 2)
+    if (!cin || choice < 1 || choice > 3)
     {
         cout << "Erreur, merci d'entrer un choix valide " << endl;
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
     }
-    return choice == 2 ? 1 : 0;
+    return choice;
 }
 
 void View::aurevoir() {

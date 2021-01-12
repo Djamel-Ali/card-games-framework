@@ -56,7 +56,7 @@ void HuitAmericain::reversed(){
 
 void HuitAmericain::changeColor() {
 
-    cout << "Tu as joué la carte cC : Changement de Couleur" << endl;
+    cout << "Tu as joué la carte : Changement de Couleur" << endl;
     cout << "#1# pour " << colors[0] << endl;
     cout << "#2# pour " << colors[1] << endl;
     cout << "#3# pour " << colors[2] << endl;
@@ -100,7 +100,7 @@ void HuitAmericain::changeColor() {
  */
 
 bool HuitAmericain::cardPlayable(Card *toPlay) {
-    if(dynamic_cast<ColoredCard*>(tapis[0])->getColor() == NONE && colors[4] != NONE){
+    if(dynamic_cast<ColoredCard*>(tapis[0])->getColor() == NONE && colors[4] != NONE && dynamic_cast<ColoredCard*>(toPlay)->getColor() != NONE){
         return dynamic_cast<ColoredCard*>(toPlay)->getColor() == colors[4];
     }
 
@@ -190,9 +190,7 @@ void HuitAmericain::createCards() {
 void HuitAmericain::distribution() {
    // deck->distributeCards(7, joueurs);
    joueurs[0]->addCard(new ColoredCard("JOKER", 14, 50, NONE));
-    joueurs[0]->addCard(new ColoredCard("JOKER", 14, 50, NONE));
-   joueurs[1]->addCard(new ColoredCard("JOKER", 14, 50, NONE));
-    joueurs[0]->addCard(new ColoredCard("JOKER", 14, 50, NONE));
+    joueurs[1]->addCard(new ColoredCard("JOKER", 14, 50, NONE));
 
    tapis.insert(tapis.begin(), deck->getCard());
 }
