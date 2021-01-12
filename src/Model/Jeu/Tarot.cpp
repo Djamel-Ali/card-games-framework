@@ -468,7 +468,7 @@ void Tarot::nextPlayer() {
 
     actualPlaying++;
     actualPlaying = actualPlaying % (int)(int)joueurs.size();
-    5
+
     if (tapis.size() == 4){
 
         // Les (3) autres joueurs joueront après lui (le gagnant du pli précédent), un par un.
