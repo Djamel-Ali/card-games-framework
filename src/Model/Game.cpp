@@ -89,7 +89,7 @@ int Game::playAuto() {
 
     srand(time(NULL));  //Changed from rand(). srand() seeds rand for you.
     int randIndex = rand() % index.size() + 0;
-    
+
     system("read -p 'Appuyez sur une touche pour continuer' var");
     return index[randIndex];
 }

@@ -190,7 +190,13 @@ void HuitAmericain::createCards() {
 void HuitAmericain::distribution() {
     deck->distributeCards(7, joueurs);
 
-    tapis.insert(tapis.begin(), deck->getCard());
+    Card * temp = deck->getCard();
+    while(dynamic_cast<ColoredCard *>(temp)->getColor() != NONE){
+      temp = deck->getCard();
+      deck->addCard(temp);
+    }
+        
+    tapis.insert(tapis.begin(), temp);
 }
 
 bool HuitAmericain::isWinner() {
