@@ -3,7 +3,7 @@
 #include <iostream>
 
 // Ctor
-Player::Player(const string &_name, const vector<Card*> &_hand, float _score = 0) : name(_name), hand(_hand), current_score(_score) {}
+Player::Player(const string &_name, const vector<Card*> &_hand, float _score = 0, bool _bot = false) : name(_name), hand(_hand), current_score(_score), bot(_bot) {}
 
 //Dtor
 Player::~Player(){
@@ -72,6 +72,10 @@ void Player::displayHand() {
             cout << "(" << ++counter << "): " << *pCard << " ; ";
     }
     cout <<"\n" << endl;
+}
+
+bool Player::isBot() const {
+    return bot;
 }
 
 std::ostream &operator<<(std::ostream &out, const Player &a_player) {

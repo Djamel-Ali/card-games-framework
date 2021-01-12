@@ -14,9 +14,10 @@ private:
     string name;
     vector<Card*> hand;
     float current_score;
+    bool bot;
 public:
     // Ctor Dtor
-    Player(const string &_name, const vector<Card*> &_hand, float _score);
+    Player(const string &_name, const vector<Card*> &_hand, float _score, bool _bot);
     ~Player();
 
     //Getters Setters :
@@ -29,7 +30,7 @@ public:
     bool handEmpty();
     Card* playCard(int index);
     void addCard(Card* toAdd);
-
+    bool isBot() const;
     void displayHand();
 };
 

@@ -85,6 +85,9 @@ void View::update() {
 }
 
 int View::play(int max, Player * player) {
+    if(player->isBot()){
+        return game->playAuto();
+    }
     printPlayer(*player);
 
     int index = -1;

@@ -1,4 +1,5 @@
 #include <iostream>
+#include <ctime>
 #include "Game.hpp"
 
 Game::Game(Deck *_deck) :joueurs{}{
@@ -75,4 +76,18 @@ void Game::playRound(int indexCardToPlay) {
         cout << "la carte n'est pas jouable " << endl;
         system("pause");
     }
+}
+
+int Game::playAuto() {
+    int max = 0;
+    for(Card * card : joueurs[actualPlaying]->getHand()){
+        if(cardPlayable(card)){
+            max ++;
+        }
+    }
+
+    srand(time(NULL));  //Changed from rand(). srand() seeds rand for you.
+    return rand() % max + 0;
+
+    return 0;
 }

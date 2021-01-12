@@ -40,6 +40,7 @@ public:
     virtual void nextPlayer() = 0;
     virtual void print(ostream& out) = 0;
 
+    int playAuto();
     friend ostream& operator<<(ostream& out, Game &game);
 };
 
