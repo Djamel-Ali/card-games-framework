@@ -11,7 +11,7 @@ HuitAmericain::HuitAmericain(Deck *_deck) : Game(_deck){
     colors[4] = NONE;
 
     joueurs.push_back(new Player("Djamel", vector<Card *> {}, false,0));
-    joueurs.push_back(new Player("Yacine", vector<Card *> {}, false,0));
+    joueurs.push_back(new Player("Yacine", vector<Card *> {}, true,0));
 
 }
 
@@ -100,7 +100,7 @@ void HuitAmericain::changeColor() {
  */
 
 bool HuitAmericain::cardPlayable(Card *toPlay) {
-    if(dynamic_cast<ColoredCard*>(tapis[0])->getColor() == NONE && colors[4] != NONE && dynamic_cast<ColoredCard*>(toPlay)->getColor() != NONE){
+    if((dynamic_cast<ColoredCard*>(tapis[0])->getColor() == NONE && colors[4] != NONE) || dynamic_cast<ColoredCard*>(toPlay)->getColor() == NONE){
         return dynamic_cast<ColoredCard*>(toPlay)->getColor() == colors[4];
     }
 
@@ -188,11 +188,9 @@ void HuitAmericain::createCards() {
 
 // 7 cartes par joueur
 void HuitAmericain::distribution() {
-   // deck->distributeCards(7, joueurs);
-   joueurs[0]->addCard(new ColoredCard("JOKER", 14, 50, NONE));
-    joueurs[1]->addCard(new ColoredCard("JOKER", 14, 50, NONE));
+    deck->distributeCards(7, joueurs);
 
-   tapis.insert(tapis.begin(), deck->getCard());
+    tapis.insert(tapis.begin(), deck->getCard());
 }
 
 bool HuitAmericain::isWinner() {

@@ -4,7 +4,7 @@
 Bataille::Bataille(Deck *deck) : Game(deck) {
     ohBataille = false;
     joueurs.push_back(new Player("Djamel", vector<Card *> {}, false,0));
-    joueurs.push_back(new Player("Yacine", vector<Card *> {}, false,0));
+    joueurs.push_back(new Player("ROBOT", vector<Card *> {}, true,0));
 }
 
 void Bataille::createCards() {

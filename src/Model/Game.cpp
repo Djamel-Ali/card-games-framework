@@ -78,14 +78,18 @@ void Game::playRound(int indexCardToPlay) {
 }
 
 int Game::playAuto() {
-    int max = 0;
-    for(Card * card : joueurs[actualPlaying]->getHand()){
-        if(cardPlayable(card)){
-            max ++;
+    vector<int> index;
+    vector<Card *> hand = joueurs[actualPlaying]->getHand();
+    for(int i = 0; i < (int)hand.size(); i++){
+        if(cardPlayable(hand.at(i))){
+            index.push_back(i);
         }
     }
 
-    srand(time(NULL));  //Changed from rand(). srand() seeds rand for you.
-    return rand() % max + 0;
 
+    srand(time(NULL));  //Changed from rand(). srand() seeds rand for you.
+    int randIndex = rand() % index.size() + 0;
+    
+    system("read -p 'Appuyez sur une touche pour continuer' var");
+    return index[randIndex];
 }
