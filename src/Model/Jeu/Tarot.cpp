@@ -452,8 +452,41 @@ float Tarot::getSumOfPointsInTapis() {
 
 
 void Tarot::nextPlayer() {
+    if (endOfDonne()) {
+        updatesScores();
+        collectAllTheCards();
+        deck->shuffleCards();
+        distribution();
+
+        // Launch the announcement phase
+        launchAnnouncementPhase();
+        actualPlaying = index_of_attacker;
+        // À la sortie de cette methode (phase des annonces) on saurait qui est le meneur et qui sont
+        // les défenseurs pour la donne qui suit
+    }
+
+
     actualPlaying++;
     actualPlaying = actualPlaying % (int)(int)joueurs.size();
+    5
+    if (tapis.size() == 4){
+
+        // Les (3) autres joueurs joueront après lui (le gagnant du pli précédent), un par un.
+        makeTheOthersPlay();
+
+        // À la sortie de cette méthode, on aurait mis à jour le gagnantDuPli
+        // (donc on calcule la somme des points qu'il vient de gagner sur ce pli)
+        gagnantDuPli->setCurrentScore(gagnantDuPli->getCurrentScore()+getSumOfPointsInTapis());
+
+        actualPlaying = getIndexOfGagantDuPli();
+
+        // Récupération des carte du tapis et on les remet directement dans le deck
+        // (car le score est mis à jour au fur et à mesure)
+        deck->getDeckOfCards().insert(deck->getDeckOfCards().end(), tapis.begin(), tapis.end());
+        tapis.clear();
+    }
+
+
 }
 
 void Tarot::setChien(vector<Card *> &_chien) {
@@ -484,64 +517,72 @@ int Tarot::getIndexOfPlayer(const Player *_pPlayer) {
 }
 
 
+
 bool Tarot::cardPlayable(Card *toPlay, const Player &concernedPlayer) {
-    bool response = false;
-    auto pPlayedColoredCard = dynamic_cast<ColoredCard*>(tapis.back());
-    auto pToPlayColoredCard = dynamic_cast<ColoredCard*>(toPlay);
+    if(!tapis.empty()) {
+        cout << "test playable Card de Tarto" << endl;
+        bool response = false;
+        auto pPlayedColoredCard =  dynamic_cast<ColoredCard*>(tapis.back());
 
-    // Si la toute 1ere carte déjà posée sur le tapis est de type Atout, tout le monde doit jouer sa carte Atout
-    // (et il faut que les cartes/chiffres des atous soient dans un ordre croissant)
-    if(pPlayedColoredCard == nullptr){
 
-        // la carte à jouer est aussi de type atout, (donc il faut juste qu'elle soit plus grande que celles déjà posées)
-        if(pToPlayColoredCard == nullptr){
-            auto i = 0;
-            while (i < (int)tapis.size()){
-                // dernière carte posée est à l'indice 0 (elle devait être atout, mais elle peut ne pas l'être)
-                auto pColoredCard = dynamic_cast<ColoredCard*>(tapis.at(i));
+        auto pToPlayColoredCard = dynamic_cast<ColoredCard*>(toPlay);
 
-                // si la carte déjà posée est de type atout, et celle qu'on veut poser est plus grande qu'elle,
-                // alors on peut retourner True
-                if (pColoredCard == nullptr && *toPlay > *tapis.at(i))
+        // Si la toute 1ere carte déjà posée sur le tapis est de type Atout, tout le monde doit jouer sa carte Atout
+        // (et il faut que les cartes/chiffres des atous soient dans un ordre croissant)
+        if(pPlayedColoredCard == nullptr){
+
+            // la carte à jouer est aussi de type atout, (donc il faut juste qu'elle soit plus grande que celles déjà posées)
+            if(pToPlayColoredCard == nullptr){
+                auto i = 0;
+                while (i < (int)tapis.size()){
+                    // dernière carte posée est à l'indice 0 (elle devait être atout, mais elle peut ne pas l'être)
+                    auto pColoredCard = dynamic_cast<ColoredCard*>(tapis.at(i));
+
+                    // si la carte déjà posée est de type atout, et celle qu'on veut poser est plus grande qu'elle,
+                    // alors on peut retourner True
+                    if (pColoredCard == nullptr && *toPlay > *tapis.at(i))
+                        response = true;
+                    else
+                        i++;
+                }
+            }
+                // il faut jouer un atout, mais la carte à jouer n'est pas un atout,
+                // donc il faut vérifier qu'il n'existe vraiment pas d'atout dans la main du joueur pour dire oui
+            else{
+                if(noAtoutInHand(concernedPlayer))
                     response = true;
-                else
-                    i++;
+
+                //sinon, s'il existe au moins un atout dans la main du player et donc il doit jouer un atout
+                // cette fois-ci (pas la peine d'ecrire un else puis response = false car reste elle est déjà à false).
             }
         }
-            // il faut jouer un atout, mais la carte à jouer n'est pas un atout,
-            // donc il faut vérifier qu'il n'existe vraiment pas d'atout dans la main du joueur pour dire oui
+
+            // Si la toute 1ere carte déjà posée sur le tapis est de type couleur (non-atout), tout le monde doit jouer
+            // la meme couleur, s'il y'en a pas il faut jouer un atout, si pas d'atout, jouer n'importe quelle autre carte.
         else{
-            if(noAtoutInHand(concernedPlayer))
-                response = true;
 
-            //sinon, s'il existe au moins un atout dans la main du player et donc il doit jouer un atout
-            // cette fois-ci (pas la peine d'ecrire un else puis response = false car reste elle est déjà à false).
-        }
-    }
-
-        // Si la toute 1ere carte déjà posée sur le tapis est de type couleur (non-atout), tout le monde doit jouer
-        // la meme couleur, s'il y'en a pas il faut jouer un atout, si pas d'atout, jouer n'importe quelle autre carte.
-    else{
-
-        // si le joueur veut couper la couleur par un atout, il faut vérifier qu'il n'a vraiment pas cette
-        // couleur dans sa main pour dire ok, sinon on l'olblige à jouer une des carte de cette couleur qu'il a en main.
-        if(pToPlayColoredCard == nullptr){
-            // il n'a vraiment pas cette couleur --> ok
-            if(noColorInHand(pPlayedColoredCard->getColor(), concernedPlayer )){
-                response = true;
+            // si le joueur veut couper la couleur par un atout, il faut vérifier qu'il n'a vraiment pas cette
+            // couleur dans sa main pour dire ok, sinon on l'olblige à jouer une des carte de cette couleur qu'il a en main.
+            if(pToPlayColoredCard == nullptr){
+                // il n'a vraiment pas cette couleur --> ok
+                if(noColorInHand(pPlayedColoredCard->getColor(), concernedPlayer )){
+                    response = true;
+                }
+                // le else reste a false.
             }
-            // le else reste a false.
-        }
 
-            // la carte attendu est de type couleur, le joueur veut aussi poser une carte de couleur,
-            // --> il faut vérifier que les deux cartes sont de meme couleur;
-        else{
-            if(pToPlayColoredCard->getColor() == pPlayedColoredCard->getColor())
-                response = true;
+                // la carte attendu est de type couleur, le joueur veut aussi poser une carte de couleur,
+                // --> il faut vérifier que les deux cartes sont de meme couleur;
+            else{
+                if(pToPlayColoredCard->getColor() == pPlayedColoredCard->getColor())
+                    response = true;
+            }
+            // dans le else; la var response est déjà initialisée à false;
         }
-        // dans le else; la var response est déjà initialisée à false;
+        return response;
     }
-    return response;
+
+    return true;
 }
 
 bool Tarot::noAtoutInHand(const Player &player) {
@@ -599,4 +640,10 @@ void Tarot::collectAllTheCards() {
         deck->addCard(chien.back());
         chien.pop_back();
     }
+}
+
+bool Tarot::cardPlayable(Card *toPlay) {
+    cout << "actual ===" << actualPlaying << endl;
+    const Player &temp = *joueurs[actualPlaying];
+    return cardPlayable(toPlay, temp);
 }

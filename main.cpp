@@ -2,7 +2,7 @@
 #include "src/Controller.hpp"
 
 int main() {
-   Controller * controller;
+    Controller * controller;
     View* vue = new View();
 
     do {

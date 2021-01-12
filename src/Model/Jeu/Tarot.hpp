@@ -18,7 +18,7 @@ private:
     // constante qui représente le score que doit atteindre le gagnant de la partie de Tarot.
     static constexpr int GAMEPLAY_OBJECTIVE = 150;
 
-    vector<Card *> tapis;
+    //vector<Card *> tapis;
     vector<Card *> chien;
     int index_of_attacker;
 
@@ -57,6 +57,7 @@ public:
 
     void createCards() override;
 
+    bool cardPlayable(Card* toPlay) override;
 
     // Other methods
 
