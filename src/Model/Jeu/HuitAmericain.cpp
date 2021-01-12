@@ -156,7 +156,7 @@ void HuitAmericain::createCards() {
     // cards  3 - 7 (Leur propre valeur numérale)
     for (int numero = 3; numero <= 7; numero++){
         for (int symbol = 0; symbol < 4; symbol++){
-            deck->addCard(new ColoredCard(to_string(numero), numero, numero, symbols[symbol]));
+            deck->addCard(new ColoredCard(to_string(numero), numero, (float)numero, symbols[symbol]));
         }
     }
     // cards  "9" (leur propre valeur numérale)
@@ -188,8 +188,13 @@ void HuitAmericain::createCards() {
 
 // 7 cartes par joueur
 void HuitAmericain::distribution() {
-    deck->distributeCards(7, joueurs);
-    tapis.insert(tapis.begin(), deck->getCard());
+   // deck->distributeCards(7, joueurs);
+   joueurs[0]->addCard(new ColoredCard("JOKER", 14, 50, NONE));
+    joueurs[0]->addCard(new ColoredCard("JOKER", 14, 50, NONE));
+   joueurs[1]->addCard(new ColoredCard("JOKER", 14, 50, NONE));
+    joueurs[0]->addCard(new ColoredCard("JOKER", 14, 50, NONE));
+
+   tapis.insert(tapis.begin(), deck->getCard());
 }
 
 bool HuitAmericain::isWinner() {
@@ -231,14 +236,14 @@ int HuitAmericain::getIndexOfParseCard() {
         case 8: //8
             changeColor();
             return 1;
-        case 10://VALET
+        case 12://VALET
             cout << joueurs[actualPlaying]->getName() << " a fait passer le tour du prochain joueur" << endl;
             passerTour();
             break;
-        case 12: //AS
+        case 13: //AS
             reversed();
             break;
-        case 13://JOKER
+        case 14://JOKER
             passerTour();
             plusFour();
             changeColor();
@@ -299,6 +304,7 @@ void HuitAmericain::print(ostream &out) {
 }
 
 void HuitAmericain::passerTour() {
+    cout << "PasserTour 8US/UNO";
     actualPlaying = (sensInverse) ? (actualPlaying -1) : (actualPlaying +1);
     actualPlaying = actualPlaying % (int)joueurs.size();
 }
