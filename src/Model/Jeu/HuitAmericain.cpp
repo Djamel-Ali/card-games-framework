@@ -257,7 +257,6 @@ void HuitAmericain::nextPlayer() {
 
     actualPlaying = (sensInverse) ? (actualPlaying -1) : (actualPlaying +1);
     if(actualPlaying < 0){
-        cout << "negatif  "<< actualPlaying << endl;
         actualPlaying += (int)joueurs.size();
     }else{
         actualPlaying = actualPlaying % (int)joueurs.size();
@@ -291,8 +290,7 @@ void HuitAmericain::print(ostream &out) {
     out << "------------------------------" << endl;
 
     if(! isWinner()){
-        out << "Actual playing === " << actualPlaying<< endl;
-        out << "la main de " << joueurs.at(actualPlaying)->getName() << endl;
+        out << "La main de " << joueurs.at(actualPlaying)->getName() << endl;
 
         for(Card* card : joueurs.at(actualPlaying)->getHand()){
             out << *dynamic_cast<ColoredCard*>(card) << endl;
@@ -303,5 +301,4 @@ void HuitAmericain::print(ostream &out) {
 void HuitAmericain::passerTour() {
     actualPlaying = (sensInverse) ? (actualPlaying -1) : (actualPlaying +1);
     actualPlaying = actualPlaying % (int)joueurs.size();
-    cout << "Actual playing " << actualPlaying << endl;
 }

@@ -298,7 +298,7 @@ void Tarot::updatesScores() {
 
     // Si l'attanquant réalise son contrat (ou son enchère)
     if (difference >= 0) {
-        cout << "L'attaquant a réalisé sont contrat" << endl;
+        cout << "L'attaquant a réalisé son contrat" << endl;
         cout << "\n\tL'attaquant : + " << newGain * 3 << " pts." << endl;
         cout << "\tLes défenseurs : " << (-1) * newGain << " pts chacun.";
 

@@ -74,7 +74,7 @@ void Game::playRound(int indexCardToPlay) {
     }else{
         joueurs[actualPlaying]->addCard(temp);
         cout << "la carte n'est pas jouable " << endl;
-        system("pause");
+        system("read -p 'Appuyez sur une touche pour continuer' var");
     }
 }
 
@@ -89,5 +89,4 @@ int Game::playAuto() {
     srand(time(NULL));  //Changed from rand(). srand() seeds rand for you.
     return rand() % max + 0;
 
-    return 0;
 }

@@ -86,8 +86,10 @@ void View::update() {
 
 int View::play(int max, Player * player) {
     if(player->isBot()){
+        cout << "La bot va jouer une Carte automatique " << endl;
         return game->playAuto();
     }
+
     printPlayer(*player);
 
     int index = -1;
@@ -116,7 +118,7 @@ void View::setGame(Game *_game) {
 void View::cantPlay() {
     cout << "aucune de tes cartes n'est jouable" << endl;
     cout << "tu passes ton tour" << endl;
-    system("pause");
+    system("read -p 'Appuyez sur une touche pour continuer' var");
 }
 
 
