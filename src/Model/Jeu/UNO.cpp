@@ -51,24 +51,25 @@ void UNO::createCards() {
  */
 
 int UNO::getIndexOfParseCard() {
-    switch (cardOnTop->getId()) {
+    switch (tapis[0]->getId()) {
         case 10:
-            nextPlayer();
+            passerTour();
             plusTwo();
             break;
         case 11:
             cout << joueurs[actualPlaying]->getName() << " a fait passer le tour du prochain joueur" << endl;
-            nextPlayer();
+            passerTour();
             break;
         case 12:
             reversed();
             break;
         case 13:
             changeColor();
-            return 1;
+            break;
         case 14:
-            nextPlayer();
+            passerTour();
             plusFour();
+            changeColor();
             break;
     }
 

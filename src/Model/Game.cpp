@@ -54,3 +54,25 @@ void Game::startGame() {
     initGame();
     distribution();
 }
+
+bool Game::playerCanPlay() {
+    return true;
+}
+
+bool Game::cardPlayable(Card *toPlay) {
+    return true;
+}
+
+void Game::playRound(int indexCardToPlay) {
+    Card* temp = joueurs[actualPlaying]->playCard(indexCardToPlay);
+    if(cardPlayable(temp)){
+        cout << "la carte est jouable " << endl;
+        tapis.insert(tapis.begin(), temp);
+        cout << "carte dans tapis - tapis size == "<<tapis.size() << endl;
+        nextPlayer();
+    }else{
+        joueurs[actualPlaying]->addCard(temp);
+        cout << "la carte n'est pas jouable " << endl;
+        system("pause");
+    }
+}

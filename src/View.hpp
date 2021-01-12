@@ -26,6 +26,7 @@ public:
     int rejouer();
     void aurevoir();
 
+    void cantPlay();
 };
 
 

@@ -61,11 +61,9 @@ void Belote::setCardsAtout(){
     for(Card * card : deck->getDeckOfCards()){
         auto * temp = dynamic_cast<ColoredCard *>(card);
         if(temp->getId() == 9 && temp->getColor() == atout){
-            cout << "set 9 atout" << endl;
             temp->setValue(14);
         }
-        if(temp->getId() == 11 && temp->getColor() == atout){
-            cout << "set valet atout"<< endl;
+        if(temp->getId() == 10 && temp->getColor() == atout){
             temp->setValue(20);
         }
     }
@@ -76,28 +74,33 @@ void Belote::setCardsAtout(){
  */
 
 void Belote::setPoints() {
-    for(Card* &card : tapis){
-        tempScore[actualPlaying %2] += card->getValue();
-        //remise a zero de la valeur du valet atout
+    while (!tapis.empty()){
+        cout << "set Points equipe : "<< lastFoldWinner%2 << endl;
+        Card * card = tapis.back();
+        cout << "valeur carte " << card->getValue() << endl;
+        tempScore[lastFoldWinner %2] += card->getValue();
+        cout << "score dans setPoints" << endl;
+
+        cout << tempScore[0] << endl;
+        cout << tempScore[1] << endl;
+
         if(card->getValue() == 20){
             dynamic_cast<ColoredCard *>(card) -> setValue(2);
         }
         //remise a zero de la valeur du 9 atout
-        if(card->getValue() == 20){
+        if(card->getValue() == 14){
             dynamic_cast<ColoredCard *>(card) -> setValue(0);
         }
-        //remise des cartes jouées dans le deck et melanger
         deck->addCard(card);
         deck->shuffleCards();
-        //vider le tapis
-        card = nullptr;
+        tapis.pop_back();
     }
 }
 
 void Belote::createCards() {
     COLOR colors[] = {PIQUE, CARREAU, TREFLE, COEUR};
     string nom[] = {"7", "8", "9", "10", "VALET", "DAME", "ROI", "AS"};
-    int id[] = {7, 8, 9, 10, 11, 12, 13, 14};
+    int id[] = {7, 8, 9, 13, 10, 11, 12, 14};
     int valeur[] = {0, 0, 0, 10, 2, 3, 4, 11};
 
     for(int i = 0; i < 8; i++){
@@ -139,44 +142,47 @@ int Belote::getWinner() {
 
 int Belote::getIndexOfParseCard() {
 
+    int indexCard = getlastWinner();
+    cout << "----------------------------------------------" << endl;
+    cout << "last winner"<< lastFoldWinner << endl;
+    cout << "index carte"<< indexCard << endl;
+    cout << "----------------------------------------------" << endl;
+    cout << "atout === winer !atout" << endl;
     // si la carte jouée est un atout et que la plus forte du tapis ne l'est pas
-    if(dynamic_cast<ColoredCard*>(tapis[actualPlaying])->getColor() == atout
-       && dynamic_cast<ColoredCard*>(tapis[lastFoldWinner])->getColor()!= atout) return actualPlaying;
+    if(dynamic_cast<ColoredCard*>(tapis[0])->getColor() == atout
+       && dynamic_cast<ColoredCard*>(tapis[indexCard])->getColor()!= atout) return actualPlaying;
 
+
+    cout << "!atout === winer atout" << endl;
     // si la carte jouée n'est pas un atout et que la plus forte du tapis l'est
-    if(dynamic_cast<ColoredCard*>(tapis[actualPlaying])->getColor() != atout
-       && dynamic_cast<ColoredCard*>(tapis[lastFoldWinner])->getColor()== atout) return lastFoldWinner;
+    if(dynamic_cast<ColoredCard*>(tapis[0])->getColor() != atout
+       && dynamic_cast<ColoredCard*>(tapis[indexCard])->getColor()== atout) return lastFoldWinner;
 
+
+    cout << "fold === winer !fold" << endl;
     // si la carte jouée est de la couleur du pli et que la plus forte du tapis ne l'est pas
-    if(dynamic_cast<ColoredCard*>(tapis[actualPlaying])->getColor() == fold
-       && dynamic_cast<ColoredCard*>(tapis[lastFoldWinner])->getColor()!= fold) return actualPlaying;
+    if(dynamic_cast<ColoredCard*>(tapis[0])->getColor() == fold
+       && dynamic_cast<ColoredCard*>(tapis[indexCard])->getColor()!= fold) return actualPlaying;
 
+
+    cout << "!fold === winer fold" << endl;
     // si la carte jouée n'est pas de la couleur du pli et que la plus forte du tapis l'est
-    if(dynamic_cast<ColoredCard*>(tapis[actualPlaying])->getColor() != fold
-       && dynamic_cast<ColoredCard*>(tapis[lastFoldWinner])->getColor() == fold) return lastFoldWinner;
+    if(dynamic_cast<ColoredCard*>(tapis[0])->getColor() != fold
+       && dynamic_cast<ColoredCard*>(tapis[indexCard])->getColor() == fold) return lastFoldWinner;
 
     // derniers choix - on compare les valeurs des deux cartes
-    if(dynamic_cast<ColoredCard *>(tapis[actualPlaying])->getId() > dynamic_cast<ColoredCard *>(tapis[lastFoldWinner])->getId()) return actualPlaying;
-
-    return lastFoldWinner;
-}
-
-void Belote::playRound(int indexCardToPlay) {
-    Card* temp = joueurs[actualPlaying]->getHand().at(indexCardToPlay);
-
-    if(cardPlayable(temp)){
-        tapis[actualPlaying] = joueurs[actualPlaying]->playCard(indexCardToPlay);
-        if(fold == NONE && lastFoldWinner == -1){
-            fold = dynamic_cast<ColoredCard*>(temp)->getColor();
-            lastFoldWinner = actualPlaying;
-        }else{
-            lastFoldWinner = getIndexOfParseCard();
-        }
-
-        nextPlayer();
-    }else{
-        cout << "La carte ne peut pas etre jouée" << endl;
+    cout << "comparison valeur cartes" << endl;
+    if(dynamic_cast<ColoredCard *>(tapis[0])->getColor() == atout && dynamic_cast<ColoredCard *>(tapis[indexCard])->getColor() == atout){
+        cout << "comparison valeur cartes ATOUT VALEUR" << endl;
+        return (dynamic_cast<ColoredCard *>(tapis[0])->getValue() > dynamic_cast<ColoredCard *>(tapis[indexCard])->getValue())  ? actualPlaying : lastFoldWinner;
     }
+
+    else{
+        cout << "comparison valeur cartes NOMARL ID" << endl;
+        return (dynamic_cast<ColoredCard *>(tapis[0])->getId() > dynamic_cast<ColoredCard *>(tapis[indexCard])->getId())  ? actualPlaying : lastFoldWinner;
+    }
+
+
 }
 
 /**
@@ -184,16 +190,35 @@ void Belote::playRound(int indexCardToPlay) {
  */
 
 void Belote::nextPlayer() {
-    actualPlaying++;
-    actualPlaying = actualPlaying % (int)joueurs.size();
+    if(fold == NONE){
+        cout << "1ere carte du pli "<< endl;
+        fold = dynamic_cast<ColoredCard*>(tapis.back())->getColor();
+        lastFoldWinner = actualPlaying;
+    }else{
+        lastFoldWinner = getIndexOfParseCard();
+    }
+
+    if(!tapis.empty()){
+        actualPlaying++;
+        actualPlaying = actualPlaying % 4;
+        cout << "Actual playing mis a jour == " << actualPlaying << endl;
+    }
 
     //test fin du pli (tour de table)
-    for(auto & card : tapis){
-        if(card == nullptr) return;
+//    for(auto & card : tapis){
+//        if(card == nullptr) return;
+    //   }
+
+    if(tapis.size() < 4) {
+        cout << "pli non fini" << endl;
+        return;
     }
+
     // couleur du pli
     fold = NONE;
     // le vinqueur du pli commence le suivant
+    cout << "vinqueur du plis commence " << lastFoldWinner << endl;
+
     actualPlaying = lastFoldWinner;
     //mise a jour des points du pli
     setPoints();
@@ -225,7 +250,7 @@ void Belote::nextPlayer() {
 void Belote::print(ostream &out) {
     out << "score Round: " << endl;
     out << "Equipe 1 : " << tempScore[0] << endl;
-    out << "Equipe 2 : " << tempScore[0] << endl;
+    out << "Equipe 2 : " << tempScore[1] << endl;
 
     out << "------------------------------" << endl;
 
@@ -235,19 +260,33 @@ void Belote::print(ostream &out) {
 
     out << "------------------------------" << endl;
 
-    out << "Le tapis :" << endl;
+    out << "Le tapis : size : "<< tapis.size() << endl;
+
     for(Card * card : tapis){
-        if(card != nullptr){
-            out << *dynamic_cast<ColoredCard *>(card);
-        }
+        out << *dynamic_cast<ColoredCard *>(card) << " | v = " <<dynamic_cast<ColoredCard *>(card)->getValue() << " ";
     }
 
-    out << "------------------------------" << endl;
+    out << "\n------------------------------" << endl;
 
     out << "Atout du round :" << endl;
     out << atout << endl;
 
     out << "------------------------------" << endl;
+
+    out << "\n------------------------------" << endl;
+
+    out << "Couleur du pli :" << endl;
+    out << fold << endl;
+
+    out << "------------------------------" << endl;
+
+    if(lastFoldWinner > -1){
+        out << "\n------------------------------" << endl;
+        out << "Gagnant du pli : " ;
+        out << joueurs[lastFoldWinner]->getName() << endl;
+
+        out << "------------------------------" << endl;
+    }
 
     out << "joueur en cours : " << endl;
     out << joueurs[actualPlaying]->getName() << endl;
@@ -257,4 +296,33 @@ void Belote::print(ostream &out) {
         out << " -- " ;
     }
     out << endl;
+}
+
+int Belote::getlastWinner() {
+    if(tapis.size() == 2){
+        return 1;
+    }
+
+    int temp;
+    for(int i = 1; i <= (int)tapis.size(); i++){
+        temp = actualPlaying -i;
+        if(temp < 0){
+            temp = temp +4;
+        }
+        if(temp == lastFoldWinner){
+            return i;
+        }
+
+        /*
+         int temp = (ordreDeJeu +i) %(4);
+         if(temp == lastFoldWinner){
+
+             return (int)tapis.size() -1 - i;
+
+         }
+
+          */
+    }
+
+    return lastFoldWinner;
 }

@@ -13,11 +13,10 @@ HuitAmericain::HuitAmericain(Deck *_deck) : Game(_deck){
     joueurs.push_back(new Player("Djamel", vector<Card *> {}, 0));
     joueurs.push_back(new Player("Yacine", vector<Card *> {}, 0));
 
-    cardOnTop = nullptr;
 }
 
 HuitAmericain::~HuitAmericain(){
-    delete cardOnTop;
+
 }
 
 /**
@@ -101,23 +100,42 @@ void HuitAmericain::changeColor() {
  */
 
 bool HuitAmericain::cardPlayable(Card *toPlay) {
-    if(dynamic_cast<ColoredCard*>(cardOnTop)->getColor() == NONE && colors[4] != NONE){
+    if(dynamic_cast<ColoredCard*>(tapis[0])->getColor() == NONE && colors[4] != NONE){
         return dynamic_cast<ColoredCard*>(toPlay)->getColor() == colors[4];
     }
 
-    return *dynamic_cast<ColoredCard*>(cardOnTop) == *dynamic_cast<ColoredCard*>(toPlay);
+    return *dynamic_cast<ColoredCard*>(tapis[0]) == *dynamic_cast<ColoredCard*>(toPlay);
 }
 
 /**
  * Vérifie si un joueur possede une carte jouable
  */
 
-bool HuitAmericain::playerCanPlay(const vector<Card *>& hand) {
-    for(Card* card : hand){
+bool HuitAmericain::playerCanPlay() {
+    for(Card* card : joueurs[actualPlaying]->getHand()){
         if(cardPlayable(card)){
             return true;
         }
     }
+
+    Card * pioche = deck->getCard();
+    cout << "carte piochée" << endl;
+    cout << "-----------------------------------------" << endl;
+    cout << *dynamic_cast<ColoredCard *>(pioche) << endl;
+
+
+    if(cardPlayable(pioche)){
+        cout << "la carte est jouée automatiquement !" << endl;
+        deck->addCard(tapis.front());
+        tapis.insert(tapis.begin(), pioche);
+        nextPlayer();
+    }else{
+        cout << "dommage la carte est non jouable, elle est ajoutée à ta main " << endl;
+        joueurs[actualPlaying]->addCard(pioche);
+        passerTour();
+    }
+    cout << "-----------------------------------------" << endl;
+
 
     return false;
 }
@@ -171,7 +189,7 @@ void HuitAmericain::createCards() {
 // 7 cartes par joueur
 void HuitAmericain::distribution() {
     deck->distributeCards(7, joueurs);
-    cardOnTop = deck->getCard();
+    tapis.insert(tapis.begin(), deck->getCard());
 }
 
 bool HuitAmericain::isWinner() {
@@ -204,9 +222,10 @@ int HuitAmericain::getWinner() {
  */
 
 int HuitAmericain::getIndexOfParseCard() {
-    switch (cardOnTop->getId()) {
+    switch (tapis[0]->getId()) {
+
         case 2://2
-            nextPlayer();
+            passerTour();
             plusTwo();
             break;
         case 8: //8
@@ -214,13 +233,13 @@ int HuitAmericain::getIndexOfParseCard() {
             return 1;
         case 10://VALET
             cout << joueurs[actualPlaying]->getName() << " a fait passer le tour du prochain joueur" << endl;
-            nextPlayer();
+            passerTour();
             break;
         case 12: //AS
             reversed();
             break;
         case 13://JOKER
-            nextPlayer();
+            passerTour();
             plusFour();
             changeColor();
             break;
@@ -230,56 +249,22 @@ int HuitAmericain::getIndexOfParseCard() {
 }
 
 /**
- * Vérifie que le joueur possede une carte Jouable,
- * Pioche une nouvelle carte dans le cas contraire qui est
- * ou jouée automatiquement ou ajoutée a la main de ce dernier
- */
-
-void HuitAmericain::playRound(int indexCardToPlay) {
-    if(playerCanPlay(joueurs[actualPlaying]->getHand())){
-        Card* temp = joueurs[actualPlaying]->playCard(indexCardToPlay);
-        if(cardPlayable(temp)){
-            deck->addCard(cardOnTop);
-            cardOnTop = temp;
-            getIndexOfParseCard();
-
-            nextPlayer();
-        }else{
-            joueurs[actualPlaying]->addCard(temp);
-            cout << "La carte ne peut pas etre jouée" << endl;
-        }
-    }else{
-        cout << "Aucune carte a jouer !" << endl;
-        cout << "Pioche ..." << endl;
-        Card * pioche = deck->getCard();
-
-        cout << *dynamic_cast<ColoredCard *>(pioche) << endl;
-
-        if(cardPlayable(pioche)){
-            cout << "la carte est jouée automatiquement !" << endl;
-            deck->addCard(cardOnTop);
-            cardOnTop = pioche;
-        }else{
-            cout << "dommage la carte est non jouable, elle est ajoutée à ta main " << endl;
-            joueurs[actualPlaying]->addCard(pioche);
-        }
-
-        nextPlayer();
-    }
-
-}
-
-/**
  * Passer au joueur suivant
  */
 
 void HuitAmericain::nextPlayer() {
-    actualPlaying = (sensInverse) ? (actualPlaying -1) : (actualPlaying +1);
+    getIndexOfParseCard();
 
-    if(actualPlaying < 0)
-        actualPlaying+=(int)joueurs.size();
-    else
+    actualPlaying = (sensInverse) ? (actualPlaying -1) : (actualPlaying +1);
+    if(actualPlaying < 0){
+        cout << "negatif  "<< actualPlaying << endl;
+        actualPlaying += (int)joueurs.size();
+    }else{
         actualPlaying = actualPlaying % (int)joueurs.size();
+    }
+
+
+    deck->addCard(tapis.back());
 }
 
 void HuitAmericain::print(ostream &out) {
@@ -292,14 +277,13 @@ void HuitAmericain::print(ostream &out) {
 
     out << "------------------------------" << endl;
 
-
-    if(cardOnTop != nullptr){
+    if((int)tapis.size() > 0){
         out << "Carte au dessus" << endl;
-        out << *dynamic_cast<ColoredCard*>(cardOnTop) << endl;
+        out << *dynamic_cast<ColoredCard*>(tapis[0]) << endl;
 
     }
 
-    if(dynamic_cast<ColoredCard*>(cardOnTop)->getColor() == NONE && colors[4] != NONE){
+    if(dynamic_cast<ColoredCard*>(tapis[0])->getColor() == NONE && colors[4] != NONE){
         out << "Couleur a jouer : " << endl;
         out << colors[4] << endl;
     }
@@ -307,10 +291,17 @@ void HuitAmericain::print(ostream &out) {
     out << "------------------------------" << endl;
 
     if(! isWinner()){
+        out << "Actual playing === " << actualPlaying<< endl;
         out << "la main de " << joueurs.at(actualPlaying)->getName() << endl;
 
         for(Card* card : joueurs.at(actualPlaying)->getHand()){
             out << *dynamic_cast<ColoredCard*>(card) << endl;
         }
     }
+}
+
+void HuitAmericain::passerTour() {
+    actualPlaying = (sensInverse) ? (actualPlaying -1) : (actualPlaying +1);
+    actualPlaying = actualPlaying % (int)joueurs.size();
+    cout << "Actual playing " << actualPlaying << endl;
 }

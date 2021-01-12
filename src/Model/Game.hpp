@@ -13,7 +13,7 @@ protected:
     Deck *deck;
     vector <Player*> joueurs;
     int actualPlaying;
-
+    vector<Card *> tapis;
 public:
     //ctor dtor
     explicit Game(Deck *deck);
@@ -26,6 +26,10 @@ public:
     //fonctions en commun
     void initGame();
     void startGame();
+    void playRound(int indexCardToPlay);
+    //fonctions virtual
+    virtual bool playerCanPlay();
+    virtual bool cardPlayable(Card* toPlay);
 
     //fonctions pures
     virtual void createCards() = 0;
@@ -33,7 +37,6 @@ public:
     virtual bool isWinner() = 0;
     virtual int getWinner() = 0;
     virtual int getIndexOfParseCard() = 0;
-    virtual void playRound(int indexCardToPlay) = 0;
     virtual void nextPlayer() = 0;
     virtual void print(ostream& out) = 0;
 

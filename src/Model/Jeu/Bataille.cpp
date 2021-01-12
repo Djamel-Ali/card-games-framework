@@ -64,6 +64,7 @@ int Bataille::getIndexOfParseCard() {
     }
     if(tapis.size() %2 == 0){
         ohBataille = false;
+        cout << *this;
     }
 
     int roundWinner = *tapis.at(0) > *tapis.at(1) ? 1 : 0;
@@ -77,15 +78,6 @@ int Bataille::getIndexOfParseCard() {
     return 0;
 }
 
-/**
- * Jouer la 1e carte de la main
- */
-
-void Bataille::playRound(int indexCardToPlay) {
-    tapis.insert(tapis.begin(), joueurs.at(actualPlaying)->playCard(0));
-
-    nextPlayer();
-}
 
 /**
  * passe au joueur suivant, affiche le vinqueur s'il y en a un
@@ -102,42 +94,44 @@ void Bataille::nextPlayer() {
 }
 
 void Bataille::print(ostream &out) {
-    out << "Les Joueurs :" << endl;
-
-    for(Player* player : joueurs){
-        out << player-> getName() << " possede " << player->getHand().size() << " cartes" << endl;
-    }
-
-    out << "------------------------------" << endl;
-
     if(!tapis.empty()){
-        out << "Le tapis :" << endl;
-        if(tapis.size() % 2 == 0){
-            out << "la carte de " << joueurs.at(1)-> getName() << " : " << endl;
-        }else{
-            out << "la carte de " << joueurs.at(0)-> getName() << " : " << endl;
+        out << "Les Joueurs :" << endl;
+
+        for(Player* player : joueurs){
+            out << player-> getName() << " possede " << player->getHand().size() << " cartes" << endl;
         }
 
-        for(int i = 0; i < (int)tapis.size(); i++){
-            if(i % 2 == 0){
-                cout << *tapis[i] << endl;
+        out << "------------------------------" << endl;
+
+        if(!tapis.empty()){
+            out << "Le tapis :" << endl;
+            if(tapis.size() % 2 == 0){
+                out << "la carte de " << joueurs.at(1)-> getName() << " : " << endl;
+            }else{
+                out << "la carte de " << joueurs.at(0)-> getName() << " : " << endl;
             }
-        }
 
-        out << " ************** " << endl;
-
-        for(int i = 0; i < (int)tapis.size(); i++){
-            if(i % 2 != 0){
-                cout << *tapis[i] << endl;
+            for(int i = 0; i < (int)tapis.size(); i++){
+                if(i % 2 == 0){
+                    cout << *tapis[i] << endl;
+                }
             }
-        }
 
-        if(tapis.size() % 2 == 0){
-            out << "la carte de " << joueurs.at(0)-> getName() << " : " << endl;
-        }else{
-            out << "la carte de " << joueurs.at(1)-> getName() << " : " << endl;
-        }
+            out << " ************** " << endl;
 
+            for(int i = 0; i < (int)tapis.size(); i++){
+                if(i % 2 != 0){
+                    cout << *tapis[i] << endl;
+                }
+            }
+
+            if(tapis.size() % 2 == 0){
+                out << "la carte de " << joueurs.at(0)-> getName() << " : " << endl;
+            }else{
+                out << "la carte de " << joueurs.at(1)-> getName() << " : " << endl;
+            }
+
+        }
     }
 
 }

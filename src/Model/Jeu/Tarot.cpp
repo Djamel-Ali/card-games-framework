@@ -232,7 +232,7 @@ bool Tarot::endOfDonne() {
     return true;
 }
 
-
+/*
 //L'attaquant (de la donne courante) joue toujours en premier pour débuter la partie,
 //Le gagant du pli courant débutera le pli suivant (et puis dans le sens aiguilles d'une montre)
 void Tarot::playRound(int indexCardToPlay) {
@@ -287,7 +287,7 @@ void Tarot::playRound(int indexCardToPlay) {
         tapis.clear();
     }
 }
-
+*/
 // update (current and final) scores of all players (attacker and defenders)
 // (j'affiche en même temps les résultats mis à jour dans cette fonction)
 void Tarot::updatesScores() {

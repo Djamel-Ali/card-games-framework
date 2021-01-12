@@ -38,8 +38,13 @@ void Controller::startGame() {
     game -> startGame();
     updateView();
     while (!game -> isWinner()){
-        game -> playRound(view->play((int)game->getActualPlaying()->getHand().size() -1, game->getActualPlaying()));
-        updateView();
+        if(game->playerCanPlay()){
+            game -> playRound(view->play((int)game->getActualPlaying()->getHand().size() -1, game->getActualPlaying()));
+            updateView();
+        }else{
+            view -> cantPlay();
+        }
+
     }
 
     view ->printWinner(*game->getPlayer(game->getWinner()));

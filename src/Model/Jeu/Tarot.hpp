@@ -51,13 +51,12 @@ public:
     void distribution() override;
 
     //L'attaquant joue toujours en premier
-    void playRound(int indexCardToPlay) override;
+ //   void playRound(int indexCardToPlay) override;
 
     void nextPlayer() override;
 
     void createCards() override;
 
-    void startGame();
 
     // Other methods
 
@@ -75,7 +74,7 @@ public:
     // L'attaquant choisit les 6 cartes à écarter de sa main (pour les remettre au chien)
     void discardAdditionalCards();
 
-    static bool moveCardFromTo(vector<Card *> &srcVectOfCards, vector<Card *> &targetVectOfCards, int indexOfCard);
+  //  static bool moveCardFromTo(vector<Card *> &srcVectOfCards, vector<Card *> &targetVectOfCards, int indexOfCard);
 
     // update current and final scores of players
     void updatesScores();

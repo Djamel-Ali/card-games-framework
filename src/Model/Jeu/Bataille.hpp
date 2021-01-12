@@ -7,7 +7,6 @@
 class Bataille : public Game {
 
 protected:
-    vector<Card *> tapis;
     bool ohBataille;
 
 public:
@@ -18,7 +17,6 @@ public:
     bool isWinner() override;
     int getWinner() override;
     int getIndexOfParseCard() override;
-    void playRound(int indexCardToPlay) override;
     void nextPlayer() override;
     void print(ostream& out) override;
 };

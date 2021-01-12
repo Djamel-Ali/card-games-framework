@@ -110,6 +110,11 @@ void View::setGame(Game *_game) {
     game = _game;
 }
 
+void View::cantPlay() {
+    cout << "aucune de tes cartes n'est jouable" << endl;
+    cout << "tu passes ton tour" << endl;
+    system("pause");
+}
 
 
 
