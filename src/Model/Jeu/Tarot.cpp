@@ -4,10 +4,10 @@
 
 Tarot::Tarot(Deck *pDeck) : Game(pDeck), index_of_attacker{-1}, goal_of_the_attacker{56}, strategy_of_attacker{-1},
                                          coefficient_contrat{1}, gagnantDuPli{getAttacker()}{
-    joueurs.push_back(new Player("Djamel", vector<Card *> {}, 0));
-    joueurs.push_back(new Player("Mandela", vector<Card *> {}, 0));
-    joueurs.push_back(new Player("Yacine", vector<Card *> {}, 0));
-    joueurs.push_back(new Player("Ghandi", vector<Card *> {}, 0));
+    joueurs.push_back(new Player("Djamel", vector<Card *> {},false, 0));
+    joueurs.push_back(new Player("Mandela", vector<Card *> {}, false,0));
+    joueurs.push_back(new Player("Yacine", vector<Card *> {}, false,0));
+    joueurs.push_back(new Player("Ghandi", vector<Card *> {}, false,0));
 
 }
 

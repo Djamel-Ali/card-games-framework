@@ -5,10 +5,10 @@ Belote::Belote(Deck *_deck) : Game(_deck) {
     fold = NONE;
     lastFoldWinner = -1;
 
-    joueurs.push_back(new Player("Djamel", vector<Card *> {}, 0));
-    joueurs.push_back(new Player("Mandela", vector<Card *> {}, 0));
-    joueurs.push_back(new Player("Yacine", vector<Card *> {}, 0));
-    joueurs.push_back(new Player("Ghandi", vector<Card *> {}, 0));
+    joueurs.push_back(new Player("Djamel", vector<Card *> {}, false, 0));
+    joueurs.push_back(new Player("Mandela", vector<Card *> {}, true, 0));
+    joueurs.push_back(new Player("Yacine", vector<Card *> {}, false, 0));
+    joueurs.push_back(new Player("Ghandi", vector<Card *> {}, true, 0));
 
 }
 

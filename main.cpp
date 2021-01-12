@@ -12,5 +12,6 @@ int main() {
     }while (true);
 
     vue->aurevoir();
+
     return 0;
 }

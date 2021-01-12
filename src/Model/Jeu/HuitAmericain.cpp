@@ -10,8 +10,8 @@ HuitAmericain::HuitAmericain(Deck *_deck) : Game(_deck){
     colors[3] = PIQUE;
     colors[4] = NONE;
 
-    joueurs.push_back(new Player("Djamel", vector<Card *> {}, 0));
-    joueurs.push_back(new Player("Yacine", vector<Card *> {}, 0));
+    joueurs.push_back(new Player("Djamel", vector<Card *> {}, false,0));
+    joueurs.push_back(new Player("Yacine", vector<Card *> {}, false,0));
 
 }
 
