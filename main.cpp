@@ -5,17 +5,17 @@
 int main() {
     Controller * controller;
     View* vue = new View();
-    int jeu = vue->printWelcomeInterface();
+    int jeu = View::printWelcomeInterface();
     do {
         controller = new Controller(vue, jeu);
         controller->startGame();
 
-        int rejouer = vue -> rejouer();
+        int rejouer = View::rejouer();
         if(rejouer == 2) jeu = vue->printWelcomeInterface();
         if(rejouer == 3) break;
     }while (true);
 
-    vue->aurevoir();
+    View::aurevoir();
 
 
     return 0;
