@@ -11,7 +11,7 @@ int main() {
         controller->startGame();
 
         int rejouer = View::rejouer();
-        if(rejouer == 2) jeu = vue->printWelcomeInterface();
+        if(rejouer == 2) jeu = View::printWelcomeInterface();
         if(rejouer == 3) break;
     }while (true);
 
