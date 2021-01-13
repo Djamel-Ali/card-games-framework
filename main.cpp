@@ -1,3 +1,4 @@
+#include <algorithm>
 #include "src/View.hpp"
 #include "src/Controller.hpp"
 
@@ -16,5 +17,7 @@ int main() {
 
     vue->aurevoir();
 
+
     return 0;
+
 }

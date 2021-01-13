@@ -1,10 +1,10 @@
+#include <iostream>
+#include <limits>
 #include "View.hpp"
 
-#include <limits>
+using namespace std;
 
-View::View()
-{
-}
+View::View() = default;
 
 View::~View() {
     delete game;
@@ -86,11 +86,12 @@ void View::update() {
 
 int View::play(int max, Player * player) {
     if(player->isBot()){
-        cout << "La bot va jouer une Carte automatique " << endl;
+        cout << "Le bot va jouer une Carte automatiquement s'il en a une jouable (sinon il pioche...) " << endl;
         return game->playAuto();
     }
 
     printPlayer(*player);
+    player->displayHand();
 
     int index = -1;
 
@@ -116,9 +117,8 @@ void View::setGame(Game *_game) {
 }
 
 void View::cantPlay() {
-    cout << "aucune de tes cartes n'est jouable" << endl;
-    cout << "tu passes ton tour" << endl;
-    system("read -p 'Appuyez sur une touche pour continuer' var");
+    cout << "(En passant par la pioche, le tour de ce dernier vient de passer automatiquement)" << endl;
+    system("read -p 'Appuyez sur Entrer pour continuer...' var");
 }
 
 

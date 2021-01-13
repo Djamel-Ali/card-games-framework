@@ -1,11 +1,9 @@
 #ifndef CARD_GAMES_FRAMEWORK_VIEW_HPP
 #define CARD_GAMES_FRAMEWORK_VIEW_HPP
 
-#include <iostream>
 #include "Model/Player.hpp"
 #include "Model/Game.hpp"
 
-using namespace std;
 
 class View {
 
@@ -16,17 +14,17 @@ public:
     View();
     ~View();
 
-    int printWelcomeInterface();
-    void printPlayer(const Player &player);
-    void printWinner(const Player &player);
+    static int printWelcomeInterface();
+    static void printPlayer(const Player &player);
+    static void printWinner(const Player &player);
     void update();
 
     int play(int max, Player * player);
     void setGame(Game * _game);
-    int rejouer();
-    void aurevoir();
+    static int rejouer();
+    static void aurevoir();
 
-    void cantPlay();
+    static void cantPlay();
 };
 
 

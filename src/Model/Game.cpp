@@ -1,5 +1,5 @@
 #include <iostream>
-#include <ctime>
+#include <random>
 #include "Game.hpp"
 
 Game::Game(Deck *_deck) :joueurs{}{
@@ -67,13 +67,14 @@ bool Game::cardPlayable(Card *toPlay) {
 void Game::playRound(int indexCardToPlay) {
     Card* temp = joueurs[actualPlaying]->playCard(indexCardToPlay);
     if(cardPlayable(temp)){
-        cout << "la carte est jouable " << endl;
+        cout << "\n\t~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\t\t Bien joué "
+        << joueurs.at(actualPlaying)->getName() << " (la carte est jouable)" << endl;
         tapis.insert(tapis.begin(), temp);
         nextPlayer();
     }else{
         joueurs[actualPlaying]->addCard(temp);
         cout << "la carte n'est pas jouable " << endl;
-        system("read -p 'Appuyez sur une touche pour continuer' var");
+        system("read -p 'Appuyez sur Entrer pour continuer...' var");
     }
 }
 
@@ -85,11 +86,18 @@ int Game::playAuto() {
             index.push_back(i);
         }
     }
-
-
-    srand(time(NULL));  //Changed from rand(). srand() seeds rand for you.
-    int randIndex = rand() % index.size() + 0;
-
-    system("read -p 'Appuyez sur une touche pour continuer' var");
+    int randIndex = getRandomSignedInt(0, (int)index.size()-1);
+    system("read -p 'Appuyez sur Entrer pour continuer...' var");
     return index[randIndex];
+}
+
+int Game::getRandomSignedInt(const int minValue, const int maxValue) {
+
+    // Non-deterministic 32-bit seed
+    std::random_device rd;
+    std::mt19937 mt(rd());
+
+    // distribution: [minValue, maxValue] ; Note : [inclusive, inclusive]
+    std::uniform_int_distribution<int> distribution(minValue, maxValue);
+    return distribution(mt);
 }

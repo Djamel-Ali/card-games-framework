@@ -1,7 +1,6 @@
 #include "Card.hpp"
 #include <iostream>
 
-using namespace std;
 
 Card::Card(const string &_name, int _id, float _value) : name(_name), id(_id), value(_value)
 {

@@ -55,7 +55,7 @@ public:
     void setValue(float v);
 
     virtual bool operator==(ColoredCard const & other) const;
-    friend ostream& operator<<(ostream& out, const ColoredCard &fs);
+    friend ostream& operator<<(ostream& out, const ColoredCard &coloredCard);
 
 
 };

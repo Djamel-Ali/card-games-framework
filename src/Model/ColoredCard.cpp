@@ -18,8 +18,8 @@ bool ColoredCard::operator==(const ColoredCard &other) const {
     return this->getValue() == other.getValue() || this->color == other.color || other.color == NONE;
 }
 
-ostream &operator<<(ostream &out, const ColoredCard &fs) {
-    out << " [ " << fs.getName() << " | " << fs.getColor() << " ] ";
+ostream &operator<<(ostream &out, const ColoredCard &coloredCard) {
+    out << " [ " << coloredCard.getName() << " | " << coloredCard.getColor() << " ] ";
 
     return out;
 }

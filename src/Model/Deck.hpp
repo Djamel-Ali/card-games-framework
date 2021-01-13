@@ -5,7 +5,6 @@
 #include <vector>
 #include "Card.hpp"
 #include "Player.hpp"
-using namespace std;
 
 class Deck {
 private:

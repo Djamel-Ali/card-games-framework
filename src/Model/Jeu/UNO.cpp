@@ -23,9 +23,9 @@ void UNO::createCards() {
         for (int x = 0; x < 2; x++){
             for (int color = 0; color < 4; color++){
                 if(numero < 10){
-                    deck->addCard(new ColoredCard(to_string(numero), numero, numero, colors[color]));
+                    deck->addCard(new ColoredCard(to_string(numero), numero, (float)numero, colors[color]));
                 }else{
-                    deck->addCard(new ColoredCard(noms[k], numero, numero, colors[color]));
+                    deck->addCard(new ColoredCard(noms[k], numero, (float)numero, colors[color]));
                 }
             }
         }
@@ -67,10 +67,12 @@ int UNO::getIndexOfParseCard() {
             changeColor();
             break;
         case 14:
+            changeColor();
             passerTour();
             plusFour();
-            changeColor();
             break;
+        default :
+            colors[4] = NONE;
     }
 
     return 0;

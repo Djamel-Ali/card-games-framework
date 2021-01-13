@@ -6,9 +6,12 @@ Belote::Belote(Deck *_deck) : Game(_deck) {
     lastFoldWinner = -1;
 
     joueurs.push_back(new Player("Djamel", vector<Card *> {}, false, 0));
-    joueurs.push_back(new Player("Mandela", vector<Card *> {}, true, 0));
+    joueurs.push_back(new Player("Robot1", vector<Card *> {}, true, 0));
     joueurs.push_back(new Player("Yacine", vector<Card *> {}, false, 0));
-    joueurs.push_back(new Player("Ghandi", vector<Card *> {}, true, 0));
+    joueurs.push_back(new Player("Robot2", vector<Card *> {}, true, 0));
+
+//    joueurs.push_back(new Player("Mandela", vector<Card *> {}, false, 0));
+//    joueurs.push_back(new Player("Ghandi", vector<Card *> {}, false, 0));
 
 }
 
@@ -188,11 +191,6 @@ void Belote::nextPlayer() {
         actualPlaying++;
         actualPlaying = actualPlaying % 4;
     }
-
-    //test fin du pli (tour de table)
-//    for(auto & card : tapis){
-//        if(card == nullptr) return;
-    //   }
 
     if(tapis.size() < 4) {
         return;

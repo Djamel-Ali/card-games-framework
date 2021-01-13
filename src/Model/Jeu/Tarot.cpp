@@ -5,7 +5,10 @@
 Tarot::Tarot(Deck *pDeck) : Game(pDeck), index_of_attacker{-1}, goal_of_the_attacker{56}, strategy_of_attacker{-1},
                                          coefficient_contrat{1}, gagnantDuPli{getAttacker()}{
     joueurs.push_back(new Player("Djamel", vector<Card *> {},false, 0));
-    joueurs.push_back(new Player("Mandela", vector<Card *> {}, false,0));
+    joueurs.push_back(new Player("Robot1", vector<Card *> {}, true,0));
+//    joueurs.push_back(new Player("Yacine", vector<Card *> {}, false,0));
+//    joueurs.push_back(new Player("Robot2", vector<Card *> {}, true,0));
+
     joueurs.push_back(new Player("Yacine", vector<Card *> {}, false,0));
     joueurs.push_back(new Player("Ghandi", vector<Card *> {}, false,0));
 
@@ -73,7 +76,7 @@ void Tarot::distribution() {
 
 // Other methods :
 
-// Phase dont laquelle un des joueurs décide de jouer le role de l'attaquant
+/// Phase dont laquelle un des joueurs décide de jouer le role de l'attaquant
 void Tarot::launchAnnouncementPhase() {
     int choice = -1;
     while (index_of_attacker == -1) {
@@ -166,7 +169,7 @@ void Tarot::displayChien() {
     cout << "\n";
 }
 
-// Ajouter les cartes du chien à la main de l'attaquant
+/// Ajouter les cartes du chien à la main de l'attaquant
 void Tarot::integrateChien() {
     while (!chien.empty()){
         joueurs.at(index_of_attacker)->addCard(chien.back());
@@ -174,8 +177,8 @@ void Tarot::integrateChien() {
     }
 }
 
-// L'attaquant choisit les 6 cartes à écarter de sa main qui en contient actuellement 24
-// (pour les remettre au Chien)
+/// L'attaquant choisit les 6 cartes à écarter de sa main qui en contient actuellement 24
+/// (pour les remettre au Chien)
 void Tarot::discardAdditionalCards() {
     int indexOfCardToBeDiscarded = -1;
     for (auto i = 6; i > 0; i--) {
@@ -198,7 +201,7 @@ void Tarot::discardAdditionalCards() {
 }
 
 
-// ajoute les carte du chien à la main du preneur, puis laisse ce dernier choisir les 6 cartes à écarter
+/** ajoute les carte du chien à la main du preneur, puis laisse ce dernier choisir les 6 cartes à écarter*/
 void Tarot::integrateThenDiscard() {
     integrateChien();
     discardAdditionalCards();
@@ -212,7 +215,8 @@ bool Tarot::isWinner() {
     return false;
 }
 
-// Returns the winner's ID
+/** @Returns the winner's ID
+ * */
 int Tarot::getWinner() {
     for (auto i =0; i < (int)joueurs.size(); i++) {
         if (joueurs.at(i)->getCurrentScore() >= GAMEPLAY_OBJECTIVE)
@@ -221,8 +225,10 @@ int Tarot::getWinner() {
     return -1;
 }
 
-// Returns 'true' when you reach the end of the donne (une partie de jeu se compose de plusieures donnes) .
-//checks that all Hands Are Empty
+/**
+ * @Returns 'true' when you reach the end of the donne (une partie de jeu se compose de plusieures donnes) .
+checks that all Hands Are Empty
+ */
 bool Tarot::endOfDonne() {
     //If a person still has cards in his or her hands, the game continues.
     for (Player *player : joueurs) {
@@ -232,64 +238,8 @@ bool Tarot::endOfDonne() {
     return true;
 }
 
-/*
-//L'attaquant (de la donne courante) joue toujours en premier pour débuter la partie,
-//Le gagant du pli courant débutera le pli suivant (et puis dans le sens aiguilles d'une montre)
-void Tarot::playRound(int indexCardToPlay) {
-
-    if (endOfDonne()) {
-        updatesScores();
-        collectAllTheCards();
-        deck->shuffleCards();
-        distribution();
-
-        // Launch the announcement phase
-        launchAnnouncementPhase();
-        actualPlaying = index_of_attacker;
-        // À la sortie de cette methode (phase des annonces) on saurait qui est le meneur et qui sont
-        // les défenseurs pour la donne qui suit
-    }
-    else{
-
-        //L'attaquant joue toujours en premier à la première donne,
-        // sinon par le gagnant du pli à chaque à chaque fois pour toutes les autres donnes
-        // (pour ça le gagnant du pli est initialisé au départ par le preneur)
-        if(tapis.empty())
-        {
-            tapis.insert(tapis.begin(), joueurs.at(actualPlaying)->playCard(indexCardToPlay));
-            nextPlayer();
-        }
-        else{
-            if(cardPlayable
-                    (joueurs.at(actualPlaying)->getHand().at(indexCardToPlay), *joueurs.at(actualPlaying)))
-            {
-                tapis.insert(tapis.begin(), joueurs.at(actualPlaying)->playCard(indexCardToPlay));
-                nextPlayer();
-            }
-            else cout << "\n\n\tLa carte ne peut pas etre jouée, veuillez en choisir une autre svp\n";
-        }
-    }
-
-    if (tapis.size() == 4){
-
-        // Les (3) autres joueurs joueront après lui (le gagnant du pli précédent), un par un.
-        makeTheOthersPlay();
-
-        // À la sortie de cette méthode, on aurait mis à jour le gagnantDuPli
-        // (donc on calcule la somme des points qu'il vient de gagner sur ce pli)
-        gagnantDuPli->setCurrentScore(gagnantDuPli->getCurrentScore()+getSumOfPointsInTapis());
-
-        actualPlaying = getIndexOfGagantDuPli();
-
-        // Récupération des carte du tapis et on les remet directement dans le deck
-        // (car le score est mis à jour au fur et à mesure)
-        deck->getDeckOfCards().insert(deck->getDeckOfCards().end(), tapis.begin(), tapis.end());
-        tapis.clear();
-    }
-}
-*/
-// update (current and final) scores of all players (attacker and defenders)
-// (j'affiche en même temps les résultats mis à jour dans cette fonction)
+/** update (current and final) scores of all players (attacker and defenders)
+ (j'affiche en même temps les résultats mis à jour dans cette fonction)*/
 void Tarot::updatesScores() {
     float difference = getAttacker()->getCurrentScore() - (float)goal_of_the_attacker;
 
@@ -318,7 +268,7 @@ void Tarot::updatesScores() {
     getAttacker()->setCurrentScore(0);
 }
 
-// mise à jour des scores (finaux et intermediaires) des défenseurs de la donne courante
+/// mise à jour des scores (finaux et intermediaires) des défenseurs de la donne courante
 void Tarot::updateDefendersScores(float newGain) {
     for (auto i =0; i < (int)joueurs.size(); i++) {
         if (i != index_of_attacker) {
@@ -327,7 +277,7 @@ void Tarot::updateDefendersScores(float newGain) {
     }
 }
 
-// Display the final scores of the other players (other than the attacker of the deal that just finished).
+/// Display the final scores of the other players (other than the attacker of the deal that just finished).
 void Tarot::displayDefendersFinalScores() {
     for (auto i =0; i < (int)(int)joueurs.size(); i++) {
         if (i != index_of_attacker) {
@@ -356,7 +306,7 @@ void Tarot::displayFinalResults() {
     joueurs.at(actualPlaying)->displayHand();
 }
 
-// Affiche les résultats intermediaires avec des explications détatillées du comptage de points
+/// Affiche les résultats intermediaires avec des explications détatillées du comptage de points
 void Tarot::displayCalculationSummary() {
     float difference = getAttacker()->getCurrentScore() - (float)goal_of_the_attacker;
 
@@ -380,7 +330,7 @@ void Tarot::displayCalculationSummary() {
 }
 
 
-// Faire jouer les 3 autres joueurs après le que le gagnant du pli précédent ait joué
+/// Faire jouer les 3 autres joueurs après le que le gagnant du pli précédent ait joué
 void Tarot::makeTheOthersPlay() {
     // Les 3 autres joueurs viennent de jouer chacun sa carte
 
@@ -406,10 +356,6 @@ void Tarot::makeTheOthersPlay() {
     }
     // À la sortie de tous ces cas, on sait qui vient de gagner le pli (gagnantDuPli mis à jour)
     // (donc on doit mettre à jour son score juste après l'invocation de cette méthode)
-}
-
-Player *Tarot::getGagnantDuPli() const {
-    return gagnantDuPli;
 }
 
 void Tarot::setGagnantDuPli(Player *_gagnantDuPli) {
@@ -625,8 +571,8 @@ int Tarot::getIndexOfGagantDuPli() {
     return -1;
 }
 
-// récupération de toutes les cartes (mains des joueurs et leurs réserves (cartes gagnées) + Le Chien)
-// pour les mettre dans Deck
+/** récupération de toutes les cartes (mains des joueurs et leurs réserves (cartes gagnées) + Le Chien)
+ pour les mettre dans Deck*/
 void Tarot::collectAllTheCards() {
     // Récupération des cartes des joueurs
     for (Player *player : joueurs)
@@ -647,3 +593,60 @@ bool Tarot::cardPlayable(Card *toPlay) {
     const Player &temp = *joueurs[actualPlaying];
     return cardPlayable(toPlay, temp);
 }
+
+/*
+//L'attaquant (de la donne courante) joue toujours en premier pour débuter la partie,
+//Le gagant du pli courant débutera le pli suivant (et puis dans le sens aiguilles d'une montre)
+void Tarot::playRound(int indexCardToPlay) {
+
+    if (endOfDonne()) {
+        updatesScores();
+        collectAllTheCards();
+        deck->shuffleCards();
+        distribution();
+
+        // Launch the announcement phase
+        launchAnnouncementPhase();
+        actualPlaying = index_of_attacker;
+        // À la sortie de cette methode (phase des annonces) on saurait qui est le meneur et qui sont
+        // les défenseurs pour la donne qui suit
+    }
+    else{
+
+        //L'attaquant joue toujours en premier à la première donne,
+        // sinon par le gagnant du pli à chaque à chaque fois pour toutes les autres donnes
+        // (pour ça le gagnant du pli est initialisé au départ par le preneur)
+        if(tapis.empty())
+        {
+            tapis.insert(tapis.begin(), joueurs.at(actualPlaying)->playCard(indexCardToPlay));
+            nextPlayer();
+        }
+        else{
+            if(cardPlayable
+                    (joueurs.at(actualPlaying)->getHand().at(indexCardToPlay), *joueurs.at(actualPlaying)))
+            {
+                tapis.insert(tapis.begin(), joueurs.at(actualPlaying)->playCard(indexCardToPlay));
+                nextPlayer();
+            }
+            else cout << "\n\n\tLa carte ne peut pas etre jouée, veuillez en choisir une autre svp\n";
+        }
+    }
+
+    if (tapis.size() == 4){
+
+        // Les (3) autres joueurs joueront après lui (le gagnant du pli précédent), un par un.
+        makeTheOthersPlay();
+
+        // À la sortie de cette méthode, on aurait mis à jour le gagnantDuPli
+        // (donc on calcule la somme des points qu'il vient de gagner sur ce pli)
+        gagnantDuPli->setCurrentScore(gagnantDuPli->getCurrentScore()+getSumOfPointsInTapis());
+
+        actualPlaying = getIndexOfGagantDuPli();
+
+        // Récupération des carte du tapis et on les remet directement dans le deck
+        // (car le score est mis à jour au fur et à mesure)
+        deck->getDeckOfCards().insert(deck->getDeckOfCards().end(), tapis.begin(), tapis.end());
+        tapis.clear();
+    }
+}
+*/

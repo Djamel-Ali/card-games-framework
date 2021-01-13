@@ -1,6 +1,6 @@
+#include <iostream>
 #include "Player.hpp"
 #include "ColoredCard.hpp"
-#include <iostream>
 
 // Ctor
 Player::Player(const string &_name, const vector<Card*> &_hand,  bool _bot, float _score = 0) : name(_name), hand(_hand), current_score(_score), bot(_bot) {}

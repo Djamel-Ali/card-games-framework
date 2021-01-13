@@ -5,8 +5,6 @@
 #include "Deck.hpp"
 #include "Player.hpp"
 
-using namespace std;
-
 class Game {
 
 protected:
@@ -22,6 +20,7 @@ public:
     //getters
     Player* getActualPlaying() const;
     Player* getPlayer(int iPlayer) const;
+    static int getRandomSignedInt(int minValue, int maxValue);
 
     //fonctions en commun
     void initGame();
