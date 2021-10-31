@@ -8,3 +8,10 @@ in root ( card-games-framework directory) :
 * **Execution :** ***`$ ./main`***
 
 * **Cleaning :** ***`$ make clean`***
+
+
+## License & copyright
+
+© [Djamel ALI](https://github.com/DjamelALI) & [OUNNOUGHENE mohand yacine](https://www.linkedin.com/in/yacine-ounnoughene-091562178/), Université de Paris
+
+Licensed under the [MIT License](LICENSE).
